@@ -1,0 +1,75 @@
+page {
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+}
+.register .topber image {
+  width: 20rpx;
+  height: 36rpx;
+  margin: 66rpx 0 0 30rpx;
+}
+.register .title {
+  font-size: 88rpx;
+  font-weight: 800;
+  margin: 114rpx 0 93rpx 57rpx;
+}
+.register .r_text {
+  height: 34rpx;
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #111111;
+  margin: 0 0 102rpx 57rpx;
+}
+.register .form {
+  margin-left: 56rpx;
+}
+.register .form .border_bom {
+  width: 638rpx;
+  border-bottom: 1rpx solid #9C9C9C;
+  padding-bottom: 30rpx;
+  margin-bottom: 29rpx;
+}
+.register .form .border_bom input {
+  font-size: 30rpx;
+  color: #999999;
+  text-indent: 1rpx;
+}
+.register .form .getverifition {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.register .form .getverifition .getverifition_btn {
+  width: 188rpx;
+  height: 61rpx;
+  line-height: 61rpx;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 24rpx;
+  background: #D8D8D8;
+  border-radius: 30rpx;
+}
+.register .form .getverifition .getverifition_btn.active {
+  background: #FF9805;
+}
+.register .goregister {
+  height: 28rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  margin: 0 0 60rpx 57rpx;
+}
+.register .btn_signin {
+  width: 683rpx;
+  height: 100rpx;
+  border-radius: 48rpx;
+  background-color: #D8D8D8;
+  color: #FFFFFF;
+  font-size: 36rpx;
+}
+.register .btn_signin.active {
+  background: #FF9805;
+}
+

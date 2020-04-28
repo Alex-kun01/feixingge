@@ -1,0 +1,15 @@
+.box {
+  width: 750rpx;
+  height: 200rpx;
+  border: 1rpx solid #000000;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.box .item {
+  width: 150rpx;
+  height: 200rpx;
+  margin-right: 20rpx;
+  background-color: pink;
+}
+

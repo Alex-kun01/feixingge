@@ -1,0 +1,113 @@
+.item_wrap {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  position: relative;
+  width: 100%;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  padding: 2vw 4vw;
+}
+.item_wrap .ipt_wrap {
+  position: relative;
+  width: 70%;
+}
+.item_wrap .ipt_wrap input {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-size: 5vw;
+  font-weight: 300;
+  color: #999999;
+}
+.item_wrap .rt_img {
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+}
+.item_wrap .num_wrap {
+  color: #999999;
+  font-weight: 200;
+}
+.item_wrap .name {
+  line-height: 10vw;
+  width: auto;
+  text-align: center;
+  font-size: 5vw;
+}
+.item_wrap .name_title {
+  font-size: 5vw;
+  font-weight: 300;
+  color: #222222;
+}
+.item_wrap .time_show {
+  line-height: 18vw;
+  width: auto;
+  text-align: center;
+}
+.info_wrap {
+  width: 100%;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border-radius: 5px;
+  position: relative;
+  padding: 3vw 0;
+}
+.info_wrap .chosego_wrap {
+  color: #FF9805;
+}
+.info_wrap .go_next_icon {
+  left: 90%;
+}
+.info_wrap .go_next_icon image {
+  width: 6vw !important;
+  height: 6vw !important;
+}
+.btn_wrap {
+  height: 18vw;
+  margin-bottom: 6vw;
+  margin-top: 80rpx;
+}
+.btn_wrap .search_btn {
+  width: 670rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #FF9805;
+  color: #FFFFFF;
+  opacity: 0.5;
+  border-radius: 40px;
+}
+.icon_wrap {
+  width: 10vw;
+}
+.icon_wrap image {
+  width: 8vw !important;
+  height: 8vw !important;
+}
+.go_relate {
+  position: relative;
+}
+.content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+

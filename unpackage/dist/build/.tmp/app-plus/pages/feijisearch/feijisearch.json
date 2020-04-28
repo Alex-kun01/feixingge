@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "飞机票搜索",
+  "usingComponents": {
+    "uni-popup": "/components/uni-popup/uni-popup"
+  }
+}

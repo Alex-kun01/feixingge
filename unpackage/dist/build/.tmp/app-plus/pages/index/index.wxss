@@ -1,0 +1,236 @@
+page.data-v-04faa634 {
+  width: 750rpx;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+page .index-container.data-v-04faa634 {
+  width: 100%;
+  background-color: #fff;
+}
+page .index-container .search-swiper.data-v-04faa634 {
+  width: 100%;
+  position: relative;
+}
+page .index-container .search-swiper.data-v-04faa634 .swiper {
+  width: 100%;
+}
+page .index-container .search-swiper.data-v-04faa634 .swiper image {
+  width: 100%;
+}
+page .index-container .search-swiper .search.data-v-04faa634 {
+  position: absolute;
+  left: 0;
+  top: 20rpx;
+  z-index: 10;
+  width: 100%;
+  height: 120rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+page .index-container .search-swiper .search .left.data-v-04faa634 {
+  width: 80rpx;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+page .index-container .search-swiper .search .left text.data-v-04faa634 {
+  font-size: 27rpx;
+  color: #fff;
+}
+page .index-container .search-swiper .search .mid.data-v-04faa634 {
+  width: 540rpx;
+  height: 60rpx;
+  background-color: #FFFFFF;
+  border-radius: 30rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+page .index-container .search-swiper .search .mid image.data-v-04faa634 {
+  width: 26rpx;
+  height: 28rpx;
+  margin: 16rpx 0 0 20rpx;
+}
+page .index-container .search-swiper .search .mid input.data-v-04faa634 {
+  width: 460rpx;
+  height: 25rpx;
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #666666;
+  text-indent: 20rpx;
+  margin-top: 10rpx;
+}
+page .index-container .search-swiper .search .mid .uni-searchbar.data-v-04faa634 {
+  background-color: rgba(255, 255, 255, 0);
+}
+page .index-container .search-swiper .search .right.data-v-04faa634 {
+  width: 80rpx;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+page .index-container .search-swiper .search .right image.data-v-04faa634 {
+  width: 40rpx;
+  height: 40rpx;
+}
+page .index-container .search-swiper .search .right text.data-v-04faa634 {
+  font-size: 40rpx;
+  color: #fff;
+}
+page .index-container .main.data-v-04faa634 {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 20rpx 20rpx 0 0;
+  margin-top: -20rpx;
+  z-index: 10;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+}
+page .index-container .main .menu.data-v-04faa634 {
+  width: 750rpx;
+  height: 167rpx;
+  padding-top: 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+page .index-container .main .menu .menu-item.data-v-04faa634 {
+  height: 100%;
+  width: 170rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+page .index-container .main .menu .menu-item image.data-v-04faa634 {
+  width: 107rpx;
+  height: 76rpx;
+}
+page .index-container .main .menu .menu-item text.data-v-04faa634 {
+  font-size: 24rpx;
+}
+page .index-container .main .adv.data-v-04faa634 {
+  width: 100%;
+}
+page .index-container .main .adv image.data-v-04faa634 {
+  width: 732rpx;
+  height: 151rpx;
+}
+page .index-container .main .guide.data-v-04faa634 {
+  width: 100%;
+  height: 440rpx;
+  margin-top: 40rpx;
+}
+page .index-container .main .guide .travel.data-v-04faa634,
+page .index-container .main .guide .zuche.data-v-04faa634,
+page .index-container .main .guide .integral.data-v-04faa634 {
+  width: 48%;
+  border-radius: 20rpx;
+  border: 1px solid #efefef;
+  position: relative;
+  overflow: hidden;
+}
+page .index-container .main .guide .travel .info.data-v-04faa634,
+page .index-container .main .guide .zuche .info.data-v-04faa634,
+page .index-container .main .guide .integral .info.data-v-04faa634 {
+  position: absolute;
+  left: 20rpx;
+  top: 20rpx;
+}
+page .index-container .main .guide .travel .info .title.data-v-04faa634,
+page .index-container .main .guide .zuche .info .title.data-v-04faa634,
+page .index-container .main .guide .integral .info .title.data-v-04faa634 {
+  font-weight: bold;
+  font-size: 1rem;
+  display: block;
+  height: 80rpx;
+}
+page .index-container .main .guide .travel .info .feature.data-v-04faa634,
+page .index-container .main .guide .zuche .info .feature.data-v-04faa634,
+page .index-container .main .guide .integral .info .feature.data-v-04faa634 {
+  border-radius: 40rpx;
+  border: 1px solid #E10428;
+  padding: 10rpx 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+page .index-container .main .guide .travel .info .feature text.data-v-04faa634,
+page .index-container .main .guide .zuche .info .feature text.data-v-04faa634,
+page .index-container .main .guide .integral .info .feature text.data-v-04faa634 {
+  font-weight: 200;
+  color: #E10428;
+  font-size: 0.8rem;
+}
+page .index-container .main .guide .travel.data-v-04faa634 {
+  height: 100%;
+  float: left;
+}
+page .index-container .main .guide .travel image.data-v-04faa634 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 60%;
+}
+page .index-container .main .guide .zuche.data-v-04faa634 {
+  height: 210rpx;
+  float: right;
+}
+page .index-container .main .guide .zuche image.data-v-04faa634 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 40%;
+}
+page .index-container .main .guide .integral.data-v-04faa634 {
+  height: 210rpx;
+  float: right;
+  margin-top: 20rpx;
+}
+page .index-container .main .guide .integral image.data-v-04faa634 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 40%;
+}
+

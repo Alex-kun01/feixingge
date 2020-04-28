@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "航班选择",
+  "usingComponents": {
+    "topbar": "/components/topBar/topbarx"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "新增常用旅客",
+  "usingComponents": {
+    "uni-search-bar": "/node-modules/@dcloudio/uni-ui/lib/uni-search-bar/uni-search-bar"
+  }
+}

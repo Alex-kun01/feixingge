@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "班次选择",
+  "usingComponents": {
+    "topbar": "/components/topBar/topbarx"
+  }
+}

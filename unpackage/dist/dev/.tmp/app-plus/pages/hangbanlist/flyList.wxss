@@ -1,0 +1,336 @@
+.calendarBox {
+  width: 100%;
+  height: 110rpx;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  margin-bottom: 20rpx;
+}
+.calendarBox .week {
+  width: 570rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.calendarBox .week .day {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 6rpx;
+  box-sizing: border-box;
+  padding: 10rpx 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.calendarBox .week .day text {
+  font-size: 20rpx;
+}
+.calendarBox .week .day.active {
+  background-color: #FF9805;
+  color: #ffffff;
+}
+.calendarBox .calendar {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  font-size: 20rpx;
+}
+.calendarBox .calendar .icon-rili {
+  font-size: 35rpx;
+}
+.flyListBox {
+  width: 100%;
+}
+.flyListBox .flyList_huan .title {
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 24rpx;
+  color: #666666;
+  text-align: center;
+}
+.flyListBox .flyList_zhi,
+.flyListBox .flyList_huan {
+  width: 100%;
+}
+.flyListBox .flyList_zhi .fly,
+.flyListBox .flyList_huan .fly {
+  width: 100%;
+  height: 204rpx;
+  background: #ffffff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #E1E1E1;
+  padding: 40rpx 30rpx;
+}
+.flyListBox .flyList_zhi .fly .info,
+.flyListBox .flyList_huan .fly .info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  margin-bottom: 10rpx;
+}
+.flyListBox .flyList_zhi .fly .info .left_info,
+.flyListBox .flyList_huan .fly .info .left_info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.flyListBox .flyList_zhi .fly .info .left_info image,
+.flyListBox .flyList_huan .fly .info .left_info image {
+  width: 100rpx;
+  height: 7rpx;
+  margin: 0 41rpx;
+}
+.flyListBox .flyList_zhi .fly .info .left_info .form,
+.flyListBox .flyList_huan .fly .info .left_info .form,
+.flyListBox .flyList_zhi .fly .info .left_info .to,
+.flyListBox .flyList_huan .fly .info .left_info .to {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.flyListBox .flyList_zhi .fly .info .left_info .form text,
+.flyListBox .flyList_huan .fly .info .left_info .form text,
+.flyListBox .flyList_zhi .fly .info .left_info .to text,
+.flyListBox .flyList_huan .fly .info .left_info .to text {
+  font-size: 36rpx;
+  color: #222222;
+}
+.flyListBox .flyList_zhi .fly .info .left_info .form text.space,
+.flyListBox .flyList_huan .fly .info .left_info .form text.space,
+.flyListBox .flyList_zhi .fly .info .left_info .to text.space,
+.flyListBox .flyList_huan .fly .info .left_info .to text.space {
+  font-size: 24rpx;
+}
+.flyListBox .flyList_zhi .fly .info .right_info,
+.flyListBox .flyList_huan .fly .info .right_info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.flyListBox .flyList_zhi .fly .info .right_info .bom,
+.flyListBox .flyList_huan .fly .info .right_info .bom {
+  font-size: 24rpx;
+  color: #666666;
+}
+.flyListBox .flyList_zhi .fly .info .right_info .red,
+.flyListBox .flyList_huan .fly .info .right_info .red {
+  font-size: 36rpx;
+  color: #F90404;
+}
+.flyListBox .flyList_zhi .fly .info .right_info .red .mun,
+.flyListBox .flyList_huan .fly .info .right_info .red .mun {
+  font-size: 24rpx;
+}
+.flyListBox .flyList_zhi .fly .message image,
+.flyListBox .flyList_huan .fly .message image {
+  width: 19rpx;
+  height: 21rpx;
+  margin-right: 20rpx;
+}
+.flyListBox .flyList_zhi .fly .message text,
+.flyListBox .flyList_huan .fly .message text {
+  font-size: 24rpx;
+  color: #666666;
+  margin-right: 20rpx;
+}
+.flyListBox .flyList_zhi .fly .message .lin,
+.flyListBox .flyList_huan .fly .message .lin {
+  font-size: 20rpx;
+  color: #E1E1E1;
+}
+.tabBar {
+  width: 100%;
+  height: 100rpx;
+  background-color: #ffffff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  box-sizing: border-box;
+  padding: 10rpx 93rpx;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+}
+.tabBar .item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  color: #222222;
+}
+.tabBar .item text {
+  font-size: 20rpx;
+}
+.tabBar .item text.icon-shizhong {
+  font-size: 45rpx;
+}
+.tabBar .item text.icon-shaixuan,
+.tabBar .item text.icon-jiage {
+  font-size: 36rpx;
+}
+.tabBar .item.active {
+  color: #FF9805;
+}
+.screen_box {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  bottom: 0;
+}
+.screen_box .screen {
+  width: 100%;
+  height: 600rpx;
+  border-radius: 10rpx 10rpx 0 0;
+  background-color: #ffffff;
+  position: absolute;
+  bottom: 0;
+}
+.screen_box .screen .top_bar {
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: 1rpx solid #E8E8E8;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  font-size: 28rpx;
+}
+.screen_box .screen .top_bar .clear {
+  width: 60rpx;
+  height: 100rpx;
+  color: #999999;
+}
+.screen_box .screen .top_bar .submit {
+  color: #FF9805;
+  font-weight: bold;
+  width: 60rpx;
+  height: 100rpx;
+  text-align: right;
+}
+.screen_box .screen .content_box {
+  width: 100%;
+  height: 500rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.screen_box .screen .content_box .menu {
+  width: 250rpx;
+  height: 500rpx;
+  background-color: #F6F6F6;
+}
+.screen_box .screen .content_box .menu .item {
+  width: 250rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  border-bottom: 1rpx solid #E8E8E8;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  color: #333333;
+}
+.screen_box .screen .content_box .menu .item.active {
+  background: #ffffff;
+}
+.screen_box .screen .content_box .content .station_start .items,
+.screen_box .screen .content_box .content .station_end .items,
+.screen_box .screen .content_box .content .time_start .items {
+  width: 500rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #E8E8E8;
+  padding: 0 30rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  color: #222222;
+}
+.screen_box .screen .content_box .content .station_start .items text,
+.screen_box .screen .content_box .content .station_end .items text,
+.screen_box .screen .content_box .content .time_start .items text {
+  font-size: 28rpx;
+}
+.screen_box .screen .content_box .content .station_start .items .iconfont,
+.screen_box .screen .content_box .content .station_end .items .iconfont,
+.screen_box .screen .content_box .content .time_start .items .iconfont {
+  font-size: 20rpx;
+  margin-right: 20rpx;
+}
+.screen_box .screen .content_box .content .station_start .items.active,
+.screen_box .screen .content_box .content .station_end .items.active,
+.screen_box .screen .content_box .content .time_start .items.active {
+  color: #FF9805;
+}
+

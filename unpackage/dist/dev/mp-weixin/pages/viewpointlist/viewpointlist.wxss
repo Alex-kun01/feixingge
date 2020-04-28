@@ -1,0 +1,152 @@
+.titleNview-placing.data-v-a7b2679a {
+  height: 25px;
+  background: #FFFFFF;
+  box-sizing: content-box;
+}
+.float_bar.data-v-a7b2679a {
+  width: 600rpx;
+  height: 100rpx;
+  background-color: #FFFFFF;
+  border-radius: 50rpx;
+  position: fixed;
+  bottom: 20rpx;
+  left: 50rpx;
+  box-sizing: border-box;
+  box-shadow: 0 0 5rpx 4rpx #ddd;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  font-size: 30rpx;
+  padding: 0 39rpx;
+  color: #FF9805;
+}
+.float_bar .lin.data-v-a7b2679a {
+  width: 1px;
+  height: 50rpx;
+  background: #e1e1e1;
+}
+.viewpointlist-container.data-v-a7b2679a {
+  width: 100%;
+  background-color: fff;
+}
+.viewpointlist-container .topbar.data-v-a7b2679a {
+  width: 100%;
+  height: 66px;
+  background-color: #FFFFFF;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  box-sizing: border-box;
+  padding: 40rpx 30rpx 0 30rpx;
+}
+.viewpointlist-container .topbar .search_con.data-v-a7b2679a {
+  width: 560rpx;
+  height: 60rpx;
+  border: 1rpx solid #ff9805;
+  border-radius: 30rpx;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.viewpointlist-container .topbar .search_con text.data-v-a7b2679a {
+  font-size: 24rpx;
+  color: #ff9805;
+}
+.viewpointlist-container .topbar .search_con input.data-v-a7b2679a {
+  font-size: 24rpx;
+}
+.viewpointlist-container .list.data-v-a7b2679a {
+  width: 100%;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 10px;
+}
+.viewpointlist-container .list .item.data-v-a7b2679a {
+  width: 100%;
+  height: 100px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  border-bottom: 1px solid #F2F2F2;
+  padding: 10px 0;
+}
+.viewpointlist-container .list .item .left.data-v-a7b2679a {
+  width: 30%;
+}
+.viewpointlist-container .list .item .left image.data-v-a7b2679a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.viewpointlist-container .list .item .right.data-v-a7b2679a {
+  width: 70%;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+.viewpointlist-container .list .item .right .name.data-v-a7b2679a,
+.viewpointlist-container .list .item .right .score.data-v-a7b2679a,
+.viewpointlist-container .list .item .right .address.data-v-a7b2679a,
+.viewpointlist-container .list .item .right .distance-price.data-v-a7b2679a {
+  width: 100%;
+  height: 20px;
+  font-size: 0.8rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.viewpointlist-container .list .item .right .name.data-v-a7b2679a {
+  font-weight: bold;
+}
+.viewpointlist-container .list .item .right .score.data-v-a7b2679a {
+  color: #FF9805;
+}
+.viewpointlist-container .list .item .right .address.data-v-a7b2679a {
+  font-size: 0.6rem;
+  color: #666666;
+}
+.viewpointlist-container .list .item .right .distance-price .distance.data-v-a7b2679a {
+  color: #666666;
+}
+.viewpointlist-container .list .item .right .distance-price .price.data-v-a7b2679a {
+  color: #F90404;
+  font-size: 1rem;
+  font-weight: bold;
+}
+

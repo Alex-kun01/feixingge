@@ -1,0 +1,1 @@
+<view class="topbar"><view data-event-opts="{{[['tap',[['goBack',['$event']]]]]}}" class="img" bindtap="__e"><image src="../../static/public/back.png" mode></image></view><view class="title"><text>{{title}}</text></view></view>

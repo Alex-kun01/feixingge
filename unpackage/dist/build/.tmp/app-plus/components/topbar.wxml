@@ -1,0 +1,1 @@
+<view class="topbar-container"><uni-nav-bar vue-id="67af538d-1" left-icon="back" title="{{topbarData.title}}" bind:__l="__l"></uni-nav-bar></view>

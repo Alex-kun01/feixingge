@@ -1,0 +1,89 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/order/order",
+    "pages/mine/mine",
+    "pages/pointsmall/pointsmall",
+    "pages/pointsrecord/pointsrecord",
+    "pages/orderfill/orderfill",
+    "pages/keysearch/keysearch",
+    "pages/person/person",
+    "pages/verifyphone/verifyphone",
+    "pages/addressadd/addressadd",
+    "pages/myaddress/myaddress",
+    "pages/modify/modify",
+    "pages/hotelsearch/hotelsearch",
+    "pages/ticketselect/ticketselect",
+    "pages/viewpointlist/viewpointlist",
+    "pages/hotellist/hotellist",
+    "pages/hoteldetail/hoteldetail",
+    "pages/ticket/ticket",
+    "pages/gaotiesearch/gaotiesearch",
+    "pages/feijisearch/feijisearch",
+    "pages/chosevister/chosevister",
+    "pages/index/index",
+    "pages/addback/addback",
+    "pages/addvister/addvister",
+    "pages/chosedate/chosedate",
+    "pages/hangbanxuanze/hangbanxuanze",
+    "pages/jipiaoyuding/jipiaoyuding",
+    "pages/hangbanlist/hangbanlist",
+    "pages/qichepiaolist/qichepiaolist",
+    "pages/gtorderconfirm/gtorderconfirm",
+    "pages/choseCity/choseCity",
+    "pages/getcartic/getcartic",
+    "pages/qicheorderconfirm/qicheorderconfirm",
+    "pages/qicheorderperchanse/qicheorderperchanse",
+    "pages/setvister/setvister",
+    "pages/gaotielist/gaotielist",
+    "pages/qichesearch/qichesearch",
+    "pages/login/login",
+    "pages/modifyperson/modifyperson",
+    "pages/register/register",
+    "pages/signin/signin",
+    "pages/hangbanlist/flyList",
+    "pages/hangbanlist/test"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#FAAF05",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/public/home@2x0.png",
+        "selectedIconPath": "static/public/home@3x.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "订单",
+        "iconPath": "static/public/order@3x.png",
+        "selectedIconPath": "static/public/order@2.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "static/public/mine@3x.png",
+        "selectedIconPath": "static/public/wode@2x.png"
+      }
+    ]
+  },
+  "nvueCompiler": "uni-app",
+  "renderer": "auto",
+  "splashscreen": {
+    "alwaysShowBeforeRender": true,
+    "autoclose": false
+  },
+  "appname": "feixingge",
+  "compilerVersion": "2.6.5",
+  "usingComponents": {}
+}

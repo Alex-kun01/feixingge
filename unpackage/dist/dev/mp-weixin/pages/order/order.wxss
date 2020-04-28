@@ -1,0 +1,251 @@
+.titleNview-placing.data-v-246725bd {
+  height: 25px;
+  background: #FFFFFF;
+  padding-top: 0;
+  box-sizing: content-box;
+}
+.topbar.data-v-246725bd {
+  height: 45px;
+  line-height: 55rpx;
+  width: 100%;
+  background-color: #FFFFFF;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  position: relative;
+}
+.topbar .title.data-v-246725bd {
+  font-size: 32rpx;
+  margin-top: 27rpx;
+}
+.topbar .search.data-v-246725bd {
+  width: 34rpx;
+  height: 34rpx;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.topbar .search image.data-v-246725bd {
+  width: 30rpx;
+  height: 34rpx;
+  margin: 31rpx 27rpx 0 0;
+}
+.order-container.data-v-246725bd {
+  width: 100%;
+  background-color: #eee;
+}
+.order-container .filter.data-v-246725bd {
+  width: 100%;
+  min-height: 80rpx;
+  line-height: 80rpx;
+  background-color: #FFFFFF;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  z-index: 999;
+  position: relative;
+}
+.order-container .filter .item.data-v-246725bd {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.order-container .filter .item image.data-v-246725bd {
+  width: 15rpx;
+  height: 8rpx;
+  margin: 35rpx 0 0 10rpx;
+}
+.order-container .filter .item .text.data-v-246725bd {
+  font-size: 24rpx;
+  color: #222222;
+}
+.order-container .filter .item .clickBar.data-v-246725bd {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.order-container .filter .item .menu.data-v-246725bd {
+  position: absolute;
+  width: 100%;
+  box-sizing: border-box;
+  top: 80rpx;
+  background-color: #FFFFFF;
+  padding-left: 20rpx;
+  z-index: 999;
+}
+.order-container .filter .item .menu_all.data-v-246725bd {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  height: 120rpx;
+  margin-left: -30rpx;
+}
+.order-container .filter .item .menu_all .opion.data-v-246725bd {
+  height: 70rpx;
+  line-height: 70rpx;
+  background-color: #F4F4F4;
+  margin-right: 20rpx;
+  padding: 0 18rpx;
+  border-radius: 10px;
+  font-size: 28rpx;
+  color: #222222;
+  margin-top: 20rpx;
+}
+.order-container .filter .item .menu_all .opion.active.data-v-246725bd {
+  background-color: #FF9805;
+}
+.order-container .filter .item .menu_time.data-v-246725bd {
+  margin-left: -290rpx;
+}
+.order-container .filter .item .menu_time .item.data-v-246725bd {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  box-sizing: border-box;
+  padding-right: 40rpx;
+}
+.order-container .filter .item .menu_time .item image.data-v-246725bd {
+  width: 30rpx;
+  height: 22rpx;
+}
+.order-container .filter .item .menu_time .item .text.data-v-246725bd {
+  font-size: 28rpx;
+  font-weight: 400;
+}
+.order-container .filter .item .menu_time .item .text.active_time.data-v-246725bd {
+  color: #FF9805;
+}
+.order-container .filter .all .text.active.data-v-246725bd {
+  color: #FF9805;
+}
+.order-container .filter .time .text.active.data-v-246725bd {
+  color: #FF9805;
+}
+.order-container .filter .see.data-v-246725bd {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.order-container .filter .see .radio.data-v-246725bd {
+  width: 24rpx;
+  height: 24rpx;
+  border: 1rpx solid #ddd;
+  box-sizing: border-box;
+  border-radius: 50%;
+  margin: 30rpx 10rpx 0 0;
+}
+.order-container .filter .see .radio.active .show.data-v-246725bd {
+  width: 18rpx;
+  height: 18rpx;
+  background-color: #FF9805;
+  border-radius: 50%;
+  margin: 2rpx 0 0 2rpx;
+}
+.order-container .filter .see .text.data-v-246725bd {
+  font-size: 24rpx;
+  color: #222222;
+}
+.order-container .popupbox.data-v-246725bd {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 80px;
+  background: rgba(34, 34, 34, 0.4);
+}
+.mask.data-v-246725bd {
+  width: 100%;
+  height: 90%;
+  background: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 168rpx;
+}
+.order_list.data-v-246725bd {
+  margin-top: 20rpx;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+}
+.order_list .item.data-v-246725bd {
+  width: -30rpx;
+  height: 262rpx;
+  background-color: #FFFFFF;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+.order_list .item .top_info.data-v-246725bd {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  height: 60rpx;
+  border-bottom: 1rpx solid #ddd;
+}
+.order_list .item .con_info.data-v-246725bd {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  margin-top: 15rpx;
+}
+.order_list .item .con_info .left .stations.data-v-246725bd {
+  margin-bottom: 5rpx;
+}
+.order_list .item .con_info .left .stations text.data-v-246725bd {
+  font-size: 30rpx;
+  color: #222222;
+}
+.order_list .item .con_info .left .times text.data-v-246725bd {
+  color: #666666;
+  font-size: 24rpx;
+  margin-right: 10rpx;
+}
+.order_list .item .con_info .right_price text.data-v-246725bd {
+  color: #f90404;
+}
+.order_list .item .bom_btn.data-v-246725bd {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+          justify-content: flex-end;
+}
+.order_list .item .bom_btn .btn.data-v-246725bd {
+  width: 140rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-size: 24rpx;
+  border-radius: 25rpx;
+  margin-right: 20rpx;
+}
+.order_list .item .bom_btn .red.data-v-246725bd {
+  background-color: #f90404;
+  color: #FFFFFF;
+}
+.order_list .item .bom_btn .witch.data-v-246725bd {
+  border: 1rpx solid #e1e1e1;
+  color: #222222;
+}
+

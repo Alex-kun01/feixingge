@@ -1,0 +1,118 @@
+.titleNview-placing {
+  height: 25px;
+  background: #FFFFFF;
+  padding-top: 0;
+  box-sizing: content-box;
+}
+.swiper_box {
+  width: 100%;
+  position: relative;
+}
+.swiper_box .leftBtn {
+  position: absolute;
+  top: 50rpx;
+  left: 30rpx;
+}
+.swiper_wrap {
+  width: 100%;
+  height: 30vh;
+}
+.swiper_wrap image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.info_wrap {
+  width: 95%;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border-radius: 5px;
+  position: relative;
+  margin-top: -13vw;
+}
+.info_wrap .item_wrap {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  position: relative;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  padding: 0 30rpx;
+  height: 120rpx;
+}
+.info_wrap .item_wrap .rt_img {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+}
+.info_wrap .item_wrap .name {
+  line-height: 120rpx;
+  width: auto;
+  text-align: center;
+  font-size: 36rpx;
+}
+.info_wrap .item_wrap .name.lookgaotie {
+  font-size: 30rpx;
+  color: #222222;
+}
+.info_wrap .item_wrap .see_gt_radio {
+  position: absolute;
+  line-height: 1;
+  top: 50%;
+  left: 30%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.info_wrap .item_wrap .time_show {
+  line-height: 18vw;
+  width: auto;
+  text-align: center;
+  font-size: 36rpx;
+}
+.info_wrap .item_wrap .time_show text {
+  font-size: 24rpx;
+  color: #222222;
+  margin-left: 10rpx;
+}
+.info_wrap .item_wrap .search_btn {
+  width: 630rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  background: #FF9805;
+}
+.info_wrap .btn_wrap {
+  height: 80rpx;
+  margin-bottom: 60rpx;
+}
+.go_center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+}
+.content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+

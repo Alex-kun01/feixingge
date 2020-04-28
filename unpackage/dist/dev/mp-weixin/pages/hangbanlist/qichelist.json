@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "班次列表",
+  "usingComponents": {
+    "topbar": "/components/topBar/topbarx"
+  }
+}

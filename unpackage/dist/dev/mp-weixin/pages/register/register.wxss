@@ -1,0 +1,149 @@
+.titleNview-placing {
+  height: 25px;
+  background: #FFFFFF;
+  padding-top: 0;
+  box-sizing: content-box;
+}
+.siginType {
+  width: 750rpx;
+  position: absolute;
+  bottom: 36rpx;
+}
+.siginType .type_title {
+  text-align: center;
+  margin-bottom: 36rpx;
+}
+.siginType .type_box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.siginType .type_box .box.wx button {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: #FFFFFF;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.siginType .type_box .box.wx button::after {
+  content: '';
+  display: inline-block;
+  border: none;
+}
+.siginType .type_box .box.wx text {
+  color: #666666;
+  font-size: 20rpx;
+  margin-top: -10rpx;
+}
+.siginType .type_box .box.qq {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.siginType .type_box .box.qq text {
+  color: #666666;
+  font-size: 20rpx;
+}
+.siginType .type_box .box.wx {
+  margin-right: 174rpx;
+}
+.siginType image {
+  width: 83rpx;
+  height: 83rpx;
+}
+page {
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+}
+.register .topber image {
+  width: 20rpx;
+  height: 36rpx;
+  margin: 66rpx 0 0 30rpx;
+}
+.register .title {
+  font-size: 88rpx;
+  font-weight: 800;
+  margin: 30rpx 0 93rpx 57rpx;
+}
+.register .r_text {
+  height: 34rpx;
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #111111;
+  margin: 0 0 102rpx 57rpx;
+}
+.register .form {
+  margin-left: 56rpx;
+}
+.register .form .border_bom {
+  width: 638rpx;
+  border-bottom: 1rpx solid #9C9C9C;
+  padding-bottom: 30rpx;
+  margin-bottom: 29rpx;
+}
+.register .form .border_bom input {
+  font-size: 30rpx;
+  color: #999999;
+  text-indent: 1rpx;
+}
+.register .form .getverifition {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.register .form .getverifition .getverifition_btn {
+  width: 188rpx;
+  height: 61rpx;
+  line-height: 61rpx;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 24rpx;
+  background: #D8D8D8;
+  border-radius: 30rpx;
+}
+.register .form .getverifition .getverifition_btn.active {
+  background: #FF9805;
+}
+.register .goregister {
+  height: 28rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  margin: 0 0 60rpx 57rpx;
+}
+.register .btn_signin {
+  width: 683rpx;
+  height: 100rpx;
+  border-radius: 48rpx;
+  background-color: #D8D8D8;
+  color: #FFFFFF;
+  font-size: 36rpx;
+}
+.register .btn_signin.active {
+  background: #FF9805;
+}
+

@@ -1,0 +1,84 @@
+.pointsrecord-container.data-v-e36ed1de {
+  width: 100%;
+  background-color: #eee;
+}
+.pointsrecord-container .records.data-v-e36ed1de {
+  margin-top: 28rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+.pointsrecord-container .records .record-item.data-v-e36ed1de {
+  width: 690rpx;
+  height: 120rpx;
+  margin-left: 30rpx;
+  background-color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  box-sizing: border-box;
+  padding: 4px;
+  margin-top: 10px;
+}
+.pointsrecord-container .records .record-item .left.data-v-e36ed1de {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.pointsrecord-container .records .record-item .left .notice.data-v-e36ed1de {
+  width: 28px;
+  height: 28px;
+  background: #fe7f2a;
+  border-radius: 50%;
+  margin-right: 10px;
+  color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.pointsrecord-container .records .record-item .left .notice image.data-v-e36ed1de {
+  width: 32rpx;
+  height: 28rpx;
+}
+.pointsrecord-container .records .record-item .left .notice-change .title.data-v-e36ed1de {
+  font-weight: bold;
+  font-size: 28rpx;
+  color: #333333;
+  margin-bottom: 16rpx;
+}
+.pointsrecord-container .records .record-item .left .notice-change .text.data-v-e36ed1de {
+  font-size: 24rpx;
+  color: #666666;
+}
+.pointsrecord-container .records .record-item .left .notice-change text.data-v-e36ed1de {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.pointsrecord-container .records .record-item .status_red.data-v-e36ed1de {
+  width: 6px;
+  height: 6px;
+  background: #da251c;
+  border-radius: 50%;
+}
+.pointsrecord-container .records .record-item .status_none.data-v-e36ed1de {
+  width: 6px;
+  height: 6px;
+  background: #eee;
+  border-radius: 50%;
+}
+

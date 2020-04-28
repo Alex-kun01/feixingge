@@ -1,0 +1,67 @@
+.keysearch-container.data-v-7d333206 {
+  width: 100%;
+  background-color: #fff;
+}
+.keysearch-container .topbar.data-v-7d333206 {
+  height: 128rpx;
+  width: 100%;
+  background-color: #FFFFFF;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.keysearch-container .topbar .icon-fanhui.data-v-7d333206 {
+  margin: 66rpx 0 0 30rpx;
+}
+.keysearch-container .topbar .search.data-v-7d333206 {
+  width: 630rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border: 1px solid #ff9805;
+  border-radius: 30px;
+  margin-left: 30rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  margin-top: 54rpx;
+  box-sizing: border-box;
+}
+.keysearch-container .topbar .search .icon-sousuo1.data-v-7d333206 {
+  margin-left: 20rpx;
+}
+.keysearch-container .topbar .search input.data-v-7d333206 {
+  width: 550rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 26rpx;
+  color: #666666;
+  text-indent: 20rpx;
+}
+.keysearch-container .search-box.data-v-7d333206 {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 10px;
+  margin-bottom: 30px;
+}
+.keysearch-container .search-box .title.data-v-7d333206 {
+  width: 100%;
+  color: #999999;
+  font-size: 0.8rem;
+}
+.keysearch-container .search-box .box.data-v-7d333206 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+.keysearch-container .search-box .box .piece.data-v-7d333206 {
+  padding: 4px 10px;
+  background: #f4f4f4;
+  margin: 10px 10px 0 0;
+  border-radius: 4px;
+  font-size: 0.6rem;
+  color: #333333;
+}
+

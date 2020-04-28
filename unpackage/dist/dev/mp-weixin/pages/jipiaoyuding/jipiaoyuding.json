@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "机票预定",
+  "usingComponents": {
+    "topbar": "/components/topBar/topbarx"
+  }
+}

@@ -1,0 +1,7 @@
+.titleNview-placing {
+  height: 25px;
+  background: #FFFFFF;
+  padding-top: 0;
+  box-sizing: content-box;
+}
+

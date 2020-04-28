@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "关键字搜索",
+  "usingComponents": {
+    "uni-search-bar": "/node-modules/@dcloudio/uni-ui/lib/uni-search-bar/uni-search-bar"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "门票",
+  "usingComponents": {
+    "topbar": "/components/topBar/topbarx"
+  }
+}
