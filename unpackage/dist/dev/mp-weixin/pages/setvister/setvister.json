@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "修改旅客信息",
-  "usingComponents": {
-    "topbar": "/components/topBar/topbarx"
-  }
-}

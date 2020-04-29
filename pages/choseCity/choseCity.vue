@@ -191,10 +191,10 @@
 				let url = 'http://apitest.99263.com'
 				// let url= '/api'
 				uni.request({
-					url:url+"/Flight/GetAllAirportCity",
+					url:this.$slurl +"/Flight/GetAllAirportCity",
 					method:"POST",
 					data:{
-						  "ApiKey": "b421b9a21075a359c09a36db79325d5b",
+						  "ApiKey": this.$ApiKey,
 						  "Sign": "",
 						  "Timestamp": Timestamp,
 						  "Data":{},

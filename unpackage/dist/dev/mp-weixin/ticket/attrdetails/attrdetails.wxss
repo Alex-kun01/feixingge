@@ -1,0 +1,187 @@
+.titleNview-placing.data-v-01b09a25 {
+  height: 25px;
+  background: #FFFFFF;
+  padding-top: 0;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+.swiper_box.data-v-01b09a25 {
+  width: 100%;
+  position: relative;
+}
+.swiper_wrap.data-v-01b09a25 {
+  width: 100%;
+  height: 400rpx;
+  margin-bottom: 200rpx;
+}
+.swiper_wrap image.data-v-01b09a25 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.float_box.data-v-01b09a25 {
+  width: 710rpx;
+  height: 278rpx;
+  background-color: #FFFFFF;
+  position: absolute;
+  top: 300rpx;
+  left: 20rpx;
+  border-radius: 10rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 30rpx 20rpx;
+}
+.float_box .space .name.data-v-01b09a25 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+.float_box .position.data-v-01b09a25 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  margin-bottom: 30rpx;
+}
+.float_box .position text.data-v-01b09a25 {
+  color: #666666;
+  font-size: 24rpx;
+}
+.float_box .notice.data-v-01b09a25 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.float_box .notice .right_btn2 text.data-v-01b09a25 {
+  font-size: 22rpx;
+}
+.guarantee.data-v-01b09a25 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0 40rpx;
+  width: 750rpx;
+  height: 125rpx;
+  background-color: #FFFFFF;
+  margin-bottom: 20rpx;
+}
+.guarantee .bao.data-v-01b09a25 {
+  margin-right: 20rpx;
+}
+.guarantee .xuzhi.data-v-01b09a25 {
+  height: 40rpx;
+  line-height: 40rpx;
+}
+text.gou.data-v-01b09a25 {
+  font-size: 20rpx;
+  color: #999999;
+  margin-right: 20rpx;
+}
+text.gou image.data-v-01b09a25 {
+  vertical-align: middle;
+}
+.ticketList .title.data-v-01b09a25 {
+  width: 750rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  padding-left: 40rpx;
+  background-color: #FFFFFF;
+  border-bottom: 1rpx solid #ddd;
+}
+.item.data-v-01b09a25 {
+  width: 750rpx;
+  height: 192rpx;
+  background-color: #FFFFFF;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 30rpx 40rpx;
+}
+.item .left_con .topInfo .box_xie.data-v-01b09a25 {
+  display: inline-block;
+  width: 60rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  text-align: center;
+  color: #FFFFFF;
+  background-color: #ff9805;
+  font-size: 20rpx;
+  border-radius: 0 15rpx 0 15rpx;
+  margin-right: 10rpx;
+}
+.item .left_con .ticket_xuzhi text.data-v-01b09a25 {
+  font-size: 24rpx;
+  color: #666666;
+}
+.item .right_price.data-v-01b09a25 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.item .right_price .price.data-v-01b09a25 {
+  margin-bottom: 10rpx;
+}
+.item .right_price .price text.data-v-01b09a25 {
+  color: #f90404;
+}
+.item .right_price .btn.data-v-01b09a25 {
+  width: 120rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  background-color: #f90404;
+  color: #FFFFFF;
+  font-size: 24rpx;
+  border-radius: 25rpx;
+}
+.leftBtn.data-v-01b09a25 {
+  width: 750rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0 30rpx;
+  height: 36rpx;
+  position: absolute;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  top: 50rpx;
+  z-index: 999;
+}
+.leftBtn image.data-v-01b09a25 {
+  width: 100%;
+  height: 100%;
+}
+

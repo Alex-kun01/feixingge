@@ -372,7 +372,7 @@
 			// 立即支付
 			payClick(){
 				uni.navigateTo({
-					url: '../viewpointlist/toPaid?type=' + 2
+					url: '../../ticket/toPaid/toPaid?type=' + 2
 				})
 			}
 		},

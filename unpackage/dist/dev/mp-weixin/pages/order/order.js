@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _uniCollapseItem = function _uniCollapseItem() {__webpack_require__.e(/*! require.ensure | node-modules/@dcloudio/uni-ui/lib/uni-collapse-item/uni-collapse-item */ "node-modules/@dcloudio/uni-ui/lib/uni-collapse-item/uni-collapse-item").then((function () {return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-collapse-item/uni-collapse-item */ 411));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _uniCollapse = function _uniCollapse() {__webpack_require__.e(/*! require.ensure | node-modules/@dcloudio/uni-ui/lib/uni-collapse/uni-collapse */ "node-modules/@dcloudio/uni-ui/lib/uni-collapse/uni-collapse").then((function () {return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-collapse/uni-collapse */ 418));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _uniCollapseItem = function _uniCollapseItem() {__webpack_require__.e(/*! require.ensure | node-modules/@dcloudio/uni-ui/lib/uni-collapse-item/uni-collapse-item */ "node-modules/@dcloudio/uni-ui/lib/uni-collapse-item/uni-collapse-item").then((function () {return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-collapse-item/uni-collapse-item */ 379));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _uniCollapse = function _uniCollapse() {__webpack_require__.e(/*! require.ensure | node-modules/@dcloudio/uni-ui/lib/uni-collapse/uni-collapse */ "node-modules/@dcloudio/uni-ui/lib/uni-collapse/uni-collapse").then((function () {return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-collapse/uni-collapse */ 386));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -504,7 +504,7 @@ __webpack_require__.r(__webpack_exports__);
     // 立即支付
     payClick: function payClick() {
       uni.navigateTo({
-        url: '../viewpointlist/toPaid?type=' + 2 });
+        url: '../../ticket/toPaid/toPaid?type=' + 2 });
 
     } },
 

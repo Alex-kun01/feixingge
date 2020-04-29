@@ -27,7 +27,7 @@
 		</view> -->
 		<view class="person-item" style="border-bottom: 1px solid #E1E1E1;">
 			<text class="title">性别</text>
-			<picker style="width: 200rpx;text-align: right;" :range="SexArr" :value="sexIndex"  @change="choseSex">
+			<picker style="width: 70%;text-align: right;" :range="SexArr" :value="sexIndex"  @change="choseSex">
 				<view class="right">{{person.sex}}</view>
 			</picker>
 		</view>
@@ -94,6 +94,19 @@
 			}
 		},
 		onUnload(){
+			// if(this.panduan()){
+			// 	uni.showModal({
+			// 		title: '提示',
+			// 		content: '是否保存修改？',
+			// 		success(res) {
+			// 			if(res.confirm){
+			// 				this.setEdit()
+			// 			}
+			// 		}
+			// 	})
+			// }
+			
+			
 			uni.hideLoading()
 		},
 		onShow(){
@@ -218,61 +231,70 @@
 				})
 				
 			},
+			// 保存修改
+			setEdit(){
+				let _this = this
+				let userinfo = _this.$store.state.userInfo
+				uni.request({
+					url: _this.$http + '/api/user/changeInfo',
+					method: 'POST',
+					data:{
+						token: userinfo.token,
+						username: _this.person.username,
+						nickname: _this.person.nickname,
+						sex: _this.person.sex,
+						user_id: userinfo.user_id
+					},success(res){
+						console.log('修改后返回数据',res)
+						if(res.data.code == 1){
+							
+							_this.resetInfo(res.data.data)
+							
+							let obj = {
+								nickname: _this.person.nickname,
+								username: _this.person.username,
+								sex: _this.person.sex 
+							}
+							
+							_this.$store.commit('setUserSexInfo', obj)
+							
+							console.log('修改后vuex', _this.$store.state.userInfo)
+							
+							uni.navigateBack({})
+							
+							uni.showToast({
+								title: '修改成功'
+							})
+							
+						}else{
+							uni.showModal({
+								title: '提示',
+								content: '修改失败'
+							})
+						}
+						
+					}
+				})
+			},
+			// 判断是否修改
+			panduan(){
+				let target = false
+				if(this.oldData.username != this.person.username || this.oldData.sex != this.person.sex || this.oldData.nickname != this.person.nickname){
+					target = true
+				}
+				return target
+			},
 			// 返回上级目录
 			goBack(){
-				if(this.oldData.username != this.person.username || this.oldData.sex != this.person.sex || this.oldData.nickname != this.person.nickname){
-					let _this = this
+				let _this = this
+				if(this.panduan()){
 					uni.showModal({
 						title: '提示',
 						content: '是否保存修改？',
 						success(res){
 							console.log(111)
 							if(res.confirm){
-								let userinfo = _this.$store.state.userInfo
-								console.log('修改个人信息', userinfo)
-								
-								// 保存修改
-								uni.request({
-									url: _this.$http + '/api/user/changeInfo',
-									method: 'POST',
-									data:{
-										token: userinfo.token,
-										username: _this.person.username,
-										nickname: _this.person.nickname,
-										sex: _this.person.sex,
-										user_id: userinfo.user_id
-									},success(res){
-										console.log('修改后返回数据',res)
-										if(res.data.code == 1){
-											
-											_this.resetInfo(res.data.data)
-											
-											let obj = {
-												nickname: _this.person.nickname,
-												username: _this.person.username,
-												sex: _this.person.sex 
-											}
-											
-											_this.$store.commit('setUserSexInfo', obj)
-											
-											console.log('修改后vuex', _this.$store.state.userInfo)
-											
-											uni.navigateBack({})
-											
-											uni.showToast({
-												title: '修改成功'
-											})
-											
-										}else{
-											uni.showModal({
-												title: '提示',
-												content: '修改失败'
-											})
-										}
-										
-									}
-								})
-								
+								_this.setEdit()
 							}else{
 								uni.navigateBack({})
 							}

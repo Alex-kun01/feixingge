@@ -243,7 +243,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _getLoaction = _interopRequireDefault(__webpack_require__(/*! ../../components/getLoaction.js */ 23));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _uniSearchBar = function _uniSearchBar() {__webpack_require__.e(/*! require.ensure | node-modules/@dcloudio/uni-ui/lib/uni-search-bar/uni-search-bar */ "node-modules/@dcloudio/uni-ui/lib/uni-search-bar/uni-search-bar").then((function () {return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-search-bar/uni-search-bar */ 404));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _getLoaction = _interopRequireDefault(__webpack_require__(/*! ../../components/getLoaction.js */ 23));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _uniSearchBar = function _uniSearchBar() {__webpack_require__.e(/*! require.ensure | node-modules/@dcloudio/uni-ui/lib/uni-search-bar/uni-search-bar */ "node-modules/@dcloudio/uni-ui/lib/uni-search-bar/uni-search-bar").then((function () {return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-search-bar/uni-search-bar */ 372));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -330,11 +330,11 @@ var _getLoaction = _interopRequireDefault(__webpack_require__(/*! ../../componen
     goTo: function goTo(type) {
       var url = '';
       switch (type) {
-        case 'air':url = '../feijisearch/feijisearch';break;
-        case 'hotel':url = '../hotelsearch/hotelsearch';break;
-        case 'gaotie':url = '../gaotiesearch/gaotiesearch';break;
-        case 'car':url = '../qichesearch/qichesearch';break;
-        case 'viewX':url = '../ticketselect/ticketselect';break;}
+        case 'air':url = '../../fly/feijisearch/feijisearch';break;
+        case 'hotel':url = '../../hotel/hotelsearch/hotelsearch';break;
+        case 'gaotie':url = '../../gaotie/gaotiesearch/gaotiesearch';break;
+        case 'car':url = '../../bus/qichesearch/qichesearch';break;
+        case 'viewX':url = '../../ticket/ticketselect/ticketselect';break;}
 
       uni.navigateTo({
         url: url });

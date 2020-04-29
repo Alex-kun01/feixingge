@@ -1,269 +1,372 @@
 {
-	"pages": [{
-			"path": "pages/index/index", //首页
-			"style": {
-				"navigationBarTitleText": "飞行鸽"
-			}
-		}, {
+	// "pages": [
+		
+			      // {
+		// 		"path": "pages/verifyphone/verifyphone", //换绑手机号
+		// 		"style": {
+		// 			"navigationBarTitleText": "换绑手机号"
+		// 		}
+		// 	},         {
+		// 		"path": "pages/ticket/ticket",
+		// 		"style": {}
+		// 	},      {
+		// 		"path": "pages/setvister/setvister",
+		// 		"style": {
+		// 			"navigationBarTitleText": "修改旅客信息"
+		// 		}
+		// 	}, 
+	
+		// 	{
+		// 		"path" : "pages/addressadd/editaddress",
+		// 		"style": {
+		// 			"navigationBarTitleText": "编辑地址"
+		// 		}
+		// 	},
+	
+ "pages": [
+		{
+	 		"path": "pages/index/index", //首页
+	 		"style": {
+	 			"navigationBarTitleText": "飞行鸽"
+	 		}
+	 	},{
 			"path": "pages/order/order", //订单
 			"style": {
 				"navigationBarTitleText": "订单"
 			}
-		}, {
+		},
+		{
 			"path": "pages/mine/mine", //我的
 			"style": {
 				"navigationBarTitleText": "我的"
 			}
-		}, {
-			"path": "pages/pointsmall/pointsmall", //积分商城
-			"style": {
-				"navigationBarTitleText": "积分商城"
-			}
-		}, {
-			"path": "pages/pointsrecord/pointsrecord", //积分记录
-			"style": {
-				"navigationBarTitleText": "积分记录"
-			}
-		}, {
-			"path": "pages/orderfill/orderfill", //填写订单
-			"style": {
-				"navigationBarTitleText": "填写订单"
-			}
-		}, {
-			"path": "pages/keysearch/keysearch", //关键字搜索
-			"style": {
-				"navigationBarTitleText": "关键字搜索"
-			}
-		}, {
+		},
+		{
 			"path": "pages/person/person", //个人信息
 			"style": {
 				"navigationBarTitleText": "个人信息"
 			}
-		}, {
-			"path": "pages/verifyphone/verifyphone", //换绑手机号
-			"style": {
-				"navigationBarTitleText": "换绑手机号"
-			}
-		}, {
-			"path": "pages/addressadd/addressadd", //添加地址
-			"style": {
-				"navigationBarTitleText": "添加地址"
-			}
-		}, {
-			"path": "pages/myaddress/myaddress", //我的地址
-			"style": {
-				"navigationBarTitleText": "我的地址"
-			}
-		}, {
-			"path": "pages/modify/modify", //修改密码
-			"style": {
-				"navigationBarTitleText": "修改密码"
-			}
-		}, {
-			"path": "pages/hotelsearch/hotelsearch", //酒店选择
-			"style": {
-				"navigationBarTitleText": "酒店搜索"
-			}
-		}, {
-			"path": "pages/ticketselect/ticketselect", //门票选择
-			"style": {
-				"navigationBarTitleText": "门票选择"
-			}
-		}, {
-			"path": "pages/viewpointlist/viewpointlist", //景区列表
-			"style": {
-				"navigationBarTitleText": "景区列表"
-			}
-		}, {
-			"path": "pages/hotellist/hotellist", //酒店列表
-			"style": {
-				"navigationBarTitleText": "酒店列表",
-				"onReachBottomDistance": 0
-			}
-		}, {
-			"path": "pages/hoteldetail/hoteldetail", //酒店详情
-			"style": {
-				"navigationBarTitleText": "酒店详情"
-			}
-		}, {
-			"path": "pages/ticket/ticket",
-			"style": {}
 		},
 		{
-			"path": "pages/gaotiesearch/gaotiesearch",
-			"style": {
-				"navigationBarTitleText": "火车票搜索"
-			}
-		},
-		{
-			"path": "pages/feijisearch/feijisearch",
-			"style": {
-				"navigationBarTitleText": "飞机票搜索"
-			}
-		},
-
-		{
-			"path": "pages/chosevister/chosevister",
-			"style": {
-				"navigationBarTitleText": "选择常用旅客"
-			}
-		},
-		{
-			"path": "pages/addback/addback",
-			"style": {
-				"navigationBarTitleText": "添加返程"
-			}
-		}
-
-		, {
-			"path": "pages/addvister/addvister",
-			"style": {
-				"navigationBarTitleText": "新增常用旅客"
-			}
-		}, {
-			"path": "pages/chosedate/chosedate",
-			"style": {
-				"navigationBarTitleText": "选择日期"
-			}
-		}, {
-			"path": "pages/hangbanxuanze/hangbanxuanze",
-			"style": {
-				"navigationBarTitleText": "航班选择"
-			}
-		}, {
-			"path": "pages/jipiaoyuding/jipiaoyuding",
-			"style": {
-				"navigationBarTitleText": "机票预定"
-			}
-		}, {
-			"path": "pages/gtorderconfirm/gtorderconfirm",
-			"style": {
-				"navigationBarTitleText": "确认订单"
-			}
-		}, {
-			"path": "pages/choseCity/choseCity",
-			"style": {
-				"navigationBarTitleText": "选择城市"
-			}
-		}, {
-			"path": "pages/getcartic/getcartic",
-			"style": {
-				"navigationBarTitleText": "汽车票选择"
-			}
-		}, {
-			"path": "pages/qicheorderconfirm/qicheorderconfirm",
-			"style": {
-				"navigationBarTitleText": "汽车票订单"
-			}
-		}, {
-			"path": "pages/qicheorderperchanse/qicheorderperchanse",
-			"style": {
-				"navigationBarTitleText": "汽车票订单支付"
-			}
-		}, {
-			"path": "pages/setvister/setvister",
-			"style": {
-				"navigationBarTitleText": "修改旅客信息"
-			}
-		}, {
-			"path": "pages/gaotielist/gaotielist",
-			"style": {
-				"navigationBarTitleText": "火车票列表"
-			}
-		}
-
-		, {
-			"path": "pages/qichesearch/qichesearch",
-			"style": {
-				"navigationBarTitleText": "汽车票搜索"
-			}
-		},
-	  //   ,{
-   //          "path" : "pages/login/login",
-   //          "style" : {
-			// 	"navigationBarTitleText": "会员登录/注册"
-			// }
-   //      }
-        {
-            "path" : "pages/modifyperson/modifyperson",
-            "style" : {
+		   "path" : "pages/modifyperson/modifyperson",
+		   "style" : {
 				"navigationBarTitleText": "修改个人信息"
 			}
-        },
-		{
-		    "path" : "pages/register/register",
-		    "style" : {
-				"navigationBarTitleText": "用户注册"
-			}
-		},
-		{
-		    "path" : "pages/signin/signin",
-		    "style" : {
-				"navigationBarTitleText": "用户登录"
-			}
-		},
-		{
-			"path" : "pages/hangbanlist/flyList",
-			"style": {
-				"navigationBarTitleText": "航班列表"
-			}
-		},
-		{
-			"path" : "pages/bancixuanze/bancixuanze",
-			"style": {
-				"navigationBarTitleText": "班次选择"
-			}
-		},
-		{
-			"path" : "pages/hangbanlist/qichelist",
-			"style": {
-				"navigationBarTitleText": "班次列表"
-			}
-		},
-		{
-			"path" : "pages/viewpointlist/attrdetails",
-			"style": {
-				"navigationBarTitleText": "景点详情"
-			}//toPaid
-		},
-		{
-			"path" : "pages/viewpointlist/toPaid",
-			"style": {
-				"navigationBarTitleText": "待支付"
-			}
-		},
-		{
-			"path" : "pages/mine/feedback",
-			"style": {
-				"navigationBarTitleText": "反馈意见"
-			}
-		},
-		{
-			"path" : "pages/viewpointlist/ticketorder",
-			"style": {
-				"navigationBarTitleText": "门票"
-			}
-		},
-		{
-			"path" : "pages/addressadd/editaddress",
-			"style": {
-				"navigationBarTitleText": "编辑地址"
-			}
-		},
-		{
-			"path" : "pages/mine/bindphone",
-			"style": {
-				"navigationBarTitleText": "换绑手机号"
-			}
-		},
-		{
-			"path" : "pages/hoteldetail/hotelpay",
-			"style": {
-				"navigationBarTitleText": "订单填写"
-			}
+	   },
+	   {
+		"path": "pages/modify/modify", //修改密码
+		"style": {
+			"navigationBarTitleText": "修改密码"
 		}
+	},
+	{
+		"path": "pages/chosevister/chosevister",
+		"style": {
+			"navigationBarTitleText": "选择常用旅客"
+		}
+	},
+	{
+		"path": "pages/addvister/addvister",
+		"style": {
+			"navigationBarTitleText": "新增常用旅客"
+		}
+	},
+	{
+		"path": "pages/myaddress/myaddress", //我的地址
+		"style": {
+			"navigationBarTitleText": "我的地址"
+		}
+	},
+	{
+		"path": "pages/addressadd/addressadd", //添加地址
+		"style": {
+			"navigationBarTitleText": "添加地址"
+		}
+	},
+	{
+		"path" : "pages/mine/bindphone",
+		"style": {
+			"navigationBarTitleText": "换绑手机号"
+		}
+	},
+	{
+		"path" : "pages/mine/feedback",
+		"style": {
+			"navigationBarTitleText": "反馈意见"
+		}
+	},
+	{
+		"path" : "pages/register/register",
+		"style" : {
+			"navigationBarTitleText": "用户注册"
+		}
+	},
+	{
+		"path" : "pages/signin/signin",
+		"style" : {
+			"navigationBarTitleText": "用户登录"
+		}
+	},
+	{
+		"path": "pages/chosedate/chosedate",
+		"style": {
+			"navigationBarTitleText": "选择日期"
+		}
+	},
+	{
+		"path": "pages/choseCity/choseCity",
+		"style": {
+			"navigationBarTitleText": "选择城市"
+		}
+	},
+	{
+		"path": "pages/keysearch/keysearch", //关键字搜索
+		"style": {
+			"navigationBarTitleText": "关键字搜索"
+		}
+	},
+	
+	{
+		"path": "pages/pointsmall/pointsmall", //积分商城
+		"style": {
+			"navigationBarTitleText": "积分商城"
+		}
+	}, {
+		"path": "pages/pointsrecord/pointsrecord", //积分记录
+		"style": {
+			"navigationBarTitleText": "积分记录"
+		}
+	}
 
-    ],
+	
+	
+	
+	
+	
+ ],
+ "subPackages": [
+	 {
+		 "root": "fly", // 飞机
+		 "pages": [
+			 {
+				"path": "feijisearch/feijisearch",
+				"style": {
+					"navigationBarTitleText": "飞机票搜索"
+				}
+			},
+			{
+				"path" : "hangbanlist/flyList",
+				"style": {
+					"navigationBarTitleText": "航班列表"
+				}
+			},
+			{
+				"path": "hangbanxuanze/hangbanxuanze",
+				"style": {
+					"navigationBarTitleText": "航班选择"
+				}
+			}, {
+				"path": "jipiaoyuding/jipiaoyuding",
+				"style": {
+					"navigationBarTitleText": "机票预定"
+				}
+			},
+			{
+				"path": "addback/addback",
+				"style": {
+					"navigationBarTitleText": "添加返程"
+				}
+			}
+			
+			
+			
+			
+			
+		 ]
+	 },
+	 {
+	 		 "root": "hotel", // 酒店
+	 		 "pages": [
+				 {
+					"path": "hotelsearch/hotelsearch", //酒店选择
+					"style": {
+						"navigationBarTitleText": "酒店搜索"
+					}
+				},
+				{
+					"path": "hotellist/hotellist", //酒店列表
+					"style": {
+						"navigationBarTitleText": "酒店列表",
+						"onReachBottomDistance": 0
+					}
+				},
+				{
+					"path": "hoteldetail/hoteldetail", //酒店详情
+					"style": {
+						"navigationBarTitleText": "酒店详情"
+					}
+				},
+				{
+					"path" : "hoteldetail/hotelpay",
+					"style": {
+						"navigationBarTitleText": "订单填写"
+					}
+				}
+				
+				
+				
+				 
+				 
+			 ]
+	 }, 
+	 {
+	 		 "root": "gaotie", // 高铁
+	 		 "pages": [
+				 {
+					"path": "gaotiesearch/gaotiesearch",
+					"style": {
+						"navigationBarTitleText": "火车票搜索"
+					}
+				},
+				{
+					"path": "gaotielist/gaotielist",
+					"style": {
+						"navigationBarTitleText": "火车票列表"
+					}
+				},
+				{
+					"path" : "bancixuanze/bancixuanze",
+					"style": {
+						"navigationBarTitleText": "班次选择"
+					}
+				},
+				{
+					"path": "gtorderconfirm/gtorderconfirm",
+					"style": {
+						"navigationBarTitleText": "确认订单"
+					}
+				}
+				 
+				 
+				 
+			 ]
+	 }, 
+	 {
+	 		 "root": "bus", // 汽车
+	 		 "pages": [
+				 {
+					"path": "qichesearch/qichesearch",
+					"style": {
+						"navigationBarTitleText": "汽车票搜索"
+					}
+				},
+				{
+					"path" : "hangbanlist/qichelist",
+					"style": {
+						"navigationBarTitleText": "班次列表"
+					}
+				},
+				 {
+					"path": "getcartic/getcartic",
+					"style": {
+						"navigationBarTitleText": "汽车票选择"
+					}
+				},
+				{
+					"path": "qicheorderconfirm/qicheorderconfirm",
+					"style": {
+						"navigationBarTitleText": "汽车票订单"
+					}
+				},
+				{
+					"path": "qicheorderperchanse/qicheorderperchanse",
+					"style": {
+						"navigationBarTitleText": "汽车票订单支付"
+					}
+				}
+				
+				 
+				 
+				 
+				 
+			 ]
+	 }, 
+	 {
+	 		 "root": "ticket", // 门票
+	 		 "pages": [
+				 {
+					"path": "ticketselect/ticketselect", //门票选择
+					"style": {
+						"navigationBarTitleText": "门票选择"
+					}
+				},
+				{
+					"path": "viewpointlist/viewpointlist", //景区列表
+					"style": {
+						"navigationBarTitleText": "景区列表"
+					}
+				},
+				{
+					"path" : "attrdetails/attrdetails",
+					"style": {
+						"navigationBarTitleText": "景点详情"
+					}//toPaid
+				},
+				{
+					"path" : "toPaid/toPaid",
+					"style": {
+						"navigationBarTitleText": "待支付"
+					}
+				},
+				{
+					"path" : "ticketorder/ticketorder",
+					"style": {
+						"navigationBarTitleText": "门票"
+					}
+				},
+				{
+					"path": "orderfill/orderfill", //填写订单
+					"style": {
+						"navigationBarTitleText": "填写订单"
+					}
+				}
+				 
+				 
+				 
+		 ]
+	 }
+ ],
+ "preloadRule": {
+	 "pages/index/index": {
+		 "network": "all",
+		 "packages": ["__APP__"]
+	 },
+	 "fly/feijisearch/feijisearch": {
+	 		 "network": "all",
+	 		 "packages": ["fly"]
+	 },
+	 "hotel/hotelsearch/hotelsearch": {
+	 		 "network": "all",
+	 		 "packages": ["hotel"]
+	 },
+	 "gaotie/gaotiesearch/gaotiesearch": {
+	 		 "network": "all",
+	 		 "packages": ["gaotie"]
+	 },
+	 "bus/qichesearch/qichesearch": {
+	 		 "network": "all",
+	 		 "packages": ["bus"]
+	 },
+	 "ticket/ticketselect/ticketselect": {
+	 		 "network": "all",
+	 		 "packages": ["ticket"]
+	 }
+ },
+ 
+ 
+ 
+ 
+ 
 	"permission": {
 		"scope.userLocation": {
 			"desc": "正在获取你的位置信息"

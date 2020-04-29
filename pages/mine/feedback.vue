@@ -144,11 +144,11 @@
 			},
 			// 拨打电话
 			callNumber(){
-				uni.showLoading({
-					title: '拨号中请稍后...'
-				})
+				// uni.showLoading({
+				// 	title: '拨号中请稍后...'
+				// })
 				uni.makePhoneCall({
-					phoneNumber: '18284500858',
+					phoneNumber: '17683059017',
 					success(res) {
 						console.log(res)
 						uni.hideLoading()

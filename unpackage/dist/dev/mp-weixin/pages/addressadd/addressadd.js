@@ -94,7 +94,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   "simple-address": function() {
-    return Promise.all(/*! import() | components/simple-address/simple-address */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/simple-address/simple-address")]).then(__webpack_require__.bind(null, /*! @/components/simple-address/simple-address.nvue */ 475))
+    return Promise.all(/*! import() | components/simple-address/simple-address */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/simple-address/simple-address")]).then(__webpack_require__.bind(null, /*! @/components/simple-address/simple-address.nvue */ 407))
   }
 }
 var render = function() {
@@ -134,7 +134,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var simpleAddress = function simpleAddress() {Promise.all(/*! require.ensure | components/simple-address/simple-address */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/simple-address/simple-address")]).then((function () {return resolve(__webpack_require__(/*! @/components/simple-address/simple-address.nvue */ 475));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Topbar = function Topbar() {__webpack_require__.e(/*! require.ensure | components/topBar/topbarx */ "components/topBar/topbarx").then((function () {return resolve(__webpack_require__(/*! ../../components/topBar/topbarx.vue */ 243));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var simpleAddress = function simpleAddress() {Promise.all(/*! require.ensure | components/simple-address/simple-address */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/simple-address/simple-address")]).then((function () {return resolve(__webpack_require__(/*! @/components/simple-address/simple-address.nvue */ 407));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Topbar = function Topbar() {__webpack_require__.e(/*! require.ensure | components/topBar/topbarx */ "components/topBar/topbarx").then((function () {return resolve(__webpack_require__(/*! ../../components/topBar/topbarx.vue */ 147));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 

@@ -65,23 +65,23 @@
 			this.optDes = opt
 			// 判断从哪个页面进去该组件
 			if (opt.type == 'qcpDate') {
-				this.backUrl = '../qichesearch/qichesearch'
+				this.backUrl = '../../bus/qichesearch/qichesearch'
 			}
 			if (opt.type == 'fjpDate' || opt.type == 'fjpDate_fc' || opt.type == 'fjpDate_dc') {
-				this.backUrl = '../feijisearch/feijisearch'
+				this.backUrl = '../../fly/feijisearch/feijisearch'
 			}
 			if (opt.type == 'gtpDate') {
-				this.backUrl = '../gaotiesearch/gaotiesearch'
+				this.backUrl = '../../gaotie/gaotiesearch/gaotiesearch'
 			}
 			if (opt.type == 'hotelDate') {
-				this.backUrl = '../hotelsearch/hotelsearch'
+				this.backUrl = '../../hotel/hotelsearch/hotelsearch'
 				this.hotelTime.startTime = this.nowTime
 			}
 			if(opt.type == 'fifc') {
-				this.backUrl = '../feijisearch/feijisearch'
+				this.backUrl = '../../fly/feijisearch/feijisearch'
 			}
 			if(opt.type == 'ticketDate'){
-				this.backUrl = '../ticketselect/ticketselect'
+				this.backUrl = '../../ticket/ticketselect/ticketselect'
 			}
 		},
 		methods: {

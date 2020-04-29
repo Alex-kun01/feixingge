@@ -24,13 +24,15 @@
 				</swiper-item> -->
 			</swiper>
 			<view class="search">
-				<view class="left">
-					<text @click="goChoseCity">{{thisCity.cityName}}</text>
+				<view class="left" @click="goChoseCity"> 
+					<text >{{thisCity.cityName}}成都成都成都</text>
 					<image style="width: 22rpx;height: 11rpx;margin-left: 5rpx;" src="../../static/index/jiantou@3x.png" mode=""></image>
 				</view>
 				<view class="mid">
-					<image src="../../static/index/sousuo@3x.png" mode=""></image>
-					<input type="text" placeholder="成都攻略•景点•酒店" v-model="searchValue" />
+					<view class="mid_con">
+						<image src="../../static/index/sousuo@3x.png" mode=""></image>
+						<input type="text" placeholder="成都攻略/景点/酒店" v-model="searchValue" />
+					</view>
 				</view>
 				<view class="right">
 				</view>
@@ -152,7 +154,7 @@
 				},
 				fail() {
 					console.log('没有数据')
-					_this.getCurrentAddress()
+					// _this.getCurrentAddress()
 					// console.log('index', this.$store.state.thisCity.cityName)
 				}
 			})
@@ -187,11 +189,11 @@
 			goTo(type){
 				let url = ''
 				switch(type){
-					case 'air':url = '../feijisearch/feijisearch';break;
-					case 'hotel': url = '../hotelsearch/hotelsearch';break;
-					case 'gaotie': url = '../gaotiesearch/gaotiesearch';break;
-					case 'car': url = '../qichesearch/qichesearch';break;
-					case 'viewX': url = '../ticketselect/ticketselect';break;
+					case 'air':url = '../../fly/feijisearch/feijisearch';break;
+					case 'hotel': url = '../../hotel/hotelsearch/hotelsearch';break;
+					case 'gaotie': url = '../../gaotie/gaotiesearch/gaotiesearch';break;
+					case 'car': url = '../../bus/qichesearch/qichesearch';break;
+					case 'viewX': url = '../../ticket/ticketselect/ticketselect';break;
 				}
 				uni.navigateTo({
 					url:url
@@ -295,11 +297,16 @@
 						display: flex;
 						justify-content: center;
 						align-items: center;
-						margin-right: 20rpx;
+						margin-right: 10rpx;
 		
 						text {
+							width: 60rpx;
+							height: 37rpx;
+							overflow: hidden;
 							font-size: 27rpx;
 							color: #fff;
+							display: inline-block;
+							// background: pink;
 						}
 					}
 		
@@ -309,26 +316,37 @@
 						background-color: #FFFFFF;
 						border-radius: 30rpx;
 						display: flex;
-						image{
-							width: 26rpx;
-							height: 28rpx;
-							margin: 16rpx 0 0 20rpx;
+						align-items: center;
+						padding: 0;
+						.mid_con{
+							height: 100%;
+							display: flex;
+							align-items: center;
+							margin-left: 20rpx;
+							
+							image{
+								width: 26rpx;
+								height: 28rpx;
+								margin: 0 20rpx 0 10rpx;
+								vertical-align: middle;
+							}
+							input{
+								width: 460rpx;
+								height: 100%;
+								line-height: 60rpx;
+								font-size:26rpx;
+								font-weight:500;
+								color: #666666;
+								text-indent: 20rpx;
+								/* #ifdef MP-WEIXIN */
+								// margin-top: 3rpx;
+								/*#endif*/
+							}
 						}
-						input{
-							width: 460rpx;
-							height:25rpx;
-							font-size:26rpx;
-							font-weight:500;
-							color: #666666;
-							text-indent: 20rpx;
-							margin-top: 10rpx;
-							/* #ifdef MP-WEIXIN */
-							margin-top: 3rpx;
-							/*#endif*/
-						}
-						.uni-searchbar {
-							background-color: rgba(255, 255, 255, 0)
-						}
+						//
+						// .uni-searchbar {
+						// 	background-color: rgba(255, 255, 255, 0)
+						// }
 					}
 		
 					.right {
