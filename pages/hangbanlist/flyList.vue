@@ -3,7 +3,7 @@
 		<view class="titleNview-placing"></view>
 		<Topbar :title="title"></Topbar>
 		<!-- 日历 -->
-		<view class="calendarBox">
+		<view class="calendarBox" v-if="isReady">
 			
 			<view class="scrollX">
 				<view class="week">
@@ -12,9 +12,14 @@
 					:key="index"
 					@click="changeIndex(item,index)"
 					>
-						<text>{{item.date}}</text>
-						<text>{{item.weekDay}}</text>
-						<text>￥<text class="price">{{item.price}}</text></text>
+						<text>{{item.day}}</text>
+						<text v-if="item.week ==0">周日</text>
+						<text v-if="item.week ==1">周一</text>
+						<text v-if="item.week ==2">周二</text>
+						<text v-if="item.week ==3">周三</text>
+						<text v-if="item.week ==4">周四</text>
+						<text v-if="item.week ==5">周五</text>
+						<text v-if="item.week ==6">周六</text>
 					</view>
 				</view>
 			</view>
@@ -99,16 +104,18 @@
 		</view>
 		<!-- 底部导航 -->
 		<view class="tabBar">
-			<view :class="{item: true, active: isShow == 1}" @click="changeShowIndex(1)">
+			<!-- <view :class="{item: true, active: isShow == 1}" @click="changeShowIndex(1)">
 				<image style="width: 30rpx; height: 34rpx;" src="../../static/fly/shaixuan@2x.png" mode=""></image>
 				<text>筛选</text>
+			</view> -->
+			<view :class="{item: true, active: isShow}"  @click="changeShowIndex">
+				<image v-if="isShow" style="width: 36rpx; height: 35rpx;" src="../../static/fly/shijianx.png" mode=""></image>
+				<image v-else style="width: 36rpx; height: 35rpx;" src="../../static/fly/shiajian@2x.png" mode=""></image>
+				<text>时间早-晚</text>
 			</view>
-			<view :class="{item: true, active: isShow == 2}"  @click="changeShowIndex(2)">
-				<image style="width: 36rpx; height: 35rpx;" src="../../static/fly/shiajian@2x.png" mode=""></image>
-				<text>时间</text>
-			</view>
-			<view :class="{item: true, active: isShow == 3}"  @click="changeShowIndex(3)">
-				<image style="width: 34rpx; height: 34rpx;" src="../../static/fly/jiage@2x.png" mode=""></image>
+			<view :class="{item: true, active: isShow2}"  @click="changeShowIndex2">
+				<image v-if="isShow2" style="width: 34rpx; height: 34rpx;" src="../../static/fly/jiage@2x.png" mode=""></image>
+				<image v-else style="width: 34rpx; height: 34rpx;" src="../../static/fly/jiage@3x.png" mode=""></image>
 				<text>价格低-高</text>
 			</view>
 		</view>
@@ -196,76 +203,15 @@
 					DepartDate: '', // 出发日期 
 				}, 
 				weekList: [
-					{
-						date: '12-30',
-						weekDay: '周一',
-						price: '980'
-					},
-					{
-						date: '12-31',
-						weekDay: '周二',
-						price: '500'
-					},
-					{
-						date: '1-01',
-						weekDay: '周三',
-						price: '880'
-					},
-					{
-						date: '1-02',
-						weekDay: '周四',
-						price: '960'
-					},
-					{
-						date: '1-03',
-						weekDay: '周五',
-						price: '1190'
-					},
 				],
 				startDate: '', // 起飞日期
 				startWeek: '', // 起飞星期
-				isActive: 2, // day被激活
-				isShow: 0,// tabbar激活
+				isActive: 0, // day被激活
+				isShow: true,// tabbar激活
+				isShow2: false, // 
 				isItemS: false, // item激活 出发车站 
 				isItemE: false, // item激活 到达车站
 				flyListz: [ // 直达航班列表
-				],
-				flyListh: [ // 换乘航班列表
-					{
-						zhongzhuan: '银川',
-						start: {
-							time: '07:30',
-							space: "首都T#3"
-						},
-						end: {
-							time: '09:35',
-							space: '虹桥T2'
-						},
-						message: {
-							head: '国航CA13831',
-							bom: '波音787(大)'
-						},
-						price: 400,
-						msg: '经济舱3折'
-					},
-					{
-						zhongzhuan: '银川',
-						start: {
-							time: '07:30',
-							space: "首都T#3"
-						},
-						end: {
-							time: '09:35',
-							space: '虹桥T2'
-						},
-						message: {
-							head: '国航CA13831',
-							bom: '波音787(大)'
-						},
-						price: 400,
-						msg: '经济舱3折'
-					}
-					
 				],
 				radios: {
 					start: false,
@@ -274,6 +220,7 @@
 				},
 				showItem: 1, // 显示对应的右侧页面
 				screenShow: false, // 控制筛选层是否展示
+				isReady: false,  //控制日期列表的显示
 				
 			}
 		},
@@ -285,11 +232,41 @@
 			this.optDes = opt
 			console.log('opt', this.optDes)
 			this.getData()
+			this.setTopTimes()
 		},
 		onUnload(){
 			uni.hideLoading()
 		},
 		methods: {
+			// 设置顶部日期滚动条选择不同时间
+			setTopTimes(){
+				// 设置跨月依然游刃有余 skr
+				let time = this.optDes.DepartDate
+				console.log('初始化日期time', time)
+				
+				// let time = '2020-3-30'
+				let timeSeconds = new Date(time).getTime()
+				let oneDate = {
+				}
+				let box = []
+				// return
+				// i 小于到数值就是展示多少条日期的数值
+				for (let i = 0;i<5;i++) {
+					let year = new Date(timeSeconds).getFullYear() // 获取到年
+					let month = new Date(timeSeconds).getMonth() + 1 // 获取到月
+					let day = new Date(timeSeconds).getDate() // 获取到日期
+					let showDay = month + '/' + day
+					let week = new Date(timeSeconds).getDay() // 获取到周末
+					 oneDate = {
+						day:showDay,
+						week:week
+					}
+					box.push(oneDate)
+					timeSeconds = timeSeconds + 86400000
+				}
+				console.log(box)
+				this.weekList = box
+			},
 			getData(){
 				let _this = this
 				let Timestamp = new Date().toLocaleString()
@@ -315,6 +292,12 @@
 						if(res.data.IsSuccess){
 							_this.flyListz = res.data.Data
 							uni.hideLoading()
+							_this.isReady = true
+						}else{
+							uni.showModal({
+								title: '提示',
+								content: res.data.Message
+							})
 						}
 					}
 				})
@@ -324,14 +307,31 @@
 				this.isActive = index
 				this.startDate = item.date
 				this.startWeek = item.weekDay
+				let year = new Date().getFullYear() + '/' + item.day
+				
+				this.optDes.DepartDate = year
 				console.log(item)
+				this.getData()
 			},
 			// 切换tabbar激活
-			changeShowIndex(index){
-				this.isShow = index
-				if(index == 1){
-					this.screenShow = true
-				}
+			changeShowIndex(){
+				if(this.isShow) return
+				this.isShow = !this.isShow
+				this.isShow2 = !this.isShow2
+				this.getData()
+			},
+			changeShowIndex2(){
+				if(this.isShow2) return
+				this.isShow2 = !this.isShow2
+				this.isShow = !this.isShow
+				this.priceSaixan()
+			},
+			// 价格筛选
+			priceSaixan(){
+				console.log('航班列表数据',this.flyListz) // .Cabins[0].Fare
+				this.flyListz.sort((a, b) =>{
+					return a.Cabins[0].Fare - b.Cabins[0].Fare
+				})
 			},
 			// 改变显示出发车站字体颜色
 			changeItemS(){
@@ -380,6 +380,10 @@
 			padding-top: 0;
 			box-sizing: content-box;
 	 }
+	 .flylist{
+		 width: 100%;
+		 padding-bottom: 100rpx;
+	 }
 	.calendarBox{
 		width: 100%;
 		height: 110rpx;
@@ -406,10 +410,11 @@
 					padding: 10rpx 0;
 					display: flex;
 					flex-direction: column;
-					justify-content: space-between;
+					justify-content: center;
 					align-items: center;
 					text{
 						font-size: 20rpx;
+						margin-bottom: 5rpx;
 					}
 				}
 				.day.active{

@@ -2,7 +2,8 @@
   height: 25px;
   background: #FFFFFF;
   padding-top: 0;
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 .ticket-container.data-v-3778ee42 {
   width: 100%;
@@ -20,7 +21,8 @@
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 20px;
   background-color: #fff;
 }
@@ -35,14 +37,16 @@
 }
 .ticket-container .list.data-v-3778ee42 {
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 10px;
 }
 .ticket-container .list .list-item.data-v-3778ee42 {
   width: 100%;
   background-color: #fff;
   margin-top: 10px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 6px;
 }
 .ticket-container .list .list-item .title-status.data-v-3778ee42 {

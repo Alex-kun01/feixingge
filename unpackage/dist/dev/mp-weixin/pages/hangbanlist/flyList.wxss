@@ -2,13 +2,19 @@
   height: 25px;
   background: #FFFFFF;
   padding-top: 0;
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+.flylist {
+  width: 100%;
+  padding-bottom: 100rpx;
 }
 .calendarBox {
   width: 100%;
   height: 110rpx;
   background-color: #ffffff;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 30rpx;
   display: -webkit-box;
   display: -webkit-flex;
@@ -35,7 +41,8 @@
   min-width: 120rpx;
   height: 100rpx;
   border-radius: 6rpx;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 10rpx 0;
   display: -webkit-box;
   display: -webkit-flex;
@@ -44,15 +51,16 @@
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
 }
 .calendarBox .scrollX .week .day text {
   font-size: 20rpx;
+  margin-bottom: 5rpx;
 }
 .calendarBox .scrollX .week .day.active {
   background-color: #FF9805;
@@ -101,7 +109,8 @@
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
           flex-direction: column;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border-bottom: 1rpx solid #E1E1E1;
   padding: 40rpx 30rpx;
 }
@@ -206,7 +215,8 @@
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 10rpx 93rpx;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
@@ -262,7 +272,8 @@
   line-height: 100rpx;
   border-bottom: 1rpx solid #E8E8E8;
   padding: 0 30rpx;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -301,7 +312,8 @@
   line-height: 100rpx;
   text-align: center;
   border-bottom: 1rpx solid #E8E8E8;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   font-size: 28rpx;
   color: #333333;
 }
@@ -314,7 +326,8 @@
   width: 500rpx;
   height: 100rpx;
   line-height: 100rpx;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border-bottom: 1rpx solid #E8E8E8;
   padding: 0 30rpx;
   display: -webkit-box;

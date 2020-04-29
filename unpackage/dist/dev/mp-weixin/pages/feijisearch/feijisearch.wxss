@@ -2,7 +2,8 @@
   height: 25px;
   background: #FFFFFF;
   padding-top: 0;
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 .swiper_box {
   width: 100%;

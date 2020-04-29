@@ -2,7 +2,8 @@
   height: 25px;
   background: #FFFFFF;
   padding-top: 0;
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 page.data-v-45433555 {
   background: #FFFFFF;
@@ -13,7 +14,8 @@ page .bingPhone.data-v-45433555 {
 }
 .bind_con.data-v-45433555 {
   margin-top: 150rpx;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding-left: 30rpx;
   width: 100%;
   background-color: #FFFFFF;
@@ -53,7 +55,8 @@ page .bingPhone.data-v-45433555 {
   height: 80rpx;
   background: #ff9805;
   opacity: 0.5;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border-radius: 40rpx;
   color: #FFFFFF;
   line-height: 80rpx;

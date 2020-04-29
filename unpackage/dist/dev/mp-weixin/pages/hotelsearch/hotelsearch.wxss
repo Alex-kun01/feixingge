@@ -2,7 +2,8 @@
   height: 25px;
   background: #FFFFFF;
   padding-top: 0;
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
  .uni-swiper-dots-horizontal {
   left: 90% !important;
@@ -73,7 +74,8 @@
 }
 .hotel-container .main {
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 30rpx;
 }
 .hotel-container .main .ipt_wrap {
@@ -89,7 +91,8 @@
 .hotel-container .main .info {
   width: 100%;
   background-color: #fff;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 2vw 4vw 8vw;
   position: relative;
   z-index: 50;
@@ -173,7 +176,8 @@
 .hotel-container .uni-popup .uni-popup__wrapper-box .box {
   width: 100%;
   background-color: #fff;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 10px;
 }
 .hotel-container .uni-popup .uni-popup__wrapper-box .box .title {

@@ -2,7 +2,8 @@
   height: 25px;
   background: #FFFFFF;
   padding-top: 0;
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 .topbar.data-v-76b8a902 {
   height: 130rpx;
@@ -14,7 +15,8 @@
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 50rpx 30rpx 30rpx 30rpx;
 }
 .topbar .img.data-v-76b8a902 {
@@ -58,7 +60,8 @@
   -webkit-align-items: center;
           align-items: center;
   background-color: #fff;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 10px;
 }
 .person-container .por image.data-v-76b8a902 {
@@ -74,7 +77,8 @@
 .person-container .person-item.data-v-76b8a902 {
   background-color: #fff;
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 10px;
   height: 40px;
   display: -webkit-box;

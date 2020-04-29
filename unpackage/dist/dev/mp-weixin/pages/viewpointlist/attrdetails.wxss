@@ -2,7 +2,8 @@
   height: 25px;
   background: #FFFFFF;
   padding-top: 0;
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 .swiper_box.data-v-c1beb28a {
   width: 100%;
@@ -27,7 +28,8 @@
   top: 300rpx;
   left: 20rpx;
   border-radius: 10rpx;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 30rpx 20rpx;
 }
 .float_box .space .name.data-v-c1beb28a {
@@ -73,7 +75,8 @@
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 40rpx;
   width: 750rpx;
   height: 125rpx;
@@ -113,7 +116,8 @@ text.gou image.data-v-c1beb28a {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
           justify-content: space-between;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 30rpx 40rpx;
 }
 .item .left_con .topInfo .box_xie.data-v-c1beb28a {
@@ -162,7 +166,8 @@ text.gou image.data-v-c1beb28a {
 }
 .leftBtn.data-v-c1beb28a {
   width: 750rpx;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 30rpx;
   height: 36rpx;
   position: absolute;

@@ -2,7 +2,8 @@
   height: 25px;
   background: #FFFFFF;
   padding-top: 0;
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 .verifyphone-container.data-v-1082ff8b {
   width: 100%;
@@ -24,7 +25,8 @@
   -webkit-align-items: center;
           align-items: center;
   border-bottom: 1px solid #E1E1E1;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 10px;
 }
 .verifyphone-container .main .one text.data-v-1082ff8b,

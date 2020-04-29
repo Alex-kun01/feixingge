@@ -2,7 +2,8 @@
   height: 25px;
   background: #FFFFFF;
   padding-top: 0;
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 .keysearch-container.data-v-41f80622 {
   width: 100%;
@@ -30,7 +31,8 @@
   display: -webkit-flex;
   display: flex;
   margin-top: 54rpx;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .keysearch-container .topbar .search .icon-sousuo1.data-v-41f80622 {
   margin-left: 20rpx;
@@ -45,7 +47,8 @@
 }
 .keysearch-container .search-box.data-v-41f80622 {
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 30rpx 30rpx 30rpx;
   margin-bottom: 30px;
 }

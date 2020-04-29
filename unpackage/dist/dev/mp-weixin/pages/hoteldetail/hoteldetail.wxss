@@ -2,7 +2,8 @@
   height: 25px;
   background: #FFFFFF;
   padding-top: 0;
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 .item_box.data-v-2c8a872a {
   width: 100%;
@@ -20,7 +21,8 @@
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 20rpx 30rpx;
 }
 .item_box .title image.data-v-2c8a872a {
@@ -57,7 +59,8 @@
 }
 .item_box .content_box.active .content.data-v-2c8a872a {
   padding: 20rpx 30rpx;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -137,7 +140,8 @@
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
           justify-content: space-between;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 30rpx;
   position: absolute;
   top: 50rpx;
@@ -148,7 +152,8 @@
 .hoteldetail-container .one.data-v-2c8a872a {
   width: 100%;
   background-color: #fff;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 10px;
 }
 .hoteldetail-container .one .name-score.data-v-2c8a872a,
@@ -222,7 +227,8 @@
   -webkit-align-items: center;
           align-items: center;
   border-bottom: 1px solid #F2F2F2;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 10px;
 }
 .hoteldetail-container .two .period .left.data-v-2c8a872a {
@@ -250,7 +256,8 @@
   display: -webkit-flex;
   display: flex;
   padding-bottom: 10px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 10px;
 }
 .hoteldetail-container .two .feature .feature-item.data-v-2c8a872a {
@@ -275,7 +282,8 @@
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 10px;
 }
 .hoteldetail-container .two .list .type .basic .left.data-v-2c8a872a {
@@ -293,7 +301,8 @@
 .hoteldetail-container .two .list .type .basic .mid .feature1.data-v-2c8a872a {
   height: 20px;
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 10px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -344,7 +353,8 @@
   -webkit-align-items: center;
           align-items: center;
   background-color: #eee;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 10px;
 }
 .hoteldetail-container .two .list .type .detailed .left.data-v-2c8a872a {

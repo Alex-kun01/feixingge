@@ -3,7 +3,8 @@
   background: #FFFFFF;
   padding-top: 0;
   background-color: #FDA426;
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 .loding {
   width: 100%;
@@ -91,14 +92,16 @@
   -webkit-box-pack: center;
   -webkit-justify-content: center;
           justify-content: center;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 10px;
 }
 .pointsmall-container .exchange .exchange-item {
   width: 45%;
   margin: 10px 0 0 3.333333%;
   background-color: #fff;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 20rpx;
 }
 .pointsmall-container .exchange .exchange-item .goods {

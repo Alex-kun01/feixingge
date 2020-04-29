@@ -121,12 +121,21 @@ const store = new Vuex.Store({
 	},
 	mutations:{
 		
+		setUserSexInfo(state, obj){
+			state.userInfo.username = obj.username
+			state.userInfo.nickname = obj.nickname
+			state.userInfo.sex = obj.sex
+		},
+		
 		setThisCity(state, str){
 			state.thisCity.CityName = str
 		},
 		
 		setUserInfo(state,obj){
 			state.userInfo = obj
+		},
+		setAvatar(state,ava){
+			state.userInfo.avatar = ava
 		},
 		
 		setQicheTime(state, time){

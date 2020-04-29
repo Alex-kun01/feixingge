@@ -2,7 +2,8 @@
   height: 25px;
   background: #FFFFFF;
   padding-top: 0;
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 page.data-v-6fcd491f {
   background-color: #ffffff;
@@ -13,7 +14,8 @@ page.data-v-6fcd491f {
 }
 .modify-container .main.data-v-6fcd491f {
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 20rpx 20rpx 20rpx;
   margin-top: 20px;
 }

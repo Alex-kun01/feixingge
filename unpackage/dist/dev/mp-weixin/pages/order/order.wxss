@@ -2,7 +2,8 @@
   height: 25px;
   background: #FFFFFF;
   padding-top: 0;
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 .topbar.data-v-246725bd {
   height: 45px;
@@ -48,7 +49,8 @@
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
           justify-content: space-between;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 30rpx;
   z-index: 999;
   position: relative;
@@ -75,7 +77,8 @@
 .order-container .filter .item .menu.data-v-246725bd {
   position: absolute;
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   top: 80rpx;
   background-color: #FFFFFF;
   padding-left: 20rpx;
@@ -112,7 +115,8 @@
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
           justify-content: space-between;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding-right: 40rpx;
 }
 .order-container .filter .item .menu_time .item image.data-v-246725bd {
@@ -141,7 +145,8 @@
   width: 24rpx;
   height: 24rpx;
   border: 1rpx solid #ddd;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border-radius: 50%;
   margin: 30rpx 10rpx 0 0;
 }
@@ -174,7 +179,8 @@
 .order_list.data-v-246725bd {
   margin-top: 20rpx;
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 20rpx;
 }
 .order_list .item.data-v-246725bd {
@@ -183,7 +189,8 @@
   background-color: #FFFFFF;
   margin-bottom: 20rpx;
   border-radius: 10rpx;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 20rpx;
 }
 .order_list .item .top_info.data-v-246725bd {

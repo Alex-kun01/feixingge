@@ -8,7 +8,8 @@
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 50rpx 30rpx 30rpx 30rpx;
 }
 .topbar .img {

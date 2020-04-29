@@ -49,7 +49,10 @@
 						有效期至
 					</view>
 					<view class="name_ipt ipt_wrap">
-						<input class="ipt" type="tel" v-model="card_end_time" placeholder="请选择证件有效期" />
+						<!-- <input class="ipt" type="tel" v-model="card_end_time" placeholder="请选择证件有效期" /> -->
+						 <picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
+							 <view style="font-size: 26rpx;line-height: 80rpx;color: #999999;">{{card_end_time}}</view>
+						 </picker>
 					</view>
 				</view>
 			</view>
@@ -68,7 +71,7 @@
 				name: '蒋治坤',
 				phone: '17683059017',
 				id_card: '513922199702111997',
-				card_end_time: '2020/04/19'
+				card_end_time: '选择日期'
 			}
 		},
 		onLoad() {
@@ -78,6 +81,26 @@
 			uni.hideLoading()
 		},
 		methods: {
+			
+			bindDateChange(e){
+				console.log(e)
+				this.card_end_time = e.target.value
+			},
+			 getDate(type) {
+				const date = new Date();
+				let year = date.getFullYear();
+				let month = date.getMonth() + 1;
+				let day = date.getDate();
+	
+				if (type === 'start') {
+					year = year - 60;
+				} else if (type === 'end') {
+					year = year + 2;
+				}
+				month = month > 9 ? month : '0' + month;;
+				day = day > 9 ? day : '0' + day;
+				return `${year}-${month}-${day}`;
+			},
 			// 提交
 			subClick(){
 				let _this = this
@@ -119,6 +142,14 @@
 						content: '信息未填全'
 					})
 				}
+			}
+		},
+		computed: {
+			startDate() {
+				return this.getDate('start');
+			},
+			endDate() {
+				return this.getDate('end');
 			}
 		},
 		components: {

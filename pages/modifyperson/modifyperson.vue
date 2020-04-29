@@ -19,11 +19,17 @@
 				<input  type="text" value="" v-model="person.username" />
 			</view>
 		</view>
-		<view class="person-item" style="border-bottom: 1px solid #E1E1E1;">
+		<!-- <view class="person-item" style="border-bottom: 1rpx solid #E1E1E1;">
 			<text class="title">性别</text>
 			<view @click="choseSex" class="right">
 				<text style="margin-right: 10px;">{{person.sex}}</text>
 			</view>
+		</view> -->
+		<view class="person-item" style="border-bottom: 1px solid #E1E1E1;">
+			<text class="title">性别</text>
+			<picker style="width: 200rpx;text-align: right;" :range="SexArr" :value="sexIndex"  @change="choseSex">
+				<view class="right">{{person.sex}}</view>
+			</picker>
 		</view>
 		
 		<view class="person-item" style="border-bottom: 1px solid #E1E1E1;">
@@ -69,6 +75,8 @@
 		data() {
 			return {
 				title: "修改个人信息",
+				SexArr: ['男', '女'],
+				sexIndex: 0,
 				person:{
 					username:"", // username
 					sex:'',
@@ -89,18 +97,23 @@
 			uni.hideLoading()
 		},
 		onShow(){
-			if(this.$store.state.userInfo.type){
-				this.person.nickname = this.$store.state.userInfo.nickname
-				this.person.username = this.$store.state.userInfo.username
-				this.person.sex = this.$store.state.userInfo.sex
-				this.person.mobile = this.$store.state.userInfo.mobile
-				this.person.headPic = this.$store.state.userInfo.avatar
-				this.person.nickname = this.$store.state.userInfo.nickname
-			}
-			let data = this.person
-			this.oldData = Object.assign({}, data); 
+			this.init()
 		},
 		methods: {
+			
+			// 初始化
+			init(){
+				if(this.$store.state.userInfo.type){
+					this.person.nickname = this.$store.state.userInfo.nickname
+					this.person.username = this.$store.state.userInfo.username
+					this.person.sex = this.$store.state.userInfo.sex
+					this.person.mobile = this.$store.state.userInfo.mobile
+					this.person.headPic = this.$store.state.userInfo.avatar
+					this.person.nickname = this.$store.state.userInfo.nickname
+				}
+				let data = this.person
+				this.oldData = Object.assign({}, data); 
+			},
 			
 			// 修改密码
 			goModifyPass(){
@@ -110,8 +123,13 @@
 			},
 			
 			// 选择性别
-			choseSex(){
-				this.$refs.popup.open()
+			choseSex(e){
+				// this.$refs.popup.open()
+				
+				this.person.sex = this.SexArr[e.target.value]
+				this.sexIndex = e.target.value
+				console.log(this.person.sex )
+				
 			},
 			
 			// 设置性别
@@ -180,9 +198,9 @@
 							uni.removeStorage({
 								key: 'srorage_type'
 							})
-							uni.removeStorage({
-								key: 'srorage_token'
-							})
+							// uni.removeStorage({
+							// 	key: 'srorage_token'
+							// })
 							uni.removeStorage({
 								key: 'srorage_token',
 								success(res) {
@@ -218,7 +236,7 @@
 									url: _this.$http + '/api/user/changeInfo',
 									method: 'POST',
 									data:{
-										// token: userinfo.token,
+										token: userinfo.token,
 										username: _this.person.username,
 										nickname: _this.person.nickname,
 										sex: _this.person.sex,
@@ -227,10 +245,24 @@
 										console.log('修改后返回数据',res)
 										if(res.data.code == 1){
 											
-											
 											_this.resetInfo(res.data.data)
 											
+											let obj = {
+												nickname: _this.person.nickname,
+												username: _this.person.username,
+												sex: _this.person.sex 
+											}
+											
+											_this.$store.commit('setUserSexInfo', obj)
+											
+											console.log('修改后vuex', _this.$store.state.userInfo)
+											
 											uni.navigateBack({})
+											
+											uni.showToast({
+												title: '修改成功'
+											})
+											
 										}else{
 											uni.showModal({
 												title: '提示',

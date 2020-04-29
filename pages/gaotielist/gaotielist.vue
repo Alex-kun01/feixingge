@@ -148,7 +148,7 @@
 			uni.hideLoading()
 		},
 		methods: {
-			// 选择某一张高铁票
+			// 选择某一张高铁票 跳转高铁详情
 			choseGtDet(item,idx){
 				let itemP = this.gaotieList[idx]
 				this.$store.commit('setGtYuTic',itemP)
@@ -176,7 +176,6 @@
 			// 设置顶部日期滚动条选择不同时间
 			setTopTimes(){
 				// 设置跨月依然游刃有余 skr
-				
 				let time = this.nowTime
 				// let time = '2020-3-30'
 				let timeSeconds = new Date(time).getTime()
@@ -204,12 +203,14 @@
 			 
 			// 选择某个日期的票
 			choseOneTic(item, idx) {
+				console.log('item',item)
 				let itemO = this.banchelist[idx]
 				this.active == idx ? this.active = null : this.active = idx
 				let opt = this.ticdes
 				let year = new Date(this.ticdes.FromDate).getFullYear()
 				opt.FromDate = year+'/'+itemO.day
 				console.log(opt.FromDate,'选中的日期')
+				this.$store.commit('setGtTic', opt.FromDate)
 				// return
 				this.getGaoTieList(opt)
 				
@@ -240,8 +241,6 @@
 					title:'加载中'
 				})
 				let url = 'http://apitest.99263.com'
-				// let url = '/api'
-				//http://apitest.99263.com 测试接口
 				uni.request({
 					url: this.$slurl + "/Train/Query",
 					method:"POST",
@@ -256,7 +255,7 @@
 						  }
 						},
 					success:function(res){
-						console.log(res.data.Data,'高铁列表')
+						// console.log(res.data.Data,'高铁列表')
 						uni.hideLoading()
 						if (res.data.IsSuccess) {
 						_this.gaotieList = res.data.Data

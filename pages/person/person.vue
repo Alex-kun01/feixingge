@@ -3,7 +3,7 @@
 	<view class="titleNview-placing"></view>
 		<Topbar :title="title"></Topbar>
 		<view class="por">
-			<image :src="person.headPic" mode="aspectFit"></image>
+			<image :src="person.headPic" @click="chooseImg" mode="aspectFit"></image>
 			<text class="name">{{person.nickname}}</text>
 		</view>
 		<view class="person-item" style="border-bottom: 1px solid #E1E1E1;">
@@ -85,6 +85,74 @@
 		},
 		methods: {
 			
+			
+			// 上传头像
+			chooseImg(){
+				let _this = this
+				uni.showModal({
+					title: '提示',
+					content: '更改头像？头像格最好为正方形',
+					success(res) {
+						if(res.confirm){
+							console.log('用户确认更换头像')
+							
+							uni.chooseImage({
+								count: 1, // 上传图片的张数
+								sourceType: ['album'], //从相册选择
+								success(res){
+									const tempFilePaths = res.tempFilePaths;
+									
+									const uploadTask = uni.uploadFile({
+										url: _this.$http + '/api/user/uphead',
+										// methods: 'POST',
+										filePath: tempFilePaths[0],
+										name: 'file',
+										formData: {
+											type: 'yes',
+											token: _this.$store.state.userInfo.token
+										  },
+										  success: function (uploadFileRes) {
+										 console.log(uploadFileRes.data);
+										 let resObj = JSON.parse( uploadFileRes.data )
+										 // console.log(resObj);
+										 if(resObj.code ==1){
+											 uni.hideLoading()
+											 console.log('上传成功')
+											 
+											 let imgUrl = resObj.data.url // 地址
+											 let image = resObj.data.http + resObj.data.url // 完整路径
+											 console.log(image,imgUrl)
+											 _this.$store.commit('setAvatar', image)
+											 _this.person.headPic = image
+											 // 更改头像本地缓存
+											 uni.setStorage({
+											 	key: 'srorage_avatar',
+											 	data: image
+											 })
+										 }
+										}
+										
+									})
+								}
+								
+								
+								
+								
+								
+							})
+							
+							
+							
+							
+							
+							
+							
+						}else{
+							console.log('用户取消更改头像')
+						}
+					}
+				})
+			},
 			// 修改个人信息 
 			goModifyPerson(){
 				uni.navigateTo({

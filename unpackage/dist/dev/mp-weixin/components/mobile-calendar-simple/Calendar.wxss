@@ -18,7 +18,8 @@
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 .flex-1.data-v-057732b3 {
 	width: 100%;
@@ -50,7 +51,8 @@
 	width: 100%;
 	left: 0;
 	z-index: 9;
-	box-shadow: 0 2px 15px rgba(100, 100, 100, 0.1);
+	-webkit-box-shadow: 0 2px 15px rgba(100, 100, 100, 0.1);
+	        box-shadow: 0 2px 15px rgba(100, 100, 100, 0.1);
 }
 .calendar-header .week-number.data-v-057732b3 {
 	background: #fff;

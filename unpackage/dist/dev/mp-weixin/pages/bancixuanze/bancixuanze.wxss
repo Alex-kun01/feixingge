@@ -2,13 +2,15 @@
   height: 25px;
   background: #FFFFFF;
   padding-top: 0;
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 .city_info.data-v-f7c3b616 {
   width: 100%;
   height: 350rpx;
   background: #ffffff;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 30rpx;
 }
 .city_info .message.data-v-f7c3b616 {
@@ -86,7 +88,8 @@
 }
 .content_box.data-v-f7c3b616 {
   padding: 0 20rpx;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   margin-top: 20rpx;
 }
 .content_box .con_item.data-v-f7c3b616 {
@@ -95,7 +98,8 @@
   background: #ffffff;
   margin-bottom: 20rpx;
   border-radius: 10rpx;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 53rpx 20rpx 40rpx 19rpx;
   display: -webkit-box;
   display: -webkit-flex;
@@ -125,7 +129,8 @@
   height: 34rpx;
   line-height: 34rpx;
   border: 1rpx solid #FF9805;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border-radius: 6rpx;
   color: #FF9805;
   font-size: 20rpx;

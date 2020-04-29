@@ -38,12 +38,13 @@
 					<view class="item_wrap">
 						<view @click="setTimetoNow" class="time_show" >{{search_time}}<text>{{targetDate}}</text></view>
 					</view>
-					<view class="item_wrap">
+					<!-- 365接口没有只看高铁参数 -->
+					<!-- <view class="item_wrap">
 						<view class="name lookgaotie">只看高铁</view>
 						<label class="radio see_gt_radio">
 							<radio color="#FF9805" :checked="seeGt" @click="setSeeGt" value="seeGt" />
 						</label>
-					</view>
+					</view> -->
 					<view class="item_wrap btn_wrap">
 						<button @click="searchGTP" class="search_btn go_center" type="primary" size="default">搜索</button>
 					</view>

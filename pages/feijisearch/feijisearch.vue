@@ -164,36 +164,13 @@
 				ticTypeStr:'往返',
 				cfDate: '',
 				cfDateStr: '选择日期',
-				fcDate: '',  // 返程日期
-				fcDateStr: '添加返程'
+				// fcDate: '',  // 返程日期
+				// fcDateStr: '添加返程',
+				
 			}
 		},
 		onShow(){
-			
-			let _this = this;
-			
-			this.fcDate = this.$store.state.airFlightType.fcDate // 返程日期获取
-			this.cfDate = this.$store.state.airFlightType.airDate  // 启程日期
-			
-			
-			
-			uni.getStorage({
-				key: 'FromAirPlane',
-				success(res) {
-					console.log('From res', res.data)
-					_this.startCityInfo = res.data
-				}
-			})
-			
-			uni.getStorage({
-				key: 'ToAirPlane',
-				success(res) {
-					console.log('To res', res.data)
-					_this.endCityInfo = res.data
-				}
-			})
-			this.fcDatefun(this.fcDate)
-			this.cfDatefun(this.cfDate)
+			this.init()
 		},
 		onLoad(opt) {
 		},
@@ -201,13 +178,52 @@
 			uni.hideLoading()
 		},
 		methods: {
-			fcDatefun(target){
-				if(Object.keys(target).length == 0){
-					return 
+			// 初始化
+			init(){
+				
+				let _this = this;
+				// 初始化日期
+				if(Object.keys(this.$store.state.airFlightType.airDate).length == 0){
+					this.initDate() // 自动初始化日期
 				}else{
-					this.fcDateStr = target.date.month + '月' + target.date.day + '日'
-					
+					this.cfDatefun(this.$store.state.airFlightType.airDate) // 选择日期
+					this.cfDate = this.$store.state.airFlightType.airDate.dateStr
+					// console.log('000000',this.$store.state.airFlightType.airDate)
 				}
+				
+				uni.getStorage({
+					key: 'FromAirPlane',
+					success(res) {
+						console.log('From res', res.data)
+						_this.startCityInfo = res.data
+					}
+				})
+				
+				uni.getStorage({
+					key: 'ToAirPlane',
+					success(res) {
+						console.log('To res', res.data)
+						_this.endCityInfo = res.data
+					}
+				})
+				
+				
+			},
+			// fcDatefun(target){
+			// 	if(Object.keys(target).length == 0){
+			// 		return 
+			// 	}else{
+			// 		this.fcDateStr = target.date.month + '月' + target.date.day + '日'
+					
+			// 	}
+			// },
+			// 进入页面自动初始化当前日期
+			initDate(){
+				let year = new Date().getFullYear()
+				let month = new Date().getMonth() + 1
+				let day = new Date().getDate()
+				this.cfDate = year + '/' + month + '/' + day  //cfDate
+				this.cfDateStr = month + '月' + day + '日'
 			},
 			cfDatefun(target){
 				if(Object.keys(target).length == 0){
@@ -305,11 +321,13 @@
 			
 			// 改变始发地 做交换
 			changeTwoCity(){
-				let box = {...this.city} //{...obj} 浅拷贝
+				let sbox = {...this.startCityInfo} //{...obj} 浅拷贝
+				let ebox = {...this.endCityInfo}
+				
 				// console.log(box)
 				// return
-				this.city.start_city = box.end_city
-				this.city.end_city = box.start_city
+				this.startCityInfo.AirportShortName= ebox.AirportShortName
+				this.endCityInfo.AirportShortName= sbox.AirportShortName
 			},
 
 			// 获取选中日期和当前日期差距日 最多后天
@@ -347,7 +365,7 @@
 				let sName = this.startCityInfo.AirportShortName
 				let eName = this.endCityInfo.AirportShortName
 				let sDate = this.cfDateStr
-				if (sName == '出发机场' || eName == '到达机场' || sDate == '选择日期') {
+				if (sName == '出发机场' || eName == '到达机场') {
 					uni.showModal({
 						title: '提示',
 						content: '请完善机场信息/出发日期',
@@ -358,7 +376,7 @@
 				let DepartCityCode = this.startCityInfo.AirportCode // 	出发城市三字码
 				let ArriveCityCode = this.endCityInfo.CityCode  // 抵达城市三字码
 				let IsChild =  this.IsChild// 是否是查询儿童票 
-				let DepartDate = this.cfDate.dateStr  // 出发日期
+				let DepartDate = this.cfDate  // 出发日期
 				let datas = {
 					startCityInfo: this.startCityInfo,
 					endCityInfo: this.endCityInfo,

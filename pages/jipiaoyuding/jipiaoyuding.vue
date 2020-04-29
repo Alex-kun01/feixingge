@@ -440,7 +440,7 @@
 			this.getPrice(opt) // 基建+燃油
 			this.getOrderSome() //订票所需参数
 			this.verifyCabin() // 获取实时票价
-			this.getHangbanjingting() // 航班经停信息
+			// this.getHangbanjingting() // 航班经停信息
 			
 			console.log('机票信息xx',  this.$store.state.airTicMes )
 		},
@@ -503,11 +503,23 @@
 			
 			// 提交订单
 			saveOrder(){
-				this.inputPrenAll()
+				this.inputPrenAll() // 分割保险类型
 				
-				console.log('数据', )
-				// 校验是否验证实时票价 | 经停信息
-				if(!this.isVerifyCabin || !this.isJingTing || !this.isGetFlightPolicy || !this.isGetFlightBookPara) return
+				console.log('是否满足提交订单条件', this.Judgment())
+				if(!this.Judgment()){
+					uni.showModal({
+						title: '提示',
+						content: '请完善乘客/联系人信息'
+					})
+					return
+				}
+				// 校验是否验证实时票价 | 经停信息 
+				if(!this.isVerifyCabin || !this.isGetFlightPolicy || !this.isGetFlightBookPara) {
+					uni.showModal({
+						title: '提示',
+						content: '网络繁忙，请稍后再试'
+					})
+				}
 				this.subOrderALl()
 				
 				// 发送下单请求
@@ -552,7 +564,38 @@
 					})
 					
 			},
-			
+			// 判断是否具备提交条件
+			Judgment(){
+				let arr = []
+				let num = this.passenGbox.length // 乘客人数
+				this.passenGbox.forEach((item,index) =>{
+					if(item.PsgName == '' || item.CardNo == '' || item.Mobile == ''){
+						arr.push(1)
+					}
+					if(item.BirthDay == '1990-01-01'){
+						arr.push(1)
+						uni.showModal({
+							title: '提示',
+							content: `请选择乘客${index+1}的生日`
+						})
+					}
+					if(item.InsProductCodes == '' ){
+						arr.push(2)
+					}
+				})
+				if(this.ReqCreateOrderInfo.ContactName == '' || this.ReqCreateOrderInfo.ContactMobile == '' || num == 0){
+					arr.push(1)
+				}
+				if(arr.includes(2)){
+					uni.showModal({
+						title: '提示',
+						content: '请选择保险'
+					})
+				}
+				
+				return !arr.includes(1)
+				
+			},
 			// 添加乘客
 			AddPassengers(){
 				console.log('乘客人数', this.passenGbox.length)
@@ -891,13 +934,17 @@
 									},
 									success(res) {
 										console.log('我方服务器下单返回数据', res)
+										if(res.data.code == 1){
+											uni.hideLoading()
+										}
 										
 									}
 								})
 							}else{
+								uni.hideLoading()
 								uni.showModal({
 									title: '提示',
-									content: '下单失败，请稍后重试'
+									content: 'Error' + res.data.Message
 								})
 							}
 					}

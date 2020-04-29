@@ -2,7 +2,8 @@
   height: 25px;
   background: #FFFFFF;
   padding-top: 0;
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 .person-container.data-v-3cfa64bf {
   width: 100%;
@@ -18,7 +19,8 @@
   -webkit-align-items: center;
           align-items: center;
   background-color: #fff;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 10px;
 }
 .person-container .por image.data-v-3cfa64bf {
@@ -34,7 +36,8 @@
 .person-container .person-item.data-v-3cfa64bf {
   background-color: #fff;
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 10px;
   height: 40px;
   display: -webkit-box;

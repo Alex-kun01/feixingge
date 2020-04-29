@@ -211,6 +211,14 @@
 		<!-- 买保险 -->
 		<view class="info_wrap">
 			<view class="card_wrap">
+				<view class="item_wrap">
+					<view class="name_title name">
+						手续费
+					</view>
+					<view class="name_ipt ipt_wrap">
+						￥2元
+					</view>
+				</view>
 				
 				<view v-for="(item,idx) in orderSome.InsProducts" :key="idx" class="item_wrap"
 				>
@@ -380,6 +388,7 @@
 				},
 				BXPrice: 0, // 保险费
 				BXProductCode: '', // 保险代码
+				isChooseSeatType: false,  // 是否选择座位烈类型
 			}
 		},
 		onShow(){
@@ -429,6 +438,18 @@
 				this.bxDetail = this.orderSome.InsProducts[idx]
 				this.isDialog = true
 			},
+			// 判断是否具备提交条件
+			Judgment(){
+				let arr = []
+				this.passenGbox.forEach(item => {
+					if(item.PsgName == '' || item.CardNo == '' || item.Phone == '' || !this.isChooseSeatType || this.user.teluser == '' || this.user.phone == '') {
+						arr.push(2)
+					}
+				})
+				
+				return !arr.includes(2)
+				
+			},
 			
 			// 改变单选按钮
 			changeRadio(){
@@ -452,7 +473,8 @@
 				let Num = this.passenGbox.length // 乘客人数
 				let ticdet = this.ticdet.price // 票价
 				let BXPrice = this.BXPrice // 保险费
-				Allprice = Num * ( ticdet + BXPrice )
+				let OutTicketPoundage = 2 // 手续费 没有手续费来源，暂定是固定两元手续费
+				Allprice = Num * ( ticdet + BXPrice ) + OutTicketPoundage
 				this.ticdet.Allprice = Allprice
 			},
 			
@@ -682,6 +704,7 @@
 						this.active = idx
 						this.ticdet.price = itemP.price
 						this.getAllNum() // 计算总金额
+						this.isChooseSeatType = true
 					}
 					
 				}
@@ -732,12 +755,19 @@
 			},
 			// 提交订单
 			subClick(){
+				
 				// let gtDetailInfo = this.$store.state.gtYuMes
 				console.log('票务详情',this.gtDetail)
 				console.log('乘客数组',this.passenGbox)
-				this.subOrderALl() // 发送订单请求
+				if(!this.Judgment()){
+					uni.showModal({
+						title: '提示',
+						content: '信息未填全，请补全信息'
+					})
+					return
+				}
 				
-				return
+				this.subOrderALl() // 发送订单请求
 				
 				
 			},
@@ -762,6 +792,7 @@
 			},
 			// 发送订单请求
 			subOrderALl(){
+				let _this = this
 				this.addBxInfo() // 保险代码添加到乘客数
 				let gtDetail = this.gtDetail // 票务信息
 				let Allprice = this.ticdet.Allprice
@@ -782,14 +813,12 @@
 						"Tel": "",
 						"Remark": this.user.Remark
 					}
-					let OrderPsgList = [...this.passenGbox]
+					let OrderPsgList = JSON.parse(JSON.stringify(this.passenGbox))  //[].concat(this.passenGbox)
 					OrderPsgList.forEach(item =>{
 					    delete item.CardTypeStr
 						delete item.TicketTypeStr
 					})
 					var Timestamp = new Date().toLocaleString()
-					console.log('乘客信息',OrderPsgList)
-					
 					// 请求
 					uni.request({
 						url: this.$slurl + '/Train/CreateOrder',
@@ -805,11 +834,58 @@
 						},
 						success(res) {
 							console.log('火车票下单返回数据', res)
+							if(res.data.IsSuccess){
+								//请求成功
+								// 继续请求我方服务器
+								_this.setMyOrder(res)
+							}else{
+								uni.showModal({
+									title: '提示',
+									content: res.data.Message
+								})
+							}
 						}
 					})
 					
 					
-			}
+			},
+			// 我方服务器下单接口
+			setMyOrder(res){
+				let _this = this
+				let userinfo = this.$store.state.userInfo
+				let gtDetail = this.gtDetail 
+				let OrderPsgList = this.passenGbox
+				uni.showLoading({
+					title: '正在提交...'
+				})
+				uni.request({
+					url: this.$http + '/api/order/add',
+					method: 'POST',
+					data: {
+						token: userinfo.token,
+						type: 4,
+						price: res.data.Data.OrderAmount,
+						order_sn: res.data.Data.OrderNo,
+						uid: userinfo.user_id,
+						data:{
+							gtDetail,
+							OrderPsgList,
+							res
+						}
+					},
+					success(rex){
+						console.log('我方服务器下单返回数据', rex)
+						if(rex.data.code == 1){
+							uni.hideLoading()
+							
+							//  我放服务器数据下单成功
+							// 后续是支付操作，暂无
+							
+							
+						}
+					}
+				})
+			},
 			
 		},
 		components: {

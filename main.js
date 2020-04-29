@@ -7,7 +7,7 @@ import store from './store'
 Vue.config.productionTip = false
 Vue.prototype.$store = store;
 Vue.prototype.$url = 'http://fxg.huiyuanapp.com';
-Vue.prototype.$http = 'http://192.168.31.194:8001'; // 本地请求地址
+Vue.prototype.$http = 'http://192.168.31.70'; // 本地请求地址
 Vue.prototype.$slurl = 'http://apitest.99263.com' // 365商旅请求接口
 Vue.prototype.$ApiKey = 'b421b9a21075a359c09a36db79325d5b' // 356 配置 ApiKey
 

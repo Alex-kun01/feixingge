@@ -2,7 +2,8 @@
   height: 25px;
   background: #FFFFFF;
   padding-top: 0;
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
 }
 .navigation_bar.data-v-5aa3e2cc {
   width: 750rpx;
@@ -17,7 +18,8 @@
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 60rpx;
   font-size: 28rpx;
   color: #222222;
@@ -40,7 +42,8 @@
   background-color: #FFFFFF;
   margin-left: 20rpx;
   border-radius: 10rpx;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 20rpx;
   margin-bottom: 20rpx;
 }
