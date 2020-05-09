@@ -24,27 +24,33 @@
   font-size: 1rem;
   font-weight: bold;
 }
-.orderfill-container .dateuse.data-v-646a4636 .uni-swipe {
-  margin-top: 10px;
-}
-.orderfill-container .dateuse.data-v-646a4636 .uni-swipe .uni-swipe_content .uni-swipe_move-box .uni-swipe_box {
-  width: 100%;
-  background: #fff3f7;
+.orderfill-container .dateuse .content.data-v-646a4636 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
+  font-size: 24rpx;
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px 10px 0;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
 }
-.orderfill-container .dateuse.data-v-646a4636 .uni-swipe .uni-swipe_content .uni-swipe_move-box .uni-swipe_box .date-item {
-  width: 20%;
+.orderfill-container .dateuse .item_box.data-v-646a4636 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  margin-top: 10rpx;
+}
+.orderfill-container .dateuse .item_box .date-item.data-v-646a4636 {
+  width: 115rpx;
+  height: 100rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -52,22 +58,20 @@
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  background-color: #fff;
-  padding: 10px 0;
+  margin-right: 10rpx;
+  border-radius: 5rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 15rpx 5rpx 5rpx 5rpx;
 }
-.orderfill-container .dateuse.data-v-646a4636 .uni-swipe .uni-swipe_content .uni-swipe_move-box .uni-swipe_box .date-item .date {
-  color: #222;
-  font-size: 0.6rem;
+.orderfill-container .dateuse .item_box .date-item .date.data-v-646a4636 {
+  font-size: 28rpx;
 }
-.orderfill-container .dateuse.data-v-646a4636 .uni-swipe .uni-swipe_content .uni-swipe_move-box .uni-swipe_box .date-item .price {
-  color: #FF9805;
-  font-size: 0.6rem;
+.orderfill-container .dateuse .date-item.active.data-v-646a4636 {
+  background-color: pink;
 }
 .orderfill-container .dateuse .verification.data-v-646a4636 {
   width: 100%;

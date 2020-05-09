@@ -2,6 +2,7 @@
 	<view class="content">
 		<view class="titleNview-placing"></view>
 		<Topbar :title="title"></Topbar>
+		<LodingPage :lodingShow="lodingShow"></LodingPage>
 		<!-- 添加常用旅客 -->
 		<view class="info_wrap">
 			<view class="card_wrap">
@@ -35,20 +36,26 @@
 
 <script>
 	import Topbar from '../../components/topBar/topbarx.vue'
+	import LodingPage from '../../pages/loding.vue'
 	export default {
 		data() {
 			return {
+				lodingShow: false, //加载
 				title: '选择常用旅客',
 				city: {
 					from: '北京',
 					to: '成都'
 				},
 				cyUserlist: [],
+				isReading: true, // 防抖
 			}
 		},
 		onLoad() {
 			this.getData()
 			
+		},
+		onShow() {
+			this.isReading = true
 		},
 		onUnload(){
 			uni.hideLoading()
@@ -56,9 +63,14 @@
 		methods: {
 			// 新增常用旅客
 			goAddvister(){
-				uni.navigateTo({
-					url:'../addvister/addvister'
-				})
+				// 防抖处理
+				if(this.isReading){
+					this.isReading = false
+					uni.navigateTo({
+						url:'../addvister/addvister'
+					})
+				}
+				
 			},
 			// 进入旅客详情页面
 			goSetUser(item){
@@ -76,9 +88,10 @@
 				let _this = this
 				let token = this.$store.state.userInfo.token
 				console.log(token)
-				uni.showLoading({
-					title: '加载中...'
-				})
+				// uni.showLoading({
+				// 	title: '加载中...'
+				// })
+				_this.lodingShow = true
 				uni.request({
 					url: this.$http + '/api/user/userPassenger',
 					method: 'POST',
@@ -87,7 +100,8 @@
 					},
 					success(res) {
 						console.log('常用旅客列表数据', res)
-						uni.hideLoading()
+						// uni.hideLoading()
+						_this.lodingShow = false
 						if(res.data.code == 1){
 							_this.cyUserlist = res.data.data
 						}
@@ -97,6 +111,7 @@
 		},
 		components: {
 			Topbar,
+			LodingPage
 		}
 	}
 </script>

@@ -192,8 +192,12 @@
 					HId: '',
 					RoomId: '',
 					ProductId: '',
-				}
+				},
+				isReading: true, // 防抖
 			};
+		},
+		onShow() {
+			this.isReading = true
 		},
 		onUnload(){
 			uni.hideLoading()
@@ -209,51 +213,56 @@
 			},
 			// 跳转预定酒店页面
 			gotoYd(item, room, rox){
-				let _this = this
-				let userinfo = this.$store.state.userInfo
-				console.log('item', item, 'room',room)
-				let datas = {
-					HId: this.HId,
-					RoomId: item.RoomId,
-					ProductId: item.RoomProducts[0].ProductId,
-					InDate: this.targetData.startDate,
-					OutDate: this.targetData.endDate,
-					TotalPrice: item.RoomProducts[0].TotalPrice, // 单价
-					BedType: item.BedType, // 床type
-					RoomName: item.RoomName, // 床Type2
-					ProductName: room.ProductName, // 有无早餐
-					times: this.targetData
-				}
-				// let jsonDatas = JSON.stringify(datas)
-				// console.log('json', jsonDatas)
-				
-				console.log('datas',datas)
-				
-				uni.request({
-					url: this.$http + '/api/order/temp',
-					method: 'POST',
-					data: {
-						token: userinfo.token,
-						uid: userinfo.user_id,
-						type: 3,
-						data: datas
-					},
-					success(res){
-						console.log('上传返回数据', res)
-						if(res.data.code == 1){
-							uni.navigateTo({
-								url: './hotelpay'
-							})
-						}else{
-							uni.showModal({
-								title: '提示',
-								content: '网络繁忙，请稍后再试'
-							})
+				if(this.isReading){
+					this.isReading = false
+					let _this = this
+					let userinfo = this.$store.state.userInfo
+					console.log('item', item, 'room',room)
+					let datas = {
+						HId: this.HId,
+						RoomId: item.RoomId,
+						ProductId: item.RoomProducts[0].ProductId,
+						InDate: this.targetData.startDate,
+						OutDate: this.targetData.endDate,
+						TotalPrice: item.RoomProducts[0].TotalPrice, // 单价
+						BedType: item.BedType, // 床type
+						RoomName: item.RoomName, // 床Type2
+						ProductName: room.ProductName, // 有无早餐
+						times: this.targetData
+					}
+					// let jsonDatas = JSON.stringify(datas)
+					// console.log('json', jsonDatas)
+					
+					console.log('datas',datas)
+					
+					uni.request({
+						url: this.$http + '/api/order/temp',
+						method: 'POST',
+						data: {
+							token: userinfo.token,
+							uid: userinfo.user_id,
+							type: 3,
+							data: datas
+						},
+						success(res){
+							console.log('上传返回数据', res)
+							if(res.data.code == 1){
+								uni.navigateTo({
+									url: './hotelpay'
+								})
+							}else{
+								uni.showModal({
+									title: '提示',
+									content: '网络繁忙，请稍后再试'
+								})
+							}
+							
 						}
 						
-					}
-					
-				})
+					})
+				}else{
+					return
+				}
 				
 			},
 			goBack(){

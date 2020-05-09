@@ -236,6 +236,9 @@
 								key: 'srorage_token'
 							})
 							uni.removeStorage({
+								key: 'srorage_isSigin'
+							})
+							uni.removeStorage({
 								key: 'srorage_token',
 								success(res) {
 									console.log('本地缓存清除完毕',res.data)

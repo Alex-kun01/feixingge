@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view class="titleNview-placing"></view>
-		<!-- <Topbar :title="title"></Topbar> -->
+		<Topbar :title="title"></Topbar>
 		<!-- 添加常用旅客 -->
 		<view class="info_wrap head_wrap">
 			
@@ -243,7 +243,7 @@
 					price: 1320, // 机票钱
 					tip_price: 50, //附加费用
 				},
-				title: '付款',
+				title: '订单详情',
 				city: {
 					from: '北京',
 					to: '成都'
@@ -329,6 +329,9 @@
 				// this.user.idcard = shownum
 				return shownum
 			},
+		},
+		components:{
+			Topbar
 		}
 	}
 </script>

@@ -46,7 +46,7 @@
 						</label>
 					</view> -->
 					<view class="item_wrap btn_wrap">
-						<button @click="searchGTP" class="search_btn go_center" type="primary" size="default">搜索</button>
+						<button @click="searchGTP" class="search_btn go_center" type="primary" size="default">查询</button>
 					</view>
 				</view>
 			</view>
@@ -85,10 +85,23 @@
 				gaotie_type:0,// 0 都看 1 只看高铁
 				search_time:'',// 票务查询时间
 				targetDate: '明天', // 当前选择日期距离今天
+				isReading: true, // 防抖
 			}
 		},
 		onShow(){
-			// 获取本地选择的高铁票地点信息 
+			this.init()
+		},
+		onLoad(opt) {
+
+		},
+		onUnload(){
+			uni.hideLoading()
+		},
+		methods: {
+			// 初始化页面
+			init(){
+				this.isReading = true
+			// 获取本地选择的高铁票地点信息
 			let _this = this 
 			uni.getStorage({
 				key:'gt_start_city',
@@ -107,16 +120,8 @@
 			} else {
 				this.search_time = ((new Date()).toLocaleDateString()).replace(/\-/g,'/')
 				this.search_time = this.setTimeMonth(this.search_time)
-			}
-		},
-		onLoad(opt) {
-
-		},
-		onUnload(){
-			uni.hideLoading()
-		},
-		methods: {
-			
+			}	
+			},
 			// 设置时间格式(月份个位数带0)
 			setTimeMonth(Time){
 				let year = new Date(Time).getFullYear() // 获取到年
@@ -140,9 +145,16 @@
 				let FromStation = box.start_city.cityName.replace(/市/g,'')
 				let ToStation = box.end_city.cityName.replace(/市/g,'') // 文字直接替换不带引号
 				this.$store.commit('setGtTic', FromDate)
-				uni.navigateTo({
-					url:"../gaotielist/gaotielist?FromDate="+FromDate+"&FromStation="+FromStation+"&ToStation="+ToStation
-				})
+				//按钮防抖
+				if(this.isReading){
+					this.isReading = false
+					uni.navigateTo({
+						url:"../gaotielist/gaotielist?FromDate="+FromDate+"&FromStation="+FromStation+"&ToStation="+ToStation
+					})
+				}else{
+					return
+				}
+				
 			},
 			
 			

@@ -3693,20 +3693,6 @@ _vue.default.use(_vuex.default);
 
 var store = new _vuex.default.Store({
   state: {
-    // avatar: "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIttj7XawjibgibZRgfyjhiaPBYkjDibtk4r0YGXJyTAdH3Kskh8Mj8Rs7tQibT2pCnPbtov1yydqWrJUA/132"
-    // createtime: 1587351199
-    // expires_in: 2592000
-    // expiretime: 1589943199
-    // id: 30
-    // mobile: "17683059017"
-    // nickname: "语法糖🍬"
-    // score: 0
-    // sex: "男"
-    // token: "c7a041d3-d7c8-4b84-bbf9-7728d5261ea1"
-    // type: 1
-    // user_id: 30
-    // username: "17683059017"
-
     userInfo: {
       token: '123456', // token的值
       username: '点击登录', // 用户名
@@ -3718,9 +3704,6 @@ var store = new _vuex.default.Store({
       sex: '', //性别
       isSigin: false,
       user_id: 30 },
-
-
-
 
     // 机票搜索数据
     airTicSeaMes: {
@@ -3777,6 +3760,11 @@ var store = new _vuex.default.Store({
 
     // 汽车时间信息
     qicheTiem: '',
+    // 汽车始发城市信息
+    qicheMes: {
+      startCity: '',
+      enCity: '' },
+
 
 
 
@@ -3791,6 +3779,9 @@ var store = new _vuex.default.Store({
       recent: '',
       week: '' },
 
+
+    // 门票详情日期信息
+    ticketFillDate: {},
     // 门票地理信息
     ticketCity: {
       cityName: '选择城市',
@@ -3809,10 +3800,19 @@ var store = new _vuex.default.Store({
 
   mutations: {
 
+    setTicketFillDate: function setTicketFillDate(state, obj) {
+      state.ticketFillDate = obj;
+    },
+    setQicheInfo: function setQicheInfo(state, obj) {
+      state.qicheMes = obj;
+    },
     setUserSexInfo: function setUserSexInfo(state, obj) {
       state.userInfo.username = obj.username;
       state.userInfo.nickname = obj.nickname;
       state.userInfo.sex = obj.sex;
+    },
+    setHotelthisCity: function setHotelthisCity(state, city) {
+      state.hotelCity.cityName = city;
     },
 
     setThisCity: function setThisCity(state, str) {
@@ -3826,8 +3826,8 @@ var store = new _vuex.default.Store({
       state.userInfo.avatar = ava;
     },
 
-    setQicheTime: function setQicheTime(state, time) {
-      state.qicheTiem = time;
+    setQicheTime: function setQicheTime(state, date) {
+      state.qicheTiem = date;
     },
 
     setGtTic: function setGtTic(state, time) {
@@ -24330,7 +24330,7 @@ citySelect;exports.default = _default;
 
 /***/ }),
 
-/***/ 451:
+/***/ 458:
 /*!*********************************************************************************************!*\
   !*** E:/信合诚/飞行鸽/feixingge/node_modules/@dcloudio/uni-ui/lib/uni-swipe-action-item/mpwxs.js ***!
   \*********************************************************************************************/
@@ -24435,7 +24435,7 @@ citySelect;exports.default = _default;
 
 /***/ }),
 
-/***/ 480:
+/***/ 473:
 /*!*********************************************************************************!*\
   !*** E:/信合诚/飞行鸽/feixingge/node_modules/@dcloudio/uni-ui/lib/uni-icons/icons.js ***!
   \*********************************************************************************/
@@ -25483,7 +25483,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "飞行鸽", "usingComponents": { "uni-search-bar": "/node-modules/@dcloudio/uni-ui/lib/uni-search-bar/uni-search-bar" }, "usingAutoImportComponents": {} }, "pages/order/order": { "navigationBarTitleText": "订单", "usingComponents": { "uni-collapse": "/node-modules/@dcloudio/uni-ui/lib/uni-collapse/uni-collapse", "uni-collapse-item": "/node-modules/@dcloudio/uni-ui/lib/uni-collapse-item/uni-collapse-item" }, "usingAutoImportComponents": {} }, "pages/mine/mine": { "navigationBarTitleText": "我的", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/person/person": { "navigationBarTitleText": "个人信息", "usingComponents": { "topbar": "/components/topBar/topbarx", "uni-popup": "/node-modules/@dcloudio/uni-ui/lib/uni-popup/uni-popup" }, "usingAutoImportComponents": { "uni-popup": "/components/uni-popup/uni-popup" } }, "pages/modifyperson/modifyperson": { "navigationBarTitleText": "修改个人信息", "usingComponents": { "uni-popup": "/node-modules/@dcloudio/uni-ui/lib/uni-popup/uni-popup" }, "usingAutoImportComponents": { "uni-popup": "/components/uni-popup/uni-popup" } }, "pages/modify/modify": { "navigationBarTitleText": "修改密码", "usingComponents": { "topbar": "/components/topBar/topbarx" }, "usingAutoImportComponents": {} }, "pages/chosevister/chosevister": { "navigationBarTitleText": "选择常用旅客", "usingComponents": { "topbar": "/components/topBar/topbarx" }, "usingAutoImportComponents": {} }, "pages/addvister/addvister": { "navigationBarTitleText": "新增常用旅客", "usingComponents": { "topbar": "/components/topBar/topbarx" }, "usingAutoImportComponents": {} }, "pages/myaddress/myaddress": { "navigationBarTitleText": "我的地址", "usingComponents": { "topbar": "/components/topBar/topbarx" }, "usingAutoImportComponents": {} }, "pages/addressadd/addressadd": { "navigationBarTitleText": "添加地址", "usingComponents": { "simple-address": "/components/simple-address/simple-address", "topbar": "/components/topBar/topbarx" }, "usingAutoImportComponents": { "simple-address": "/components/simple-address/simple-address" } }, "pages/mine/bindphone": { "navigationBarTitleText": "换绑手机号", "usingComponents": { "topbar": "/components/topBar/topbarx" }, "usingAutoImportComponents": {} }, "pages/mine/feedback": { "navigationBarTitleText": "反馈意见", "usingComponents": { "topbar": "/components/topBar/topbarx" }, "usingAutoImportComponents": {} }, "pages/register/register": { "navigationBarTitleText": "用户注册", "usingComponents": { "topbar": "/components/topBar/topbarx" }, "usingAutoImportComponents": {} }, "pages/signin/signin": { "navigationBarTitleText": "用户登录", "usingComponents": { "topbar": "/components/topBar/topbarx" }, "usingAutoImportComponents": {} }, "pages/chosedate/chosedate": { "navigationBarTitleText": "选择日期", "usingComponents": { "calendar": "/components/mobile-calendar-simple/Calendar", "topbar": "/components/topBar/topbarx" }, "usingAutoImportComponents": {} }, "pages/choseCity/choseCity": { "navigationBarTitleText": "选择城市", "usingComponents": { "city-select": "/components/city-select/city-select", "uni-popup": "/components/uni-popup/uni-popup" }, "usingAutoImportComponents": { "city-select": "/components/city-select/city-select", "uni-popup": "/components/uni-popup/uni-popup" } }, "pages/keysearch/keysearch": { "navigationBarTitleText": "关键字搜索", "usingComponents": { "uni-search-bar": "/node-modules/@dcloudio/uni-ui/lib/uni-search-bar/uni-search-bar" }, "usingAutoImportComponents": {} }, "pages/orderfill/orderfill": { "navigationBarTitleText": "填写订单", "usingAutoImportComponents": {}, "usingComponents": { "topbar": "/components/topbar", "uni-swipe-action": "/node-modules/@dcloudio/uni-ui/lib/uni-swipe-action/uni-swipe-action", "uni-swipe-action-item": "/node-modules/@dcloudio/uni-ui/lib/uni-swipe-action-item/uni-swipe-action-item", "uni-list": "/node-modules/@dcloudio/uni-ui/lib/uni-list/uni-list", "uni-list-item": "/node-modules/@dcloudio/uni-ui/lib/uni-list-item/uni-list-item" } }, "pages/pointsmall/pointsmall": { "navigationBarTitleText": "积分商城", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/pointsrecord/pointsrecord": { "navigationBarTitleText": "积分记录", "usingComponents": { "topbar": "/components/topBar/topbarx" }, "usingAutoImportComponents": {} }, "fly/feijisearch/feijisearch": { "navigationBarTitleText": "飞机票搜索", "usingComponents": { "uni-popup": "/components/uni-popup/uni-popup" }, "usingAutoImportComponents": {} }, "fly/hangbanlist/flyList": { "navigationBarTitleText": "航班列表", "usingComponents": { "topbar": "/components/topBar/topbarx" }, "usingAutoImportComponents": {} }, "fly/hangbanxuanze/hangbanxuanze": { "navigationBarTitleText": "航班选择", "usingComponents": { "topbar": "/components/topBar/topbarx" }, "usingAutoImportComponents": {} }, "fly/jipiaoyuding/jipiaoyuding": { "navigationBarTitleText": "机票预定", "usingComponents": { "topbar": "/components/topBar/topbarx" }, "usingAutoImportComponents": {} }, "fly/addback/addback": { "navigationBarTitleText": "添加返程", "usingComponents": {}, "usingAutoImportComponents": {} }, "hotel/hotelsearch/hotelsearch": { "navigationBarTitleText": "酒店搜索", "usingComponents": { "uni-popup": "/node-modules/@dcloudio/uni-ui/lib/uni-popup/uni-popup" }, "usingAutoImportComponents": { "uni-popup": "/components/uni-popup/uni-popup" } }, "hotel/hotellist/hotellist": { "navigationBarTitleText": "酒店列表", "onReachBottomDistance": 0, "usingComponents": {}, "usingAutoImportComponents": {} }, "hotel/hoteldetail/hoteldetail": { "navigationBarTitleText": "酒店详情", "usingComponents": { "uni-rate": "/node-modules/@dcloudio/uni-ui/lib/uni-rate/uni-rate", "uni-collapse": "/node-modules/@dcloudio/uni-ui/lib/uni-collapse/uni-collapse", "uni-collapse-item": "/node-modules/@dcloudio/uni-ui/lib/uni-collapse-item/uni-collapse-item" }, "usingAutoImportComponents": {} }, "hotel/hoteldetail/hotelpay": { "navigationBarTitleText": "订单填写", "usingComponents": {}, "usingAutoImportComponents": {} }, "gaotie/gaotiesearch/gaotiesearch": { "navigationBarTitleText": "火车票搜索", "usingComponents": {}, "usingAutoImportComponents": {} }, "gaotie/gaotielist/gaotielist": { "navigationBarTitleText": "火车票列表", "usingComponents": {}, "usingAutoImportComponents": {} }, "gaotie/bancixuanze/bancixuanze": { "navigationBarTitleText": "班次选择", "usingComponents": { "topbar": "/components/topBar/topbarx" }, "usingAutoImportComponents": {} }, "gaotie/gtorderconfirm/gtorderconfirm": { "navigationBarTitleText": "确认订单", "usingComponents": { "topbar": "/components/topBar/topbarx" }, "usingAutoImportComponents": {} }, "bus/qichesearch/qichesearch": { "navigationBarTitleText": "汽车票搜索", "usingComponents": {}, "usingAutoImportComponents": {} }, "bus/hangbanlist/qichelist": { "navigationBarTitleText": "班次列表", "usingComponents": { "topbar": "/components/topBar/topbarx" }, "usingAutoImportComponents": {} }, "bus/getcartic/getcartic": { "navigationBarTitleText": "汽车票选择", "usingComponents": {}, "usingAutoImportComponents": {} }, "bus/qicheorderconfirm/qicheorderconfirm": { "navigationBarTitleText": "汽车票订单", "usingComponents": {}, "usingAutoImportComponents": {} }, "bus/qicheorderperchanse/qicheorderperchanse": { "navigationBarTitleText": "汽车票订单支付", "usingComponents": {}, "usingAutoImportComponents": {} }, "ticket/ticketselect/ticketselect": { "navigationBarTitleText": "门票选择", "usingComponents": { "uni-popup": "/node-modules/@dcloudio/uni-ui/lib/uni-popup/uni-popup" }, "usingAutoImportComponents": {} }, "ticket/viewpointlist/viewpointlist": { "navigationBarTitleText": "景区列表", "usingComponents": {}, "usingAutoImportComponents": {} }, "ticket/attrdetails/attrdetails": { "navigationBarTitleText": "景点详情", "usingComponents": {}, "usingAutoImportComponents": {} }, "ticket/toPaid/toPaid": { "navigationBarTitleText": "待支付", "usingComponents": {}, "usingAutoImportComponents": {} }, "ticket/ticketorder/ticketorder": { "navigationBarTitleText": "门票", "usingComponents": { "topbar": "/components/topBar/topbarx" }, "usingAutoImportComponents": {} }, "ticket/orderfill/orderfill": { "navigationBarTitleText": "填写订单" } }, "globalStyle": { "navigationStyle": "custom", "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "飞行鸽" }, "pages/order/order": { "navigationBarTitleText": "订单" }, "pages/mine/mine": { "navigationBarTitleText": "我的" }, "pages/person/person": { "navigationBarTitleText": "个人信息" }, "pages/modifyperson/modifyperson": { "navigationBarTitleText": "修改个人信息" }, "pages/modify/modify": { "navigationBarTitleText": "修改密码" }, "pages/chosevister/chosevister": { "navigationBarTitleText": "选择常用旅客" }, "pages/addvister/addvister": { "navigationBarTitleText": "新增常用旅客" }, "pages/myaddress/myaddress": { "navigationBarTitleText": "我的地址" }, "pages/addressadd/addressadd": { "navigationBarTitleText": "添加地址" }, "pages/mine/bindphone": { "navigationBarTitleText": "换绑手机号" }, "pages/mine/feedback": { "navigationBarTitleText": "反馈意见" }, "pages/register/register": { "navigationBarTitleText": "用户注册" }, "pages/signin/signin": { "navigationBarTitleText": "用户登录" }, "pages/chosedate/chosedate": { "navigationBarTitleText": "选择日期" }, "pages/choseCity/choseCity": { "navigationBarTitleText": "选择城市" }, "pages/keysearch/keysearch": { "navigationBarTitleText": "关键字搜索" }, "pages/pointsmall/pointsmall": { "navigationBarTitleText": "积分商城" }, "pages/pointsrecord/pointsrecord": { "navigationBarTitleText": "积分记录" }, "fly/feijisearch/feijisearch": { "navigationBarTitleText": "飞机票搜索" }, "fly/hangbanlist/flyList": { "navigationBarTitleText": "航班列表" }, "fly/hangbanxuanze/hangbanxuanze": { "navigationBarTitleText": "航班选择" }, "fly/jipiaoyuding/jipiaoyuding": { "navigationBarTitleText": "机票预定" }, "fly/addback/addback": { "navigationBarTitleText": "添加返程" }, "hotel/hotelsearch/hotelsearch": { "navigationBarTitleText": "酒店搜索" }, "hotel/hotellist/hotellist": { "navigationBarTitleText": "酒店列表", "onReachBottomDistance": 0 }, "hotel/hoteldetail/hoteldetail": { "navigationBarTitleText": "酒店详情" }, "hotel/hoteldetail/hotelpay": { "navigationBarTitleText": "订单填写" }, "gaotie/gaotiesearch/gaotiesearch": { "navigationBarTitleText": "火车票搜索" }, "gaotie/gaotielist/gaotielist": { "navigationBarTitleText": "火车票列表" }, "gaotie/bancixuanze/bancixuanze": { "navigationBarTitleText": "班次选择" }, "gaotie/gtorderconfirm/gtorderconfirm": { "navigationBarTitleText": "确认订单" }, "bus/qichesearch/qichesearch": { "navigationBarTitleText": "汽车票搜索" }, "bus/hangbanlist/qichelist": { "navigationBarTitleText": "班次列表" }, "bus/getcartic/getcartic": { "navigationBarTitleText": "汽车票选择" }, "bus/qicheorderconfirm/qicheorderconfirm": { "navigationBarTitleText": "汽车票订单" }, "bus/qicheorderperchanse/qicheorderperchanse": { "navigationBarTitleText": "汽车票订单支付" }, "ticket/ticketselect/ticketselect": { "navigationBarTitleText": "门票选择" }, "ticket/viewpointlist/viewpointlist": { "navigationBarTitleText": "景区列表" }, "ticket/attrdetails/attrdetails": { "navigationBarTitleText": "景点详情" }, "ticket/toPaid/toPaid": { "navigationBarTitleText": "待支付" }, "ticket/ticketorder/ticketorder": { "navigationBarTitleText": "门票" }, "ticket/orderfill/orderfill": { "navigationBarTitleText": "填写订单" } }, "globalStyle": { "navigationStyle": "custom", "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 

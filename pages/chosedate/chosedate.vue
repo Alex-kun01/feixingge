@@ -83,6 +83,9 @@
 			if(opt.type == 'ticketDate'){
 				this.backUrl = '../../ticket/ticketselect/ticketselect'
 			}
+			if(opt.type == 'ticketFill'){
+				this.backUrl = '../../ticket/orderfill/orderfill'
+			}
 		},
 		methods: {
 			// 获取回调的日期数据
@@ -205,7 +208,7 @@
 								// 汽车页面
 								if(_this.optDes.type == 'qcpDate'){
 									console.log('汽车')
-									_this.$store.commit('setQicheTime', date.dateStr)
+									_this.$store.commit('setQicheTime', date)
 								}
 								
 								// 飞机返程
@@ -216,16 +219,12 @@
 								// 门票页面
 								if(_this.optDes.type == 'ticketDate'){
 									console.log('门票页面', date)
-									let obj = {
-										year: date.date.year,
-										month: date.date.month,
-										day: date.date.day,
-										dateStr: date.date.month + '月' + date.date.day + '日',
-										date: 'date.dateStr',
-										recent: '(' + date.recent + ')', //今天/明天
-										week: '周' + date.date.week
-									}
-									_this.$store.commit('setTicketDate', obj)
+									_this.$store.commit('setTicketDate', date)
+								}
+								// 门票详情
+								if(_this.optDes.type == 'ticketFill'){
+									console.log('门票详情', date)
+									_this.$store.commit('setTicketFillDate', date)
 								}
 					
 								uni.navigateTo({

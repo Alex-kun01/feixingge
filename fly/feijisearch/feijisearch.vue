@@ -110,7 +110,6 @@
 			</view>
 		</view>
 		<!-- 左侧返回按钮 -->
-		
 	</view>
 </template>
 
@@ -166,6 +165,7 @@
 				cfDateStr: '选择日期',
 				// fcDate: '',  // 返程日期
 				// fcDateStr: '添加返程',
+				isReading: true, // 防抖
 				
 			}
 		},
@@ -180,15 +180,22 @@
 		methods: {
 			// 初始化
 			init(){
+				this.isReading = true
 				
 				let _this = this;
 				// 初始化日期
 				if(Object.keys(this.$store.state.airFlightType.airDate).length == 0){
 					this.initDate() // 自动初始化日期
 				}else{
-					this.cfDatefun(this.$store.state.airFlightType.airDate) // 选择日期
-					this.cfDate = this.$store.state.airFlightType.airDate.dateStr
-					// console.log('000000',this.$store.state.airFlightType.airDate)
+					// this.cfDatefun(this.$store.state.airFlightType.airDate) // 选择日期
+					let datas = this.$store.state.airFlightType.airDate
+					let reg = /^[0]+/
+					console.log('飞机时间', datas)
+					let month = datas.date.month.toString().replace(reg, '')
+					let day = datas.date.day.toString().replace(reg, '')
+					let recent = datas.recent ? ` (${datas.recent})` : ''
+					this.cfDateStr = month + '月' + day + '日' + recent
+					this.cfDate = datas.dateStr
 				}
 				
 				uni.getStorage({
@@ -337,7 +344,7 @@
 				let obj = this.$store.state.airFlightType
 				if (type == 'fc') {
 					uni.navigateTo({
-						url: '../chosedate/chosedate?type=fifc'
+						url: '../../pages/chosedate/chosedate?type=fifc'
 					})
 					return
 					obj.type = 1
@@ -347,7 +354,7 @@
 					obj.type = 0
 					this.$store.commit('setFlyType',obj) // 直接单程 setFlyTic
 				}
-				let url = "../chosedate/chosedate?type=fjpDate"
+				let url = "../../pages/chosedate/chosedate?type=fjpDate"
 				uni.navigateTo({
 					url:url
 				})
@@ -385,9 +392,12 @@
 				}
 				this.$store.commit('setAirTicSeaMes', datas)
 				// 跳转
-				uni.navigateTo({
-					url: '../../fly/hangbanlist/flyList?DepartCityCode=' + DepartCityCode + '&ArriveCityCode=' + ArriveCityCode + '&IsChild=' + IsChild + '&DepartDate=' + DepartDate
-				})
+				if(this.isReading){
+					this.isReading = false
+					uni.navigateTo({
+						url: '../../fly/hangbanlist/flyList?DepartCityCode=' + DepartCityCode + '&ArriveCityCode=' + ArriveCityCode + '&IsChild=' + IsChild + '&DepartDate=' + DepartDate
+					})
+				}
 
 			},
 			// 清除搜索历史记录

@@ -71,11 +71,15 @@
 				name: '蒋治坤',
 				phone: '17683059017',
 				id_card: '513922199702111997',
-				card_end_time: '选择日期'
+				card_end_time: '选择日期',
+				isReading: true, // 防抖
 			}
 		},
 		onLoad() {
 
+		},
+		onShow() {
+			this.isReading = true
 		},
 		onUnload(){
 			uni.hideLoading()
@@ -107,35 +111,41 @@
 				let userinfo = this.$store.state.userInfo
 				if(this.name && this.phone && this.id_card && this.card_end_time){
 					// 满足条件
-					uni.request({
-						url: this.$http + '/api/user/addPassenger',
-						method: 'POST',
-						data: {
-							token: userinfo.token,
-							name: _this.name,
-							phone: _this.phone,
-							id_card: _this.id_card,
-							card_end_time: _this.card_end_time,
-							// user_id: userinfo.user_id
-						},
-						success(res) {
-							console.log('添加常用旅客返回数据', res)
-							if(res.data.code == 1){
-								uni.showModal({
-									title: '提示',
-									content: '添加成功'
-								})
-								uni.navigateBack({
-									
-								})
-							}else{
-								uni.showModal({
-									title: '提示',
-									content: res.data.msg
-								})
+					if(this.isReading){
+						this.isReading =false
+						uni.request({
+							url: this.$http + '/api/user/addPassenger',
+							method: 'POST',
+							data: {
+								token: userinfo.token,
+								name: _this.name,
+								phone: _this.phone,
+								id_card: _this.id_card,
+								card_end_time: _this.card_end_time,
+								// user_id: userinfo.user_id
+							},
+							success(res) {
+								console.log('添加常用旅客返回数据', res)
+								if(res.data.code == 1){
+									_this.isReading = true
+									uni.showModal({
+										title: '提示',
+										content: '添加成功'
+									})
+									uni.navigateBack({
+										
+									})
+								}else{
+									_this.isReading = true
+									uni.showModal({
+										title: '提示',
+										content: res.data.msg
+									})
+								}
 							}
-						}
-					})
+						})
+					}
+					
 				}else{
 					uni.showModal({
 						title: '提示',
@@ -184,7 +194,7 @@
 		position: relative;
 		width: 100%;
 		justify-content: space-between;
-		padding: 2vw 4vw;
+		padding: 15rpx 30rpx;
 
 		// height: 10vw;
 		.ipt_wrap {
@@ -203,8 +213,8 @@
 		}
 
 		.rt_img {
-			width: 10vw;
-			height: 10vw;
+			width: 57rpx;
+			height: 57rpx;
 			border-radius: 50%;
 			position: absolute;
 			top: 50%;
@@ -218,7 +228,7 @@
 		}
 
 		.name {
-			line-height: 10vw;
+			line-height: 75rpx;
 			width: auto;
 			text-align: center;
 			font-size: 30rpx;
@@ -231,7 +241,7 @@
 		}
 
 		.time_show {
-			line-height: 18vw;
+			line-height: 135rpx;
 			width: auto;
 			text-align: center;
 		}
@@ -242,7 +252,7 @@
 		width: 100%;
 		margin: 0 auto;
 		background: #FFFFFF;
-		border-radius: 5px;
+		border-radius: 10rpx;
 		position: relative;
 		// margin-top: 4vw;
 		padding: 3vw 0;
@@ -264,7 +274,7 @@
 
 	.btn_wrap {
 		height: 18vw;
-		margin-bottom: 6vw;
+		margin-bottom: 45rpx;
 		margin-top: 80rpx;
 		.search_btn {
 			width:670rpx;
@@ -273,12 +283,12 @@
 			background-color: #FF9805;
 			color: #FFFFFF;
 			opacity:0.5;
-			border-radius:40px;
+			border-radius:40rpx;
 		}
 	}
 
 	.icon_wrap {
-		width: 10vw;
+		width: 75rpx;
 
 		image {
 			width: 8vw !important;

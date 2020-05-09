@@ -41,7 +41,7 @@
 						<view class="period-one" 
 						@click="gotoChoseDate('ticketDate')"
 						>
-							<text>{{ticketDate.dateStr}}</text>{{ticketDate.week}}{{ticketDate.recent}}
+							<text>{{dateDay}}</text>{{date.date.week?'周'+date.date.week:''}}{{date.recent ? '('+date.recent+')' : ''}}
 						</view>
 					</view>
 				</view>
@@ -90,10 +90,13 @@
 					cityName: '',
 					cityCode: ''
 				}, // 地理信息
-				ticketDate:{ }, // 日期信息
+				
 				searchValue: '', // 搜索信息
 				amapPlugin: null,
 				key: 'a2b2f62638c5291714db573e08ce7046', //高德key
+				date: { }, // 日期信息
+				dateDay: '', // 日期 月-日
+				isReading: true, // 防抖
 			};
 		},
 		onLoad(){
@@ -108,33 +111,87 @@
 			uniPopup
 		},
 		onShow(){
-			console.log('我执行了')
-			this.ticketDate = this.$store.state.ticketDate
-			this.ticketCity = this.$store.state.ticketCity
-			console.log('wowo', this.ticketCity)
+			this.init()
 		},
 		methods:{
+			// 进入页面自动初始化当前日期
+			initDate(){
+				this.isReading =  true
+				let year = new Date().getFullYear()
+				let month = new Date().getMonth() + 1
+				let day = new Date().getDate()
+				let obj = {
+					date: {
+						day: day,
+						month: month,
+						week: '',
+						year: year,
+					},
+					dateStr: year + '/' + month + '/' + day
+				}
+				this.dateDay = month + '月' + day + '日'
+				
+				this.date =  obj 
+				console.log('initDate', this.date)
+			},
+			// 初始化页面
+			init(){
+				// 初始化城市
+				// 城市 缓存有取缓存， 否则取hotelcity
+				uni.getStorage({
+					key: 'srorage_thisCityName',
+					success: res => {
+						if(this.$store.state.ticketCity.cityName == '选择城市'){
+							this.ticketCity.cityName = res.data
+						}else{
+							this.ticketCity.cityName = this.$store.state.ticketCity.cityName
+						}
+						
+					}
+				})
+				
+				// 初始化日期
+				if(this.$store.state.ticketDate.dateStr == '选择日期'){
+					this.initDate() // 自动初始化日期
+				}else{
+					let reg = /^[0]+/
+					this.date = this.$store.state.ticketDate
+					console.log('日期xxx', this.date)
+					this.dateDay = this.date.date.month.toString().replace(reg, '') + '月' + this.date.date.day.toString().replace(reg, '') + '日'
+				}
+				
+				
+			},
 			// 返回上级目录
 			goBack() {
 				 uni.navigateBack({
 				 	
 				 })
 			},
+			// 跳转选择日期
 			gotoChoseDate(str){
 				uni.navigateTo({
 					url:"../../pages/chosedate/chosedate?type=" + str
 				})
 			},
+			// 跳转我的订单
 			gotoOrder(){
 				uni.navigateTo({
 					url: '../ticketorder/ticketorder'
 				})
 			},
+			// 跳转查询
 			search(){
-				uni.navigateTo({
-					url: '../viewpointlist/viewpointlist?cityName=' + this.ticketCity.cityName + '&cityCode=' + this.ticketCity.cityCode
-				})
+				// 按钮防抖
+				if(this.isReading){
+					uni.navigateTo({
+						url: '../viewpointlist/viewpointlist?cityName=' + this.ticketCity.cityName + '&cityCode=' + this.ticketCity.cityCode
+					})
+				}else{
+					return
+				}
 			},
+			// 跳转城市选择
 			gotoChoseCity(str){
 				uni.navigateTo({
 					url: '../../pages/choseCity/choseCity?type=' + str
@@ -157,7 +214,7 @@
 			// 跳转意见反馈
 			goFeedback(){
 				uni.navigateTo({
-					url:'../mine/feedback'
+					url:'../../pages/mine/feedback'
 				})
 			}
 		}

@@ -376,11 +376,15 @@ __webpack_require__.r(__webpack_exports__);
       istime: false, // 查看下单时间
       ismask: false, // 遮罩层
       tiemIndex: 0, // 选择下单时间的索引, 1 从近到远 2 早到晚
-      Type: 0 // 0全部  1酒店、2火车票、3飞机票、4汽车票
+      Type: 0, // 0全部  1酒店、2火车票、3飞机票、4汽车票
+      isReadingPay: true // 立即支付防抖
     };
   },
   onLoad: function onLoad() {
     this.getOrderList();
+  },
+  onShow: function onShow() {
+    this.isReadingPay = true;
   },
   methods: {
     // 获取订单列表
@@ -503,8 +507,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     // 立即支付
     payClick: function payClick() {
-      uni.navigateTo({
-        url: '../../ticket/toPaid/toPaid?type=' + 2 });
+      if (this.isReadingPay) {
+        this.isReadingPay = false;
+        uni.navigateTo({
+          url: '../../ticket/toPaid/toPaid?type=' + 2 });
+
+      }
 
     } },
 

@@ -88,7 +88,8 @@
 			return {
 				title: 'Hello',
 				clearBtnShow:false,
-				date:'',// 搜索时间
+				date:'2020/4/30',// 搜索时间 月+日
+				DepartDate: '', // 完整日期
 				// 汽车时间信息在vuex中
 				city: {
 					start_city: {
@@ -113,51 +114,83 @@
 				],
 				seeGt:false,// 是否只看高铁
 				qcpHist:[],// 汽车票历史记录
+				isReading: true, // 防抖
 			}
 		},
 		onUnload(){
 			uni.hideLoading()
 		},
 		onShow(){
-			let _this = this;
-			// 获取本地选择的高铁票地点信息
-			uni.getStorage({
-				key: 'qc_start_city',
-				success(res) {
-					console.log(res.data)
-					_this.city.start_city = res.data
-				}
-			})
-			uni.getStorage({
-				key: 'qc_end_city',
-				success(res) {
-					_this.city.end_city = res.data
-				}
-			})
-			
-			// 获取搜索历史记录
-			
-			uni.getStorage({
-				key: 'qcpHist',
-				success(res){
-						_this.qcpHist = JSON.parse(res.data)
-						console.log('嘿嘿',_this.qcpHist)
-						_this.clearBtnShow = true
-				},
-				fail() {
-					console.log('根本没有搜索记录哦')
-				}
-			})
+			this.init()
 		},
 		onLoad(opt) {
-			if (opt.date) {
-				this.date = opt.date
-			} else {
-				this.date = ((new Date()).toLocaleDateString()).replace(/\//g,'-')
-			}
-		
+			console.log('opt', opt)   //04-30
 		},
 		methods: {
+			// 初始化页面
+			init(){
+				this.isReading = true
+				let _this = this;
+				
+				// 获取本地选择的高铁票地点信息
+				uni.getStorage({
+					key: 'qc_start_city',
+					success(res) {
+						console.log(res.data)
+						_this.city.start_city = res.data
+					}
+				})
+				uni.getStorage({
+					key: 'qc_end_city',
+					success(res) {
+						_this.city.end_city = res.data
+					}
+				})
+				
+				// 获取搜索历史记录
+				
+				uni.getStorage({
+					key: 'qcpHist',
+					success(res){
+							_this.qcpHist = JSON.parse(res.data)
+							console.log('嘿嘿',_this.qcpHist,_this.qcpHist.length-2, _this.qcpHist.length+1)
+							if(_this.qcpHist.length > 2){
+							 _this.qcpHist = _this.qcpHist.splice(_this.qcpHist.length-2, 2)
+								console.log('打印', _this.qcpHist)
+							}
+							
+							_this.clearBtnShow = true
+					},
+					fail() {
+						console.log('根本没有搜索记录哦')
+					}
+				})
+				
+				let dates = this.$store.state.qicheTiem
+				console.log('qicheTiem', dates)
+				
+				if(Object.keys( this.$store.state.qicheTiem ).length == 0){
+					// 没有选择日期
+					this.initDate()  // 获取当前日期
+				}else{
+					// 选择了日期
+					let qicheDates = this.$store.state.qicheTiem
+					let reg = /^[0]+/
+					let month = qicheDates.date.month.toString().replace(reg, '')
+					let day = qicheDates.date.day.toString().replace(reg, '')
+					let recent = qicheDates.recent ? ` (${qicheDates.recent})` : ''
+					this.date = month + '月' + day + '日' + recent
+					this.DepartDate = qicheDates.dateStr
+					}
+			},
+			 // 自动获取当前日期
+			initDate(){
+				let year = new Date().getFullYear()
+				let month = new Date().getMonth() + 1
+				let day = new Date().getDate()
+				this.DepartDate = year + '/' + month + '/' + day  // 完成日期
+				this.date = month + '月' + day + '日'
+			},
 			
 			// 改变始发地 做交换
 			changeTwoCity(){
@@ -176,13 +209,13 @@
 			// 获取选中日期和当前日期差距日 最多后天
 			setTimetoNow(){
 				uni.navigateTo({
-					url:"../chosedate/chosedate?type=qcpDate"
+					url:"../../pages/chosedate/chosedate?type=qcpDate"
 				})
 			},
 			// 跳转到城市选择页面选择城市
 			goSeachCity(type){
 				uni.navigateTo({
-					url:"../choseCity/choseCity?type="+type + "&qiche=qiche"
+					url:"../../pages/choseCity/choseCity?type="+type + "&qiche=qiche"
 				})
 			},
 			// 点击查询跳转到指定查询页面 并存储查询记录
@@ -193,42 +226,47 @@
 				let startCityCode = this.city.start_city.cityCode
 				let endCityCode = this.city.end_city.cityCode
 				let date = this.date
+				let DepartDate = this.DepartDate  // 出发完整日期
 				
 				// 储存查询记录
 				let histlist = []
 				console.log('我执行了')
-				// uni.setStorage({
-				// 	key: 'qcpHist',
-				// 	data: '你好，我是数据'
-				// })
-				uni.getStorage({
-				    key: 'qcpHist',
-				    success: function (res) {
-				        console.log('res', res.data);
-						// 有记录
-						histlist = JSON.parse(res.data)
-						histlist.push(box)
-						uni.setStorage({
-							key: 'qcpHist',
-							data: JSON.stringify(histlist)
-						})
-				    },
-					fail(res){
-						console.log('没有数据')
-						histlist.push(box)
-						uni.setStorage({
-							key: 'qcpHist',
-							data: JSON.stringify(histlist)
-						})
-					}
-				});
+				// 按钮防抖
+				if(this.isReading){
+					this.isReading = false
+					uni.getStorage({
+					    key: 'qcpHist',
+					    success: function (res) {
+					        console.log('res', res.data);
+							// 有记录
+							histlist = JSON.parse(res.data)
+							histlist.push(box)
+							uni.setStorage({
+								key: 'qcpHist',
+								data: JSON.stringify(histlist)
+							})
+					    },
+						fail(res){
+							console.log('没有数据')
+							histlist.push(box)
+							uni.setStorage({
+								key: 'qcpHist',
+								data: JSON.stringify(histlist)
+							})
+						}
+					});
+					
+					this.$store.commit('setQicheInfo', { startCity, endCity})
+					this.$store.commit('setQicheTime', DepartDate)
+					
+					// 跳转汽车列表
+					uni.navigateTo({
+						url: '../hangbanlist/qichelist?DepartDate=' +  DepartDate + '&date=' + date
+					})
+				}else{
+					return
+				}
 				
-				
-				
-				// 页面跳转
-				uni.navigateTo({
-					url: '../hangbanlist/qichelist?startCity=' + startCity + '&endCity=' + endCity + '&startCityCode=' + startCityCode + '&endCityCode=' + endCityCode + '&date=' + date
-				})
 			},
 			// 清除搜索历史记录
 			clearHist(){
@@ -249,14 +287,14 @@
 			gotoNavi(to){
 				if(to == 'order'){
 					uni.switchTab({
-						url: '../order/order'
+						url: '../../pages/order/order'
 					})
 				}
 			},
 			// 跳转意见反馈
 			goFeedback(){
 				uni.navigateTo({
-					url: '../mine/feedback'
+					url: '../../pages/mine/feedback'
 				})
 			}
 		}
@@ -420,7 +458,7 @@
 
 		.btn_wrap{
 			height: 18vw;
-			margin-bottom: 6vw;
+			margin-bottom: 15rpx;
 		}
 	}
 	// 历史搜索容器

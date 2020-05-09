@@ -113,7 +113,7 @@
 							<text style="font-size: 24rpx;">￥</text>
 							<text style="font-size: 35rpx;">{{item.price}}</text>
 						</view>
-						<view class="btn" @click="gotoToPaid">
+						<view class="btn" @click="goToMes(item)">
 							立即抢
 						</view>
 					</view>
@@ -158,9 +158,9 @@ export default {
 			
 		},
 		// 跳转待支付页面
-		gotoToPaid(){
+		goToMes(item){
 			uni.navigateTo({
-				url: '../toPaid/toPaid?type/=' + 1
+				url: '../orderfill/orderfill'
 			})
 		}
 	}
@@ -203,7 +203,7 @@ export default {
 		height: 278rpx;
 		background-color: #FFFFFF;
 		position: absolute;
-		top: 300rpx;
+		top: 350rpx;
 		left: 20rpx;
 		border-radius: 10rpx;
 		box-sizing: border-box;
@@ -268,6 +268,7 @@ export default {
 			line-height: 90rpx;
 			padding-left: 40rpx;
 			background-color: #FFFFFF;
+			box-sizing: border-box;
 			border-bottom: 1rpx solid #ddd;
 		}
 	}

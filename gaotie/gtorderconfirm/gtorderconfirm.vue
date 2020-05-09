@@ -389,10 +389,11 @@
 				BXPrice: 0, // 保险费
 				BXProductCode: '', // 保险代码
 				isChooseSeatType: false,  // 是否选择座位烈类型
+				isReading: true, // 防抖
 			}
 		},
 		onShow(){
-			
+			this.isReading = true
 		},
 		onLoad() {
 			// this.setIdCard()
@@ -766,8 +767,14 @@
 					})
 					return
 				}
+				if(this.isReading){
+					this.isReading = false
+					this.subOrderALl() // 发送订单请求
+				}else{
+					return
+				}
 				
-				this.subOrderALl() // 发送订单请求
+				
 				
 				
 			},

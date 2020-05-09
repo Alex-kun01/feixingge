@@ -2,6 +2,7 @@
 	<view class="flylist">
 		<view class="titleNview-placing"></view>
 		<Topbar :title="title"></Topbar>
+		<LodingPage :lodingShow="lodingShow"></LodingPage>
 		<!-- 日历 -->
 		<view class="calendarBox" v-if="isReady">
 			
@@ -192,9 +193,11 @@
 
 <script>
 	import Topbar from '../../components/topBar/topbarx.vue'
+	import LodingPage from '../../pages/loding.vue'
 	export default {
 		data(){
 			return {
+				lodingShow: false,
 				title: '航班列表',
 				optDes: { // 飞机搜索页面传递过来的搜索相关数据
 					AirportCode: '', // 机场三字码
@@ -221,11 +224,13 @@
 				showItem: 1, // 显示对应的右侧页面
 				screenShow: false, // 控制筛选层是否展示
 				isReady: false,  //控制日期列表的显示
+				isReading: true
 				
 			}
 		},
 		components:{
-			Topbar
+			Topbar,
+			LodingPage
 		},
 		onLoad(opt){
 			
@@ -233,6 +238,9 @@
 			console.log('opt', this.optDes)
 			this.getData()
 			this.setTopTimes()
+		},
+		onShow() {
+			this.isReading = true
 		},
 		onUnload(){
 			uni.hideLoading()
@@ -270,9 +278,10 @@
 			getData(){
 				let _this = this
 				let Timestamp = new Date().toLocaleString()
-				uni.showLoading({
-					title: '加载中...'
-				})
+				// uni.showLoading({
+				// 	title: '加载中...'
+				// })
+				_this.lodingShow = true
 				uni.request({
 					url: this.$slurl + '/Flight/Query',
 					method: 'POST',
@@ -291,9 +300,11 @@
 						console.log('航班查询返回数据', res)
 						if(res.data.IsSuccess){
 							_this.flyListz = res.data.Data
-							uni.hideLoading()
+							_this.lodingShow = false
+							// uni.hideLoading()
 							_this.isReady = true
 						}else{
+							_this.lodingShow = false
 							uni.showModal({
 								title: '提示',
 								content: res.data.Message
@@ -363,10 +374,14 @@
 				let Cabins = item.Cabins
 				
 				this.$store.commit('setFlyTic', item)
+				if(this.isReading){
+					uni.navigateTo({
+						url: '../hangbanxuanze/hangbanxuanze'
+					})
+				}else{
+					return
+				}
 				
-				uni.navigateTo({
-					url: '../hangbanxuanze/hangbanxuanze'
-				})
 			}
 		}
 	}

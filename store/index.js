@@ -5,20 +5,6 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
 	state:{
-		// avatar: "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIttj7XawjibgibZRgfyjhiaPBYkjDibtk4r0YGXJyTAdH3Kskh8Mj8Rs7tQibT2pCnPbtov1yydqWrJUA/132"
-		// createtime: 1587351199
-		// expires_in: 2592000
-		// expiretime: 1589943199
-		// id: 30
-		// mobile: "17683059017"
-		// nickname: "语法糖🍬"
-		// score: 0
-		// sex: "男"
-		// token: "c7a041d3-d7c8-4b84-bbf9-7728d5261ea1"
-		// type: 1
-		// user_id: 30
-		// username: "17683059017"
-		
 		userInfo:{
 			token: '123456', // token的值
 			username: '点击登录', // 用户名
@@ -31,9 +17,6 @@ const store = new Vuex.Store({
 			isSigin: false,
 			user_id: 30
 		},
-		
-		
-		
 		// 机票搜索数据
 		airTicSeaMes: {
 			startCityInfo: {},
@@ -89,6 +72,11 @@ const store = new Vuex.Store({
 		
 		// 汽车时间信息
 		qicheTiem: '',
+		// 汽车始发城市信息
+		qicheMes: {
+			startCity: '',
+			enCity: ''
+		},
 		
 		
 		
@@ -103,6 +91,9 @@ const store = new Vuex.Store({
 			recent: '',
 			week:''
 		},
+		
+		// 门票详情日期信息
+		ticketFillDate: {}, 
 		// 门票地理信息
 		ticketCity: {
 			cityName: '选择城市',
@@ -121,10 +112,19 @@ const store = new Vuex.Store({
 	},
 	mutations:{
 		
+		setTicketFillDate(state, obj){
+			state.ticketFillDate = obj
+		},
+		setQicheInfo(state, obj){
+			state.qicheMes = obj
+		},
 		setUserSexInfo(state, obj){
 			state.userInfo.username = obj.username
 			state.userInfo.nickname = obj.nickname
 			state.userInfo.sex = obj.sex
+		},
+		setHotelthisCity(state, city){
+			state.hotelCity.cityName = city
 		},
 		
 		setThisCity(state, str){
@@ -138,8 +138,8 @@ const store = new Vuex.Store({
 			state.userInfo.avatar = ava
 		},
 		
-		setQicheTime(state, time){
-			state.qicheTiem = time
+		setQicheTime(state, date){
+			state.qicheTiem = date
 		},
 		
 		setGtTic(state,time){

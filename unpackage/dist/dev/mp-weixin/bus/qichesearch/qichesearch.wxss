@@ -165,7 +165,7 @@
 }
 .info_wrap .btn_wrap {
   height: 18vw;
-  margin-bottom: 6vw;
+  margin-bottom: 15rpx;
 }
 .history_item {
   height: auto !important;

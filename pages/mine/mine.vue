@@ -69,6 +69,7 @@
 				score: 0, // 积分
 				isSignng: true, // 是否登陆
 				isAuthorize: true, // 微信是否授权
+				isReading: true, // 防抖
 			};
 		},
 		onShow(){
@@ -79,9 +80,13 @@
 			goTOTarget(target){
 				ongoto(res => {
 					if(res){
-						uni.navigateTo({
-							url: target
-						})
+						if(this.isReading){
+							this.isReading = false
+							uni.navigateTo({
+								url: target
+							})
+						}
+						
 					}else{
 						uni.showModal({
 							title: '提示',
@@ -94,9 +99,12 @@
 			gosigin(){
 				console.log('点击登录')
 				if(this.nickname == '点击登录'){
+					if(this.isReading){
+						this.isReading = false
 						uni.navigateTo({
 							url: '../signin/signin'
 						})
+					}
 				}
 			},
 			// 扫描二维码
@@ -112,6 +120,7 @@
 				})
 			},
 			init(){
+				this.isReading = true
 				let _this = this
 				// 已经登陆过了
 				console.log('查看登陆状态',this.$store.state.userInfo.isSigin)

@@ -78,7 +78,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   "uni-transition": function() {
-    return __webpack_require__.e(/*! import() | components/uni-transition/uni-transition */ "components/uni-transition/uni-transition").then(__webpack_require__.bind(null, /*! @/components/uni-transition/uni-transition.vue */ 483))
+    return __webpack_require__.e(/*! import() | components/uni-transition/uni-transition */ "components/uni-transition/uni-transition").then(__webpack_require__.bind(null, /*! @/components/uni-transition/uni-transition.vue */ 476))
   }
 }
 var render = function() {
@@ -118,7 +118,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniTransition = function uniTransition() {__webpack_require__.e(/*! require.ensure | node-modules/@dcloudio/uni-ui/lib/uni-transition/uni-transition */ "node-modules/@dcloudio/uni-ui/lib/uni-transition/uni-transition").then((function () {return resolve(__webpack_require__(/*! ../uni-transition/uni-transition.vue */ 490));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniTransition = function uniTransition() {__webpack_require__.e(/*! require.ensure | node-modules/@dcloudio/uni-ui/lib/uni-transition/uni-transition */ "node-modules/@dcloudio/uni-ui/lib/uni-transition/uni-transition").then((function () {return resolve(__webpack_require__(/*! ../uni-transition/uni-transition.vue */ 483));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 
 

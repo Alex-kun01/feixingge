@@ -36,12 +36,16 @@
 		data(){
 			return{
 				title: '换绑手机号',
-				phone: '18302824291',
-				yzCode: '', 
+				phone: '',
+				yzCode: '',
+				isReading: true, // 防抖
 			}
 		},
 		onLoad() {
 			
+		},
+		onShow() {
+			this.isReading = true
 		},
 		methods:{
 			// 获取验证码
@@ -54,20 +58,29 @@
 					})
 					return
 				}
-				uni.showLoading({
-					title: '正在获取验证码...'
-				})
-				uni.request({
-					url: this.$http + '/api/sms/sendSms',
-					method: 'POST',
-					data:{
-						mobile: _this.phone,
-						event: 'changemobile'
-					},
-					success(res){
-						uni.hideLoading()
-					}
-				})
+				if(this.isReading){
+					this.isReading = false
+					uni.showLoading({
+						title: '正在获取验证码...'
+					})
+					uni.request({
+						url: this.$http + '/api/sms/sendSms',
+						method: 'POST',
+						data:{
+							mobile: _this.phone,
+							event: 'changemobile'
+						},
+						success(res){
+							uni.hideLoading()
+							this.isReading = true
+						}
+					})
+				}else{
+					uni.showToast({
+						title: '请勿重复获取'
+					})
+				}
+				
 			},
 			// 保存
 			subClick(){

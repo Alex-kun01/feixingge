@@ -68,52 +68,6 @@
 						address: '成都北外熊猫大道1375号',
 						distance: '26.5km',
 						price: '29.9'
-					},
-					{
-						img: '../../static/viewpointlist/dxm.png',
-						name: '大熊猫繁育研究基地',
-						score: '4.7分',
-						address: '成都北外熊猫大道1375号',
-						distance: '26.5km',
-						price: '29.9'
-					},
-					{
-						img: '../../static/viewpointlist/dxm.png',
-						name: '大熊猫繁育研究基地',
-						score: '4.7分',
-						address: '成都北外熊猫大道1375号',
-						distance: '26.5km',
-						price: '29.9'
-					},
-					{
-						img: '../../static/viewpointlist/dxm.png',
-						name: '大熊猫繁育研究基地',
-						score: '4.7分',
-						address: '成都北外熊猫大道1375号',
-						distance: '26.5km',
-						price: '29.9'
-					},
-					{
-						img: '../../static/viewpointlist/dxm.png',
-						name: '大熊猫繁育研究基地',
-						score: '4.7分',
-						address: '成都北外熊猫大道1375号',
-						distance: '26.5km',
-						price: '29.9'
-					},{
-						img: '../../static/viewpointlist/dxm.png',
-						name: '大熊猫繁育研究基地',
-						score: '4.7分',
-						address: '成都北外熊猫大道1375号',
-						distance: '26.5km',
-						price: '29.9'
-					},{
-						img: '../../static/viewpointlist/dxm.png',
-						name: '大熊猫繁育研究基地',
-						score: '4.7分',
-						address: '成都北外熊猫大道1375号',
-						distance: '26.5km',
-						price: '29.9'
 					}
 				]
 			};
@@ -150,7 +104,7 @@
 				let _this = this
 				getLoaction(function(res){
 					console.log('hotelList', res)
-					_this.searchValue = res.targetData.city || res.targetData.regeocodeData.addressComponent.city
+					_this.ticketCity.cityName = res.targetData.city || res.targetData.regeocodeData.addressComponent.city
 				})
 			}
 		}

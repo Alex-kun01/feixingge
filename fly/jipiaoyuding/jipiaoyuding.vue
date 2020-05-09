@@ -261,7 +261,7 @@
 			</view>
 			<view class="mingxi_wrap">
 				明细
-				<image style="width: 14rpx; height: 8rpx;margin-left: 5rpx;vertical-align: middle;" src="../../static/public/fanhui@2x.png" mode=""></image>
+				<image style="width: 14rpx; height: 8rpx;margin-left: 5rpx;vertical-align: middle;" src="../../static/order/fanhui@2x.png" mode=""></image>
 			</view>
 			<button @click="saveOrder" type="primary" class="go_center btn_wrap">提交订单</button>
 		</view>
@@ -421,10 +421,11 @@
 				isJingTing: false, // 是否查询经停信息
 				isGetFlightPolicy: false, // 是否获取实时政策
 				isGetFlightBookPara: false, // 是否获取国内机票下单所需参数
+				isReading: true, // 提交订单按钮防抖
 			}
 		},
 		onShow() {
-
+			this.isReading = true
 		},
 		computed:{
 			title(){
@@ -503,26 +504,34 @@
 			
 			// 提交订单
 			saveOrder(){
-				this.inputPrenAll() // 分割保险类型
-				
-				console.log('是否满足提交订单条件', this.Judgment())
-				if(!this.Judgment()){
-					uni.showModal({
-						title: '提示',
-						content: '请完善乘客/联系人信息'
-					})
+				// 提交订单按钮防抖
+				if(this.isReading){
+					this.isReading = false
+					this.inputPrenAll() // 分割保险类型
+					
+					console.log('是否满足提交订单条件', this.Judgment())
+					if(!this.Judgment()){
+						uni.showModal({
+							title: '提示',
+							content: '请完善乘客/联系人信息'
+						})
+						return
+					}
+					// 校验是否验证实时票价 | 经停信息 
+					if(!this.isVerifyCabin || !this.isGetFlightPolicy || !this.isGetFlightBookPara) {
+						uni.showModal({
+							title: '提示',
+							content: '网络繁忙，请稍后再试'
+						})
+					}
+					
+					this.subOrderALl() // 发送下单请求
+				}else{
 					return
 				}
-				// 校验是否验证实时票价 | 经停信息 
-				if(!this.isVerifyCabin || !this.isGetFlightPolicy || !this.isGetFlightBookPara) {
-					uni.showModal({
-						title: '提示',
-						content: '网络繁忙，请稍后再试'
-					})
-				}
-				this.subOrderALl()
 				
-				// 发送下单请求
+				
+				
 				
 			},
 			
@@ -992,6 +1001,7 @@
 		font-weight: 400 !important;
 		letter-spacing: .5vw;
 		padding: 1vw 2vw;
+		box-sizing: border-box;
 		border-radius: 1vw;
 		line-height: 1;
 	}
@@ -1054,6 +1064,7 @@
 		width: 100% !important;
 		margin: 0 !important;
 		padding: 3vw !important;
+		box-sizing: border-box;
 
 		.ticdet_wrap {
 			display: flex;
@@ -1061,12 +1072,14 @@
 			border-radius: 7vw !important;
 			padding: 2vw !important;
 			background: #F4F4F4 !important;
+			box-sizing: border-box;
 
 			.status_wrap {
 				background: #FF9805;
 				border-radius: 5vw;
 				color: #ffffff;
 				padding: 1vw 4vw;
+				box-sizing: border-box;
 				font-size: 3vw;
 			}
 
@@ -1086,6 +1099,7 @@
 			display: flex;
 			justify-content: space-between;
 			position: relative;
+			box-sizing: border-box;
 
 			.time_goto_det {
 				height: 40vw;
@@ -1143,6 +1157,7 @@
 			width: 100%;
 			justify-content: space-between;
 			padding: 2vw 4vw;
+			box-sizing: border-box;
 
 			// height: 10vw;
 			.name_ipt {
@@ -1264,9 +1279,10 @@
 	// 机票详情容器
 	.tic_price_wrap {
 		margin-top: -4vw;
-		// width: 100%;
+		width: 100%;
 		padding: 3vw !important;
 		color: #999999;
+		box-sizing: border-box;
 
 		.price_wrap {
 			display: flex;

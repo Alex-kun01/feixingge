@@ -1,5 +1,6 @@
 <template>
 	<view class="addressadd-container">
+		<!-- 添加地址 -->
 		<view class="titleNview-placing"></view>
 		<Topbar :title="title"></Topbar>
 		<view class="box">
@@ -43,8 +44,12 @@
 					city:'',
 					area:'',
 					addres:'',// 详细地址
+					isReading: true, // 防抖
 				},
 			}
+		},
+		onShow() {
+			this.isReading = true
 		},
 		onUnload(){
 			uni.hideLoading()
@@ -108,35 +113,38 @@
 					return
 				}
 				// _this.$url 全局量
-				uni.request({
-					url: _this.$http+'/api/user/addAddress',
-					method:"POST",
-					data: obj,
-					success:function(res){
-						console.log(res)
-						if(res.data.code == 1){
-							uni.showToast({
-								title: '操作成功',
-							});
-							_this.addrMes = {
-									name:"",
-									phone:'',
-									province:'',
-									city:'',
-									area:'',
-									addres:''
-								}
-						} else {
-							uni.showToast({
-								title: res.data.msg,
-								icon:'none'
-							});
-						}
-					},
-					
-					
-				})
-				
+				if(this.isReading){
+					this.isReading =false
+					uni.request({
+						url: _this.$http+'/api/user/addAddress',
+						method:"POST",
+						data: obj,
+						success:function(res){
+							console.log(res)
+							if(res.data.code == 1){
+								_this.isReading = true
+								uni.showToast({
+									title: '操作成功',
+								});
+								_this.addrMes = {
+										name:"",
+										phone:'',
+										province:'',
+										city:'',
+										area:'',
+										addres:''
+									}
+							} else {
+								_this.isReading = true
+								uni.showToast({
+									title: res.data.msg,
+									icon:'none'
+								});
+							}
+						},
+						
+					})
+				}
 			},
 			
 			

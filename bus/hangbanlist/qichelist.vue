@@ -19,17 +19,22 @@
 					<view :class="{day: true, active: isActive == index}"
 					v-for="(item, index) in weekList" 
 					:key="index"
-					@click="changeIndex(index)"
+					@click="changeIndex(item,index)"
 					>
-						<text>{{item.date}}</text>
-						<text>{{item.weekDay}}</text>
-						<text>￥<text class="price">{{item.price}}</text></text>
+						<text>{{item.day}}</text>
+						<text v-if="item.week ==0">周日</text>
+						<text v-if="item.week ==1">周一</text>
+						<text v-if="item.week ==2">周二</text>
+						<text v-if="item.week ==3">周三</text>
+						<text v-if="item.week ==4">周四</text>
+						<text v-if="item.week ==5">周五</text>
+						<text v-if="item.week ==6">周六</text>
 					</view>
 				</view>
 			</view>
 			
 			<view class="calendar">
-				<image style="width: 35rpx; height: 35rpx;" src="../../static/public/rili@2x.png" mode=""></image>
+				<image style="width: 35rpx; height: 35rpx;" src="../../static/gaotie/rili@2x.png" mode=""></image>
 				<text>日历</text>
 			</view>
 		</view>
@@ -38,6 +43,7 @@
 			<view class="item"
 			v-for="(item, index) in qiceTaicketList"
 			:key="index"
+			@click="goTocartic(item)"
 			>
 				<view class="time_f">
 					<view class="satrtTime">
@@ -99,35 +105,13 @@
 	export default {
 		data(){
 			return {
-				targetDate: {}, // 接受跳转传递参数
-				weekList: [
-					{
-						date: '12-30',
-						weekDay: '周一',
-						price: '980'
-					},
-					{
-						date: '12-31',
-						weekDay: '周二',
-						price: '500'
-					},
-					{
-						date: '1-01',
-						weekDay: '周三',
-						price: '880'
-					},
-					{
-						date: '1-02',
-						weekDay: '周四',
-						price: '960'
-					},
-					{
-						date: '1-03',
-						weekDay: '周五',
-						price: '1190'
-					},
-				],
-				isActive: 2, // day被激活
+				isActive: 0, // day被激活
+				weekList: [],
+				startDate: '', // 出发日期
+				startWeek: '', // 出发星期
+				DepartDate: '', // 出发完整日期
+				
+				optDes: {}, // 接受跳转传递参数
 				isShow: 0,// tabbar激活
 				showItem: 1, // 显示对应的右侧页面
 				screenShow: false, // 控制筛选层是否展示
@@ -165,10 +149,10 @@
 			}
 		},
 		onLoad(opt){
-			this.targetDate = opt
 			console.log(opt)
-			this.city.startCity = opt.startCity
-			this.city.endCity = opt.endCity
+			this.optDes = opt
+			this.setTopTimes()
+			this.init()
 		},
 		onUnload(){
 			uni.hideLoading()
@@ -177,9 +161,53 @@
 			Topbar
 		},
 		methods: {
+			init(){
+				// 获取始发城市
+				this.city = this.$store.state.qicheMes
+				
+			},
+			// 设置顶部日期滚动条选择不同时间
+			setTopTimes(){
+				// 设置跨月依然游刃有余 skr
+				let time = this.optDes.DepartDate
+				console.log('初始化日期time', time)
+				
+				// let time = '2020-3-30'
+				let timeSeconds = new Date(time).getTime()
+				let oneDate = {
+				}
+				let box = []
+				// return
+				// i 小于到数值就是展示多少条日期的数值
+				for (let i = 0;i<5;i++) {
+					let year = new Date(timeSeconds).getFullYear() // 获取到年
+					let month = new Date(timeSeconds).getMonth() + 1 // 获取到月
+					let day = new Date(timeSeconds).getDate() // 获取到日期
+					let showDay = month + '/' + day
+					let week = new Date(timeSeconds).getDay() // 获取到周末
+					 oneDate = {
+						day:showDay,
+						week:week
+					}
+					box.push(oneDate)
+					timeSeconds = timeSeconds + 86400000
+				}
+				console.log(box)
+				this.weekList = box
+			},
 			// day被激活
-			changeIndex(index){
+			changeIndex(item,index){
 				this.isActive = index
+				this.startDate = item.date
+				this.startWeek = item.weekDay
+				let year = new Date().getFullYear() + '/' + item.day
+				
+				this.DepartDate = year
+				this.$store.commit('setQicheTime', year) // 重新选择出发日期 更新vuex数据
+				
+				
+				console.log(item)
+				console.log('当前完整日期', this.DepartDate)
 			},
 			// 切换tabbar激活
 			changeShowIndex(index){
@@ -187,6 +215,13 @@
 				if(index == 1){
 					this.screenShow = true
 				}
+			},
+			// 跳转预定页面
+			goTocartic(item){
+				console.log('item', item)
+				uni.navigateTo({
+					url: '../getcartic/getcartic'
+				})
 			},
 			// 返回上级目录
 			goBack(){
@@ -358,6 +393,7 @@
 				display: flex;
 				// justify-content: space-between;
 				.day{
+					// width: 100rpx;
 					min-width: 120rpx;
 					height: 100rpx;
 					border-radius: 6rpx;
@@ -365,10 +401,11 @@
 					padding: 10rpx 0;
 					display: flex;
 					flex-direction: column;
-					justify-content: space-between;
+					justify-content: center;
 					align-items: center;
 					text{
 						font-size: 20rpx;
+						margin-bottom: 5rpx;
 					}
 				}
 				.day.active{

@@ -200,7 +200,7 @@ __webpack_require__.r(__webpack_exports__);
 {
   data: function data() {
     return {
-      title: '',
+      title: '登录',
       boxShow: 1, // 登录方式box显示
       vPhone: '', // 验证码登录手机号
       vCode: '', // 验证码

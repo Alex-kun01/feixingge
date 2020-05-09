@@ -1,23 +1,22 @@
 <template>
 	<view class="content">
 		<view class="titleNview-placing"></view>
-		<view class="topbar">
+		<view class="topbar" @click="goBack">
 			<view class="img">
-				<text @click="goBack" class="iconfont icon-fanhui" style="font-weight: bold;"></text>
+				<image src="../../static/public/back.png" mode=""></image>
 			</view>
 			<view class="title">
-				<text class="from">{{city.from}}</text>
-				<text class="iconfont icon-jiang1"></text>
-				<text class="to">{{city.to}}</text>
+				<text class="from">{{city.startCity}}</text>
+				<image style="width: 80rpx;height: 10rpx; margin: 0 10rpx;" src="../../static/gaotie/xi_jiantou@2x.png" mode=""></image>
+				<text class="to">{{city.endCity}}</text>
 			</view>
 		</view>
-		<!-- 添加常用旅客 -->
 		<view class="info_wrap head_wrap">
 			<view class="card_wrap">
 				<!-- 航班选择简介圆圈栏目 -->
 				<view class="ticdet_wrap">
 					<view class="airmes_wrap">
-						{{airdet.time}} {{airdet.start_time}} 出发
+						{{carDateInfo.date}} {{carDateInfo.time}} 出发
 					</view>
 				</view>
 				<!-- 目的地时间、地点展示容器 -->
@@ -45,12 +44,6 @@
 						<view class="tips_wrap numB_tips">
 							上车地址
 						</view>
-						<!-- 						<view class="tips_wrap type_tips">
-							波音738(中)
-						</view>
-						<view class="tips_wrap type_tips">
-							无餐食
-						</view> -->
 					</view>
 				</view>
 				<!-- 预定票不支持的一些规则 -->
@@ -82,15 +75,11 @@
 				</view>
 				<view class="item_wrap tips_border_wrap">
 					<view class="num_wrap name">极速出票</view>
-					<!-- 		<view class="shuxian_wrap name">
-						|
-					</view> -->
 					<view class="num_wrap name">+5服务费</view>
 				</view>
 				<view class="go_next_icon go_center">
-					<!-- <image src="../../static/tianjia@2x.png" mode=""></image> -->
 					<view class="btn_wrap">
-						<view class="go_center btn_text">预定</view>
+						<view @click="goToyuding(item)" class="go_center btn_text">预定</view>
 					</view>
 				</view>
 			</view>
@@ -103,15 +92,19 @@
 		data() {
 			return {
 				city: {
-					from: '北京',
-					to: '成都'
+					startCity: '',
+					endCity: ''
+				},
+				carDateInfo: {
+					date: '',
+					time: ''
 				},
 				airdet: {
 					type: '直飞',
 					from: "上海",
 					goto: "北京",
 					day: "周四",
-					time: "01-16",
+					date: "01-16",
 					needtime: "2h35m",
 					start_time: "07:30"
 				},
@@ -133,12 +126,27 @@
 			}
 		},
 		onLoad() {
-
+			this.init()
 		},
 		onUnload(){
 			uni.hideLoading()
 		},
 		methods: {
+			
+			// 初始化页面
+			init(){
+				this.city = this.$store.state.qicheMes
+				
+				this.carDateInfo.date = this.$store.state.qicheTiem
+			},
+			// 跳转车票详情
+			goToyuding(item){
+				console.log('item', item)
+				uni.navigateTo({
+					url: '../qicheorderconfirm/qicheorderconfirm'
+				})
+			},
+			// 返回上级
 			goBack(){
 				uni.navigateBack({
 					
@@ -179,6 +187,7 @@
 			font-size: 36rpx;
 			display: flex;
 			justify-content: center;
+			align-items: center;
 			.icon-jiang1{
 				margin: 0 20rpx;
 				margin-top: 8rpx;

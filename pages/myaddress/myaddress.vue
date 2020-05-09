@@ -2,6 +2,7 @@
 	<view class="myaddress-container">
 		<view class="titleNview-placing"></view>
 		<Topbar :title="title"></Topbar>
+		<LodingPage :lodingShow="lodingShow"></LodingPage>
 		<view class="add-list">
 			
 			<view class="address-one"
@@ -31,15 +32,19 @@
 
 <script>
 	import Topbar from '../../components/topBar/topbarx.vue'
+	import LodingPage from '../../pages/loding.vue'
 	export default {
 		data() {
 			return {
 					title: "我的地址",
 					addressList: [], // 地址列表
+					isReading: true, // 防抖
+					lodingShow: false, // 加载
 			}
 		},
 		onShow() {
 		this.getData()	
+		this.isReading = true
 		},
 		methods: {
 			// 添加地址
@@ -74,29 +79,36 @@
 				let _this = this
 				let userinfo = this.$store.state.userInfo
 				console.log('userinfo', userinfo)
-				uni.showLoading({
-					title: '加载中...'
-				})
-				uni.request({
-					url: this.$http + '/api/user/userAddress',
-					method: 'POST',
-					data: {
-						token: userinfo.token
-					},
-					success(res) {
-						console.log('我的地址列表数据', res)
-						uni.hideLoading()
-						if(res.data.code == 1){
-							if(res.data.data.length == 0){
-								uni.showModal({
-									title: '提示',
-									content: '暂无数据'
-								})
+				// uni.showLoading({
+				// 	title: '加载中...'
+				// })
+				this.lodingShow = true
+				if(this.isReading){
+					this.isReading = false
+					uni.request({
+						url: this.$http + '/api/user/userAddress',
+						method: 'POST',
+						data: {
+							token: userinfo.token
+						},
+						success(res) {
+							console.log('我的地址列表数据', res)
+							// uni.hideLoading()
+							_this.lodingShow = false
+							_this.isReading = true
+							if(res.data.code == 1){
+								if(res.data.data.length == 0){
+									uni.showModal({
+										title: '提示',
+										content: '暂无数据'
+									})
+								}
+								_this.addressList = res.data.data
 							}
-							_this.addressList = res.data.data
 						}
-					}
-				})
+					})
+				}
+				
 			},
 			goEdit(item){
 				const { province,city,area,addres,name,phone,id} = item
@@ -106,7 +118,8 @@
 			}
 		},
 		components: {
-			Topbar
+			Topbar,
+			LodingPage
 		}
 	}
 </script>

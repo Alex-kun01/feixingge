@@ -147,5 +147,6 @@
       "desc": "页面效果展示"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap15.json"
 }

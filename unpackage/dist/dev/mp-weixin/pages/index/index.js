@@ -243,6 +243,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 var _getLoaction = _interopRequireDefault(__webpack_require__(/*! ../../components/getLoaction.js */ 23));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _uniSearchBar = function _uniSearchBar() {__webpack_require__.e(/*! require.ensure | node-modules/@dcloudio/uni-ui/lib/uni-search-bar/uni-search-bar */ "node-modules/@dcloudio/uni-ui/lib/uni-search-bar/uni-search-bar").then((function () {return resolve(__webpack_require__(/*! @dcloudio/uni-ui/lib/uni-search-bar/uni-search-bar */ 372));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
@@ -271,7 +273,8 @@ var _getLoaction = _interopRequireDefault(__webpack_require__(/*! ../../componen
       interval: 2000,
       duration: 500,
       swiperHeight: '',
-      searchValue: '' // 搜索框内容
+      searchValue: '', // 搜索框内容
+      isReading: true // 防抖
     };
   },
   onLoad: function onLoad() {
@@ -280,39 +283,36 @@ var _getLoaction = _interopRequireDefault(__webpack_require__(/*! ../../componen
   onUnload: function onUnload() {
     uni.hideLoading();
   },
-  onShow: function onShow() {var _this2 = this;
-    var _this = this;
-    console.log('1this', this.thisCity.cityName);
-    // 当前城市
-    uni.getStorage({
-      key: 'srorage_thisCityName',
-      success: function success(res) {
-        console.log('有数据', res.data);
-        _this2.$store.commit('setThisCity', res.data);
-        _this2.thisCity.cityName = res.data;
-        console.log('2this', _this2.thisCity.cityName);
-
-      },
-      fail: function fail() {
-        console.log('没有数据');
-        _this.getCurrentAddress();
-        // console.log('index', this.$store.state.thisCity.cityName)
-      } });
-
-
-
-    // if(this.$store.state.thisCity.cityName == '选择城市'){
-    // 	this.getCurrentAddress()
-    // 	console.log('index', this.$store.state.thisCity.cityName)
-    // }
-    // 更新当前城市
-    // this.thisCity.cityName = this.$store.state.thisCity.cityName
-
-
-    this.getData();
-
+  onShow: function onShow() {
+    this.init();
   },
   methods: {
+    // 初始化页面
+    init: function init() {var _this2 = this;
+      this.isReading = true;
+      var _this = this;
+      console.log('1this', this.thisCity.cityName);
+      // 当前城市
+      uni.getStorage({
+        key: 'srorage_thisCityName',
+        success: function success(res) {
+          // 获取到城市数据
+          console.log('有数据', res.data);
+          _this2.$store.commit('setThisCity', res.data);
+          _this2.thisCity.cityName = res.data;
+          console.log('2this', _this2.thisCity.cityName);
+
+        },
+        fail: function fail() {
+          // 没有获取到城市数据
+          console.log('没有数据');
+          _this.getCurrentAddress();
+          console.log('index', this.$store.state.thisCity.cityName);
+        } });
+
+
+      this.getData();
+    },
     getData: function getData() {
       var _this = this;
       uni.request({
@@ -336,8 +336,14 @@ var _getLoaction = _interopRequireDefault(__webpack_require__(/*! ../../componen
         case 'car':url = '../../bus/qichesearch/qichesearch';break;
         case 'viewX':url = '../../ticket/ticketselect/ticketselect';break;}
 
-      uni.navigateTo({
-        url: url });
+      if (this.isReading) {
+        this.isReading = false;
+        uni.navigateTo({
+          url: url });
+
+      } else {
+        return;
+      }
 
     },
     // 图片加载
@@ -346,15 +352,21 @@ var _getLoaction = _interopRequireDefault(__webpack_require__(/*! ../../componen
     },
     // 跳转积分商城
     goTojf: function goTojf() {
-      uni.navigateTo({
-        url: '../pointsmall/pointsmall' });
+      if (this.isReading) {
+        this.isReading = false;
+        uni.navigateTo({
+          url: '../pointsmall/pointsmall' });
 
+      }
     },
     // 跳转到选择城市
     goChoseCity: function goChoseCity() {
-      uni.navigateTo({
-        url: '../choseCity/choseCity?type' + "&index=index" });
+      if (this.isReading) {
+        this.isReading = false;
+        uni.navigateTo({
+          url: '../choseCity/choseCity?type' + "&index=index" });
 
+      }
     },
     // 获取当前位置
     getCurrentAddress: function getCurrentAddress() {

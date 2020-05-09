@@ -16,7 +16,7 @@ var _store = _interopRequireDefault(__webpack_require__(/*! ./store */ 16));func
 _vue.default.config.productionTip = false;
 _vue.default.prototype.$store = _store.default;
 _vue.default.prototype.$url = 'http://fxg.huiyuanapp.com';
-_vue.default.prototype.$http = 'http://192.168.31.70'; // 本地请求地址
+_vue.default.prototype.$http = 'http://cjh.yilaohuijt.com'; // 本地请求地址
 _vue.default.prototype.$slurl = 'http://apitest.99263.com'; // 365商旅请求接口
 _vue.default.prototype.$ApiKey = 'b421b9a21075a359c09a36db79325d5b'; // 356 配置 ApiKey
 

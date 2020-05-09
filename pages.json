@@ -42,6 +42,12 @@
 			}
 		},
 		{
+			"path": "pages/loding", //我的
+			"style": {
+				"navigationBarTitleText": "加载"
+			}
+		},
+		{
 			"path": "pages/person/person", //个人信息
 			"style": {
 				"navigationBarTitleText": "个人信息"
@@ -82,7 +88,13 @@
 		"style": {
 			"navigationBarTitleText": "添加地址"
 		}
-	},
+	}, //editaddress
+	{
+		"path": "pages/addressadd/editaddress", //编辑地址
+		"style": {
+			"navigationBarTitleText": "编辑地址"
+		}
+	}, //
 	{
 		"path" : "pages/mine/bindphone",
 		"style": {

@@ -1,6 +1,7 @@
 <template>
 	<view class="hotellist-container">
 		<view class="titleNview-placing"></view>
+		<LodingPage :lodingShow="lodingShow"></LodingPage>
 		<view class="topbar">
 			<!-- <text @click="goBack"  class="iconfont icon-fanhui left_btn"></text> -->
 			<image @click="goBack" style="width: 18rpx;height: 36rpx; vertical-align:middle;margin-top: 25rpx;margin-left: 30rpx;" src="../../static/public/back.png" mode=""></image>
@@ -79,9 +80,14 @@
 
 <script>
 	import getLoaction from '../../components/getLoaction.js'
+	import LodingPage from '../../pages/loding.vue'
 	export default {
+		components:{
+			LodingPage
+		},
 		data() {
 			return {
+				lodingShow: false, // 加载
 				pageCurrent: 1, // 页码
 				titSortList: [ // 筛选title
 					'推荐排序',
@@ -110,10 +116,14 @@
 				isLoding: true,
 				sortType: 0, // 排序方式
 				isShowSortBox: false, //是否展示筛选box
+				isReading: true, // 防抖
 			}
 		},
 		onUnload(){
 			uni.hideLoading()
+		},
+		onShow() {
+			this.isReading = true
 		},
 		methods: {
 			// 返回上级目录
@@ -130,9 +140,16 @@
 				let HId = item.HotelId
 				let edate = this.dates.edate// 时间年月日
 				let sdate = this.dates.sdate// 时间年月日
-				uni.navigateTo({
-					url: '../hoteldetail/hoteldetail?starDate=' + starDate + '&edate=' +edate + '&sdate=' + sdate + '&endDate=' + endDate  + '&longDay=' + longDay + '&startDateStr=' + startDateStr + '&endDateStr=' + endDateStr + '&HId=' + HId
-				})
+				// 防抖
+				if(this.isReading){
+					this.isReading = false
+					uni.navigateTo({
+						url: '../hoteldetail/hoteldetail?starDate=' + starDate + '&edate=' +edate + '&sdate=' + sdate + '&endDate=' + endDate  + '&longDay=' + longDay + '&startDateStr=' + startDateStr + '&endDateStr=' + endDateStr + '&HId=' + HId
+					})
+				}else{
+					return
+				}
+				
 			},
 			// 获取定位
 			getPosition(){
@@ -146,6 +163,7 @@
 			getData(num){
 				let _this = this
 				var Timestamp = new Date().toLocaleString()
+				this.lodingShow = true
 				uni.request({
 					url: this.$slurl + '/Hotel/SearchHotelList',
 					method: 'POST',
@@ -166,6 +184,7 @@
 					success(res) {
 						console.log('返回数据',res)
 						console.log('酒店列表',res.data.Data.DataHotel)
+						_this.lodingShow = false
 						if(res.data.Data.DataHotel.length == 0){
 							uni.showModal({
 								title:'提示',

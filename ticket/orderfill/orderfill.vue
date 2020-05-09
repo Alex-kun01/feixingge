@@ -1,30 +1,36 @@
 <template>
 	<view class="orderfill-container">
 		<view class="titleNview-placing"></view>
-		<Topbar :topbarData="topbarData" @parent="childbar"></Topbar>
+		<Topbar :title="title"></Topbar>
 		<view class="dateuse">
 			<text class="title">使用日期</text>
-			<uni-swipe-action>
-				<uni-swipe-action-item :options="options" @click="onClick" @change="change">
-					<view class="date-item">
-						<text class="date">今天01-08</text>
-						<text class="price">￥19</text>
+			
+			<view class="content">
+				<view class="item_box">
+					<view class="date-item"
+					:class="{ active: index == weekIsActive}"
+					v-for="(item, index) in weekList"
+					:key="index"
+					@click="changeIndex(item, index)"
+					>
+						<text class="date">{{item.day}}</text>
+						<text v-if="item.week ==0">周日</text>
+						<text v-if="item.week ==1">周一</text>
+						<text v-if="item.week ==2">周二</text>
+						<text v-if="item.week ==3">周三</text>
+						<text v-if="item.week ==4">周四</text>
+						<text v-if="item.week ==5">周五</text>
+						<text v-if="item.week ==6">周六</text>
 					</view>
-					<view class="date-item">
-						<text class="date">今天01-08</text>
-						<text class="price">￥19</text>
-					</view>
-					<view class="date-item">
-						<text class="date">今天01-08</text>
-						<text class="price">￥19</text>
-					</view>
-					<view class="date-item">
-						<text class="date">今天01-08</text>
-						<text class="price">￥19</text>
-					</view>
-				</uni-swipe-action-item>
-			</uni-swipe-action>
-			<text class="verification">*请先选择使用日期</text>
+				</view>
+				<view class="dateMore"
+				@click="dateMore"
+				>
+					更多>
+				</view>
+			</view>
+			
+			
 		</view>
 		<view class="basic">
 			<view class="type-unitprice">
@@ -39,13 +45,13 @@
 				<view class="info">
 					<view class="adv">
 						<view class="adv-item">
-							<text>11</text>随买随用
+							随买随用
 						</view>
 						<view class="adv-item">
-							<text>11</text>无需取票
+							无需取票
 						</view>
 						<view class="adv-item">
-							<text>11</text>不可退
+							不可退
 						</view>
 					</view>
 					<view class="notice">
@@ -65,12 +71,12 @@
 		<view class="who">
 			<view class="title">取票人信息</view>
 			<view class="people">
-				<view class="people-item">
+			<!-- 	<view class="people-item">
 					张三
 				</view>
 				<view class="people-item">
 					选择/新增 >
-				</view>
+				</view> -->
 			</view>
 			<form @submit="formSubmit" @reset="formReset">
 				<view class="uni-form-item uni-column">
@@ -96,7 +102,7 @@
 				<text style="margin-right: 20px;">邮寄发票</text>
 				<text style="color: #999999">不需要发票</text>
 			</view>
-			<text class="right">></text>
+			<image style="width: 15rpx;height: 20rpx;" src="../../static/public/right.png" mode=""></image>
 		</view>
 		<view class="order-operate">
 			<view class="totalprice">
@@ -105,7 +111,7 @@
 			<view class="operate">
 				<view class="detail">
 					<text style="font-size: 24rpx;color: #999999;">明细</text>
-					<image style="width: 14rpx; height: 8rpx;margin-left: 5rpx;vertical-align: middle;" src="../../static/public/fanhui@2x.png" mode=""></image>
+					<image style="width: 14rpx; height: 8rpx;margin-left: 5rpx;vertical-align: middle;" src="../../static/order/fanhui@2x.png" mode=""></image>
 				</view>
 				<button type="default">提交订单</button>
 			</view>
@@ -114,7 +120,7 @@
 </template>
 
 <script>
-	import Topbar from '../../components/topbar.vue'
+	import Topbar from '../../components/topBar/topbarx.vue'
 	import {
 		uniSwipeAction,
 		uniSwipeActionItem,
@@ -124,6 +130,7 @@
 	export default {
 		data() {
 			return {
+				title: '订单填写',
 				topbarData: {
 					leftHandle: false,
 					title: "订单填写",
@@ -137,14 +144,71 @@
 						color: '#FF9805'
 					}
 				}],
-				pic: 1, // 票的张数
+				pic: 1, // 票的张数,
+				weekList: [], // 星期列表
+				weekIsActive: 0, // 星期被选中激活
+				date: '', // 使用日期
 			};
+		},
+		onLoad(){
+		this.initDate()	
 		},
 		onUnload(){
 			uni.hideLoading()
 		},
-		
+		onShow() {
+			if(Object.keys( this.$store.state.ticketFillDate ).length == 0){
+				// 为空
+				return
+			}else{
+				this.date = this.$store.state.ticketFillDate.dateStr
+				console.log('选择出来的日期', this.date)
+			}
+		},
 		methods: {
+			// 生成使用日期
+			initDate(){
+				// 设置跨月依然游刃有余 skr
+				let time = '2020/5/6'
+				console.log('初始化日期time', time)
+				let timeSeconds = new Date(time).getTime()
+				let oneDate = {
+				}
+				let box = []
+				// return
+				// i 小于到数值就是展示多少条日期的数值
+				for (let i = 0;i<5;i++) {
+					let year = new Date(timeSeconds).getFullYear() // 获取到年
+					let month = new Date(timeSeconds).getMonth() + 1 // 获取到月
+					let day = new Date(timeSeconds).getDate() // 获取到日期
+					let showDay = month + '/' + day
+					let week = new Date(timeSeconds).getDay() // 获取到周末
+					 oneDate = {
+						day:showDay,
+						week:week
+					}
+					box.push(oneDate)
+					timeSeconds = timeSeconds + 86400000
+				}
+				console.log(box)
+				this.weekList = box
+				
+				
+			},
+			// 改变星期激活
+			changeIndex(item, index){
+				this.weekIsActive = index
+				let year = new Date().getFullYear()
+				
+				this.date = year + '/' + item.day
+				console.log('使用日期', this.date)
+			},
+			// 选择更多日期
+			dateMore(){
+				uni.navigateTo({
+					url: '../../pages/chosedate/chosedate?type=' + 'ticketFill'
+				})
+			},
 			childbar(val) {
 				switch (val.identify) {
 					case "leftHandle":
@@ -219,45 +283,39 @@
 				font-size: 1rem;
 				font-weight: bold;
 			}
-
-			/deep/.uni-swipe {
-				margin-top: 10px;
-
-				.uni-swipe_content {
-					.uni-swipe_move-box {
-						.uni-swipe_box {
-							width: 100%;
-							background: rgba(255, 243, 247, 1);
-							display: flex;
-							justify-content: space-between;
-							align-items: center;
-							box-sizing: border-box;
-							padding: 10px 10px 0;
-
-							.date-item {
-								width: 20%;
-								display: flex;
-								flex-direction: column;
-								justify-content: center;
-								align-items: center;
-								background-color: #fff;
-								padding: 10px 0;
-
-								.date {
-									color: #222;
-									font-size: 0.6rem;
-								}
-
-								.price {
-									color: #FF9805;
-									font-size: 0.6rem;
-								}
-							}
-						}
+			.content{
+				display: flex;
+				font-size: 24rpx;
+				align-items: center;
+				justify-content: space-between;
+			}
+			.item_box{
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-top: 10rpx;
+				.date-item{
+					width: 115rpx;
+					height: 100rpx;
+					// background-color: pink;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					margin-right: 10rpx;
+					border-radius: 5rpx;
+					box-sizing: border-box;
+					padding: 15rpx 5rpx 5rpx 5rpx;
+					.date{
+						font-size: 28rpx;
 					}
 				}
+				
+				
 			}
-
+			.date-item.active{
+				background-color: pink;
+			}
+			
 			.verification {
 				width: 100%;
 				height: 40px;

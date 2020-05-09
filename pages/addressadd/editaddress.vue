@@ -43,6 +43,7 @@
 					city:'',
 					area:'',
 					addres:'',// 详细地址
+					isReading: true, // 防抖
 				},
 			}
 		},
@@ -51,44 +52,53 @@
 			this.editrMes = opt
 			this.getStr(opt)
 		},
+		onShow() {
+			this.isReading = true
+		},
 		onUnload(){
 			uni.hideLoading()
 		},
 		methods: {
 			// 确认修改
 			saveEditRess(){
+				let _this = this
 				let userinfo = this.$store.state.userInfo
 				let data = this.editrMes
 				data.token = userinfo.token
 				console.log(this.editrMes)
-				uni.request({
-					url: this.$http + '/api/user/editAddress',
-					method: 'POST',
-					data:{
-						...data
-					},
-					success(res) {
-						console.log('修改返回数据', res)
-						if(res.data.code == 1){
-							
-							uni.navigateBack({
+				if(this.isReading){
+					this.isReading = false
+					uni.request({
+						url: this.$http + '/api/user/editAddress',
+						method: 'POST',
+						data:{
+							...data
+						},
+						success(res) {
+							_this.isReading = true
+							console.log('修改返回数据', res)
+							if(res.data.code == 1){
 								
-							})
-							uni.showToast({
-								title: '修改成功'
-							})
+								uni.navigateBack({
+									
+								})
+								uni.showToast({
+									title: '修改成功'
+								})
+							}
 						}
-					}
-				})
+					})
+				}
+				
 			},
 			openAddres() {
 				this.$refs.simpleAddress.open();
 			},
-			getStr(obj){
-				let str 
-				str = obj.province + '-' + obj.city + '-' + obj.area
-				this.pickerText = str
-			},
+			// getStr(obj){
+			// 	let str 
+			// 	str = obj.province + '-' + obj.city + '-' + obj.area
+			// 	this.pickerText = str
+			// },
 			onConfirm(e) {
 				// console.log(e)
 				this.pickerText = e.label // 地址label信息
@@ -113,10 +123,10 @@
 <style lang="less" scoped>
 	// 适配异形屏幕
 	.titleNview-placing {
-	        height: var(--status-bar-height);
-			background: #FFFFFF;
-	        padding-top: 0;
-	        box-sizing: content-box;
+		height: var(--status-bar-height);
+		background: #FFFFFF;
+		padding-top: 0;
+		box-sizing: content-box;
 	 }
 	.addressadd-container {
 		width: 100%;

@@ -185,7 +185,7 @@ __webpack_require__.r(__webpack_exports__);
 {
   data: function data() {
     return {
-      title: '',
+      title: '注册',
       phone: '', //手机号
       yanzhengcode: '', // 验证码
       password: '', //密码 

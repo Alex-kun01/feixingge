@@ -23,7 +23,6 @@
 					</swiper-item>
 				</swiper>
 				<view class="leftBtn" @click="goBack">
-					<!-- <text class="iconfont icon-fanhui" style="font-weight: bold;color: #FFFFFF;"></text> -->
 					<image style="width: 50rpx; height: 50rpx;" src="../../static/public/back2.png" mode=""></image>
 				</view>
 			</view>
@@ -193,21 +192,13 @@
 					}
 				},// 搜索日期
 				longDay: '', // 共计多少晚
-				isTimeOk:false,// 时间选好没
+				isTimeOk:false,// 时间选好
+				isReading: true, //  搜索按钮防抖
 			};
 		},
 		onShow(){
 			// 时间
-			this.hotelTime = this.$store.state.hotelTime
-			console.log('时间123', this.hotelTime)
-			if(this.hotelTime.star.date){
-				this.isTimeOk = true
-				this.getNightNum()
-			}
-			
-			// 城市
-			this.hotelMes.CityName = this.$store.state.hotelCity.cityName
-			this.$store.commit('setThisCity', this.hotelMes.CityName)
+			this.init()
 		},
 		onLoad(){
 
@@ -219,6 +210,30 @@
 		},
 
 		methods:{
+			// 初始化页面
+			init(){
+				this.isReading = true
+				let _this = this
+				
+				// 日期
+				this.hotelTime = this.$store.state.hotelTime
+				if(this.hotelTime.star.date){
+					this.isTimeOk = true
+					this.getNightNum() 
+				}
+				// 城市 缓存有取缓存， 否则取hotelcity
+				uni.getStorage({
+					key: 'srorage_thisCityName',
+					success: res => {
+						if(this.$store.state.hotelCity.cityName == '选择城市'){
+							this.hotelMes.CityName = res.data
+						}else{
+							this.hotelMes.CityName = this.$store.state.hotelCity.cityName
+						}
+						
+					}
+				})
+			},
 			// 计算选择的日期多少个晚上 以及处理斜杠/ -
 			getNightNum(){
 				let htTime = this.hotelTime
@@ -241,6 +256,7 @@
 			
 			// 查询
 			goSearchHotel(){
+				
 				// 城市，日期，关键字
 				if(this.hotelMes.CityName != '选择城市' && this.hotelTime.star.date && this.hotelTime.end.date){
 					this.$store.commit('setHotelMes', this.hotelMes)
@@ -252,9 +268,16 @@
 					let Star = this.act_starIdx  // 星级
 					let edate = this.hotelTime.end.date // 时间年月日
 					let sdate = this.hotelTime.star.date // 时间年月日
-					uni.navigateTo({
-						url:'../hotellist/hotellist?startDate=' + startDate + '&edate=' + edate + '&sdate=' + sdate + '&endDate=' + endDate + '&longDay=' + longDay + '&startDateStr=' + startDateStr + '&endDateStr=' + endDateStr + '&Star=' + Star
-					})
+					// 按钮防抖
+					if(this.isReading){
+						this.isReading = false
+						uni.navigateTo({
+							url:'../hotellist/hotellist?startDate=' + startDate + '&edate=' + edate + '&sdate=' + sdate + '&endDate=' + endDate + '&longDay=' + longDay + '&startDateStr=' + startDateStr + '&endDateStr=' + endDateStr + '&Star=' + Star
+						})
+					}else{
+						return
+					}
+					
 				}else{
 					uni.showModal({
 						title: '提示',

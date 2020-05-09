@@ -60,6 +60,7 @@
 				current: 1, // 当前页
 				total: 1, // 总共条数
 				size: 5, // 每页条数
+				isActive: true, // 防抖
 			};
 		},
 		onLoad(){
@@ -97,47 +98,58 @@
 					}
 				})
 			},
+			// 兑换
 			exchange(item){
 				let _this = this
 				let userinfo = this.$store.state.userInfo
 				console.log(item)
-				uni.showModal({
-					title: '提示',
-					content: `确定花${item.integral}积分，兑换${item.name}吗？`,
-					success(res){
-						if(res.confirm){
-							
-							uni.request({
-								url: _this.$http + '/api/goods/exchange',
-								method: 'POST',
-								data: {
-									token: userinfo.token,
-									gid: item.id
-								},
-								success(res){
-									console.log('立即兑换返回数据',res)
-									if(res.data.code == 1){
-										_this.poin = res.data.data
-										uni.showToast({
-											title: res.data.msg
-										})
-									}else{
-										uni.showToast({
-											title: res.data.msg
-										})
+				// 防抖
+				if(this.isActive){
+					this.isActive = false
+					uni.showModal({
+						title: '提示',
+						content: `确定花${item.integral}积分，兑换${item.name}吗？`,
+						success(res){
+							if(res.confirm){
+								
+								uni.request({
+									url: _this.$http + '/api/goods/exchange',
+									method: 'POST',
+									data: {
+										token: userinfo.token,
+										gid: item.id
+									},
+									success(res){
+										console.log('立即兑换返回数据',res)
+										if(res.data.code == 1){
+											_this.poin = res.data.data
+											uni.showToast({
+												title: res.data.msg
+											})
+											_this.isActive = true
+										}else{
+											uni.showToast({
+												title: res.data.msg
+											})
+											_this.isActive = true
+										}
 									}
-								}
-							})
-							
-							
-							
-						}else{
-							uni.showToast({
-								title: '已取消'
-							})
+								})
+								
+								
+								
+							}else{
+								_this.isActive = true
+								uni.showToast({
+									title: '已取消'
+								})
+							}
 						}
-					}
-				})
+					})
+				}else{
+					return
+				}
+				
 			},
 			childbar(val) {
 				switch (val.identify) {

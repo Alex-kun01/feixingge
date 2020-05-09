@@ -113,7 +113,8 @@
 					CreditCard: null, // 需要担保 担保信息
 					LatestTime: '选择时间', // 最晚到店时间
 					BookRemark: '', // 备注信息
-				}
+				},
+				isReading: true, // 防抖
 			}  
 		},
 		computed:{
@@ -136,6 +137,9 @@
 		},
 		onLoad(){
 			this.getInfo()
+		},
+		onShow() {
+			this.isReading = true
 		},
 		methods:{
 			getInfo(){
@@ -174,97 +178,105 @@
 				let _this = this
 				console.log(this.inputForm)
 				var Timestamp = new Date().toLocaleString()
-				uni.request({
-					url: this.$slurl + '/Hotel/CreateOrder',
-					method: 'POST',
-					data:{
-						"ApiKey": _this.$ApiKey,
-						"Sign": "",
-						"Timestamp": Timestamp,
-						"Data": {
-							  "HId": _this.targetDatas.HId,
-							  "RoomId": _this.targetDatas.RoomId, // 房间id
-							  "ProductId": _this.targetDatas.ProductId, // 产品套餐id
-							  "IsGuarantee": _this.inputForm.IsGuarantee, // 是否需要担保
-							  "InDate": _this.targetDatas.times.sdate,  //入住时间
-							  "OutDate": _this.targetDatas.times.edate, // 离店时间
-							  "LatestTime": _this.inputForm.LatestTime, // 最晚到店时间
-							  "OrderAmount": _this.OrderAmount,  // 订单总金额
-							  "RoomsCount": _this.roomData.roomNum, // 房间数量
-							  "Passengers": _this.Passengers, // 入住人
-							  "ContactName": _this.inputForm.ContactName,  // 联系人 
-							  "ContactMobile": _this.inputForm.ContactMobile, // 联系人电话
-							  "CreditCard": _this.inputForm.CreditCard, // 是否需要担保
-							  "BookRemark": _this.inputForm.BookRemark // 备注
-						 }
-					},
-					success(res){
-						let userinfo = _this.$store.state.userInfo
-						console.log('酒店下单接口返回数据', res)
-						if(res.data.IsSuccess){
-							let datas = {
-								OrderAmount: res.data.Data.OrderAmount,
-								OrderID: res.data.Data.OrderID
+				// 防抖
+				if(this.isReading){
+					this.isReading = false
+					uni.request({
+						url: this.$slurl + '/Hotel/CreateOrder',
+						method: 'POST',
+						data:{
+							"ApiKey": _this.$ApiKey,
+							"Sign": "",
+							"Timestamp": Timestamp,
+							"Data": {
+								  "HId": _this.targetDatas.HId,
+								  "RoomId": _this.targetDatas.RoomId, // 房间id
+								  "ProductId": _this.targetDatas.ProductId, // 产品套餐id
+								  "IsGuarantee": _this.inputForm.IsGuarantee, // 是否需要担保
+								  "InDate": _this.targetDatas.times.sdate,  //入住时间
+								  "OutDate": _this.targetDatas.times.edate, // 离店时间
+								  "LatestTime": _this.inputForm.LatestTime, // 最晚到店时间
+								  "OrderAmount": _this.OrderAmount,  // 订单总金额
+								  "RoomsCount": _this.roomData.roomNum, // 房间数量
+								  "Passengers": _this.Passengers, // 入住人
+								  "ContactName": _this.inputForm.ContactName,  // 联系人 
+								  "ContactMobile": _this.inputForm.ContactMobile, // 联系人电话
+								  "CreditCard": _this.inputForm.CreditCard, // 是否需要担保
+								  "BookRemark": _this.inputForm.BookRemark // 备注
+							 }
+						},
+						success(res){
+							let userinfo = _this.$store.state.userInfo
+							console.log('酒店下单接口返回数据', res)
+							if(res.data.IsSuccess){
+								let datas = {
+									OrderAmount: res.data.Data.OrderAmount,
+									OrderID: res.data.Data.OrderID
+								}
+								
+								// 请求服务器
+								uni.request({
+									url: _this.$http + '/api/order/add',
+									method: 'POST',
+									data: {
+										token: userinfo.token,
+										type: 3,
+										data: {
+											HId: _this.targetDatas.HId,
+											RoomId: _this.targetDatas.RoomId, // 房间id
+											ProductId: _this.targetDatas.ProductId, // 产品套餐id
+											IsGuarantee: _this.inputForm.IsGuarantee, // 是否需要担保
+											InDate: _this.targetDatas.times.sdate,  //入住时间
+											OutDate: _this.targetDatas.times.edate, // 离店时间
+											LatestTime: _this.inputForm.LatestTime, // 最晚到店时间
+											OrderAmount: _this.OrderAmount,  // 订单总金额
+											RoomsCount: _this.roomData.roomNum, // 房间数量
+											Passengers: _this.Passengers, // 入住人
+											ContactName: _this.inputForm.ContactName,  // 联系人 
+											ContactMobile: _this.inputForm.ContactMobile, // 联系人电话
+											CreditCard: _this.inputForm.CreditCard, // 是否需要担保
+											BookRemark: _this.inputForm.BookRemark // 备注
+										},
+										order_sn: datas.OrderID,
+										uid: userinfo.user_id
+									},
+									success(res){
+										console.log('下单自己服务器返回数据', res)
+										if(res.data.code == 1){
+											uni.showToast({
+												title: '下单成功'
+											})
+											
+											// 支付 支付
+											
+											
+											
+											
+											
+											
+											
+											
+										}else{
+											uni.showToast({
+												title: '下单失败'
+											})
+										}
+									}
+								})
+							}else{
+								uni.showModal({
+									title:'提示',
+									content: res.data.Message
+								})
 							}
 							
-							// 请求服务器
-							uni.request({
-								url: _this.$http + '/api/order/add',
-								method: 'POST',
-								data: {
-									token: userinfo.token,
-									type: 3,
-									data: {
-										HId: _this.targetDatas.HId,
-										RoomId: _this.targetDatas.RoomId, // 房间id
-										ProductId: _this.targetDatas.ProductId, // 产品套餐id
-										IsGuarantee: _this.inputForm.IsGuarantee, // 是否需要担保
-										InDate: _this.targetDatas.times.sdate,  //入住时间
-										OutDate: _this.targetDatas.times.edate, // 离店时间
-										LatestTime: _this.inputForm.LatestTime, // 最晚到店时间
-										OrderAmount: _this.OrderAmount,  // 订单总金额
-										RoomsCount: _this.roomData.roomNum, // 房间数量
-										Passengers: _this.Passengers, // 入住人
-										ContactName: _this.inputForm.ContactName,  // 联系人 
-										ContactMobile: _this.inputForm.ContactMobile, // 联系人电话
-										CreditCard: _this.inputForm.CreditCard, // 是否需要担保
-										BookRemark: _this.inputForm.BookRemark // 备注
-									},
-									order_sn: datas.OrderID,
-									uid: userinfo.user_id
-								},
-								success(res){
-									console.log('下单自己服务器返回数据', res)
-									if(res.data.code == 1){
-										uni.showToast({
-											title: '下单成功'
-										})
-										
-										// 支付 支付
-										
-										
-										
-										
-										
-										
-										
-										
-									}else{
-										uni.showToast({
-											title: '下单失败'
-										})
-									}
-								}
-							})
-						}else{
-							uni.showModal({
-								title:'提示',
-								content: res.data.Message
-							})
 						}
-						
-					}
-				})
+					})
+				}else{
+					return
+				}
+				
+				
 			},
 			addRoomClick(){
 				this.roomData.roomNum++

@@ -1,6 +1,7 @@
 <template>
 	<view class="content_box">
 		<view class="titleNview-placing"></view>
+		<LodingPage :lodingShow="lodingShow"></LodingPage>
 		<view class="topbar">
 			<view class="img"  @click="goBack">
 				<image src="../../static/public/back.png" mode=""></image>
@@ -110,9 +111,14 @@
 </template>
 
 <script>
+	import LodingPage from '../../pages/loding.vue'
 	export default { 
+		components:{
+			LodingPage
+		},
 		data() {
 			return {
+				lodingShow: false, // 加载
 				active: null,
 				title: '',
 				city: {
@@ -131,10 +137,14 @@
 					FromStation:'北京',
 					ToStation: '上海'
 				},// 当前票务信息
+				isReading:true, // 防抖
 			}
 		},
 		onUnload(){
 			uni.hideLoading()
+		},
+		onShow() {
+			this.isReading = true
 		},
 		onLoad(opt) {
 			// this.getGaoTieList(opt)
@@ -150,11 +160,19 @@
 		methods: {
 			// 选择某一张高铁票 跳转高铁详情
 			choseGtDet(item,idx){
+				
 				let itemP = this.gaotieList[idx]
-				this.$store.commit('setGtYuTic',itemP)
-				uni.navigateTo({
-					url:'../gtorderconfirm/gtorderconfirm'
-				})
+				console.log('跳转item数', itemP)
+				
+				if(this.isReading){
+					this.isReading = false
+					this.$store.commit('setGtYuTic',itemP)
+					uni.navigateTo({
+						url:'../gtorderconfirm/gtorderconfirm'
+					})
+				}else{
+					return
+				}
 			},
 			
 			
@@ -237,9 +255,10 @@
 				var _this = this
 				this.gaotieList = []
 				var Timestamp = new Date().toLocaleString()
-				uni.showLoading({
-					title:'加载中'
-				})
+				// uni.showLoading({
+				// 	title:'加载中'
+				// })
+				_this.lodingShow = true
 				let url = 'http://apitest.99263.com'
 				uni.request({
 					url: this.$slurl + "/Train/Query",
@@ -256,7 +275,8 @@
 						},
 					success:function(res){
 						// console.log(res.data.Data,'高铁列表')
-						uni.hideLoading()
+						// uni.hideLoading()
+						_this.lodingShow = false
 						if (res.data.IsSuccess) {
 						_this.gaotieList = res.data.Data
 						} else {

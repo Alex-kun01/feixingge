@@ -103,6 +103,7 @@
 
 <script>
 	import getLoaction from '../../components/getLoaction.js'
+	import onGoto from '../../components/ongoto.js'
 	import {
 		uniSearchBar
 	} from '@dcloudio/uni-ui'
@@ -131,6 +132,7 @@
 				duration: 500,
 				swiperHeight: '',
 				searchValue: '',  // 搜索框内容
+				isReading: true, // 防抖
 			}
 		},
 		onLoad() {
@@ -140,38 +142,35 @@
 			uni.hideLoading()
 		},
 		onShow(){
-			let _this = this
-			console.log('1this',this.thisCity.cityName)
-			// 当前城市
-			uni.getStorage({
-				key: 'srorage_thisCityName',
-				success: (res) =>{
-					console.log('有数据', res.data)
-					this.$store.commit('setThisCity', res.data)
-					this.thisCity.cityName = res.data
-					console.log('2this',this.thisCity.cityName)
-					
-				},
-				fail() {
-					console.log('没有数据')
-					// _this.getCurrentAddress()
-					// console.log('index', this.$store.state.thisCity.cityName)
-				}
-			})
-			
-			
-			// if(this.$store.state.thisCity.cityName == '选择城市'){
-			// 	this.getCurrentAddress()
-			// 	console.log('index', this.$store.state.thisCity.cityName)
-			// }
-			// 更新当前城市
-			// this.thisCity.cityName = this.$store.state.thisCity.cityName
-			
-			
-			this.getData()
-			
+			this.init()
 		},
 		methods: {
+			// 初始化页面
+			init(){
+				this.isReading = true
+				let _this = this
+				console.log('1this',this.thisCity.cityName)
+				// 当前城市
+				uni.getStorage({
+					key: 'srorage_thisCityName',
+					success: (res) =>{
+						// 获取到城市数据
+						console.log('有数据', res.data)
+						this.$store.commit('setThisCity', res.data)
+						this.thisCity.cityName = res.data
+						console.log('2this',this.thisCity.cityName)
+						
+					},
+					fail() {
+						// 没有获取到城市数据
+						console.log('没有数据')
+						_this.getCurrentAddress()
+						console.log('index', this.$store.state.thisCity.cityName)
+					}
+				})
+				
+				this.getData()
+			},
 			getData(){
 				let _this = this
 				uni.request({
@@ -195,9 +194,15 @@
 					case 'car': url = '../../bus/qichesearch/qichesearch';break;
 					case 'viewX': url = '../../ticket/ticketselect/ticketselect';break;
 				}
-				uni.navigateTo({
-					url:url
-				})
+				if(this.isReading){
+					this.isReading = false
+					uni.navigateTo({
+						url:url
+					})
+				}else{
+					return
+				}
+				
 			},
 			// 图片加载
 			imageLoad(e) {
@@ -205,15 +210,32 @@
 			},
 			// 跳转积分商城
 			goTojf(){
-				uni.navigateTo({
-					url: '../pointsmall/pointsmall'
+				onGoto(res => {
+					console.log('积分商城是否可进入', res)
+					if(!res){
+						uni.showModal({
+							title: '提示',
+							content: '请登陆后操作'
+						})
+						return
+					}
+					if(this.isReading){
+						this.isReading = false
+						uni.navigateTo({
+							url: '../pointsmall/pointsmall'
+						})
+					}
 				})
+				
 			},
 			// 跳转到选择城市
 			goChoseCity(){
-				uni.navigateTo({
-					url: '../choseCity/choseCity?type' + "&index=index"
-				})
+				if(this.isReading){
+					this.isReading = false
+					uni.navigateTo({
+						url: '../choseCity/choseCity?type' + "&index=index"
+					})
+				}
 			},
 			// 获取当前位置
 			getCurrentAddress(){

@@ -21,7 +21,7 @@
 						{{airTicMes.type?'直飞':'暂无'}}
 					</view> -->
 					<view class="airmes_wrap">
-						{{airDateInfo.DepartDate.date.month}}-{{airDateInfo.DepartDate.date.day}} 周{{airDateInfo.DepartDate.date.week}} {{airTicMes.DepartAirportName}}-{{airTicMes.ArriveAirportName}}
+						{{airDateInfo.DepartDate}} {{week}} {{airTicMes.DepartAirportName}}-{{airTicMes.ArriveAirportName}}
 					</view>
 				</view>
 				<!-- 目的地时间、地点展示容器 -->
@@ -103,18 +103,16 @@
 					ArriveAirportTerminal: 'T2', // 到达航站楼
 					AirCompanyName: "四川航空",  // 航班类型
 					FlightNo: "3U8961",  // 航班编号,
-					Cabins: []
+					Cabins: [],
+					
 				},
-				airDateInfo: {}
+				airDateInfo: {},
+				week: '', // 周几
+				isReading: true, // 预定按钮防抖
 			}
 		},
 		onShow(){
-			this.airTicMes = this.$store.state.airTicMes
-			
-			this.airDateInfo = this.$store.state.airTicSeaMes
-			
-			console.log('airTicMes', this.airTicMes)
-			console.log('airDateInfo', this.airDateInfo )
+			this.init()
 		},
 		onLoad(opt) {
 			
@@ -128,6 +126,20 @@
 			}
 		},
 		methods: {
+			// 初始化页面
+			init(){
+				this.isReading = true
+				this.airTicMes = this.$store.state.airTicMes
+				
+				this.airDateInfo = this.$store.state.airTicSeaMes
+				
+				console.log('airTicMes', this.airTicMes)
+				console.log('airDateInfo', this.airDateInfo )
+				
+				let myDate = new Date( this.airDateInfo.DepartDate )
+				let weeks = ['周日','周一','周二','周三','周四','周五','周六']
+				this.week = weeks[myDate.getDay()]
+			},
 			// 跳转到机票预订
 			gotoAirYd(idx){
 				let item = this.airTicMes.Cabins[idx]
@@ -142,10 +154,16 @@
 				let BabyFare = item.BabyFare // 婴儿票价
 				let CabinCode = item.CabinCode // 航位信息
 				let Discount = item.Discount // 折扣
+				// 预定按钮防抖
+				if(this.isReading){
+					uni.navigateTo({
+						url: '../jipiaoyuding/jipiaoyuding?Oil=' + Oil + '&Discount=' + Discount + '&Tax=' + Tax + '&Fare=' + Fare + '&CabinCode=' + CabinCode + '&CabinName=' + CabinName + '&DepartAirportTerminal=' + DepartAirportTerminal + '&ArriveAirportTerminal=' + ArriveAirportTerminal + '&BabyFare=' + BabyFare
+					})
+				}else{
+					return
+				}
 				
-				uni.navigateTo({
-					url: '../jipiaoyuding/jipiaoyuding?Oil=' + Oil + '&Discount=' + Discount + '&Tax=' + Tax + '&Fare=' + Fare + '&CabinCode=' + CabinCode + '&CabinName=' + CabinName + '&DepartAirportTerminal=' + DepartAirportTerminal + '&ArriveAirportTerminal=' + ArriveAirportTerminal + '&BabyFare=' + BabyFare
-				})
+				
 			},
 			// 返回上级目录
 			goBack(){
