@@ -194,6 +194,7 @@
 <script>
 	import Topbar from '../../components/topBar/topbarx.vue'
 	import LodingPage from '../../pages/loding.vue'
+	import Timestamp from '../../components/Timestamp.js'
 	export default {
 		data(){
 			return {
@@ -277,7 +278,7 @@
 			},
 			getData(){
 				let _this = this
-				let Timestamp = new Date().toLocaleString()
+				// let Timestamp = new Date().toLocaleString()
 				// uni.showLoading({
 				// 	title: '加载中...'
 				// })
@@ -288,7 +289,7 @@
 					data: {
 						"ApiKey": this.$ApiKey,
 						"Sign": "",
-						"Timestamp": Timestamp,    
+						"Timestamp": Timestamp(),    
 						"Data": {
 							"DepartCityCode": this.optDes.DepartCityCode,
 							"ArriveCityCode": this.optDes.ArriveCityCode,

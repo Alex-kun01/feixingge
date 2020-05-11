@@ -1,11 +1,12 @@
 <template>
 	<view class="topbar">
-		<view class="img"  @click="goBack">
-			<image src="../../static/public/back.png" mode=""></image>
-		</view>
-		<view class="title">
+		
+			<view class="imgBox">
+				<image@click="goBack" src="../../static/public/back.png" mode=""></image>
+			</view>
 			<text>{{title}}</text>
-		</view>
+			<view class="nullBox"></view>
+		
 	</view>
 </template>
 
@@ -35,24 +36,26 @@
 		background-color: #FFFFFF;
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 		box-sizing: border-box;
-		padding: 50rpx 30rpx 30rpx 30rpx;
-		.img{
-			height: 100%;
-			height: 100%;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
+		padding: 0 30rpx;
+		// justify-content: space-evenly;
+		.imgBox{
+			width: 30rpx;
+			height: 33rpx;
+			image{
+				width: 18rpx;
+				height: 100%;
+			}
 		}
-		image{
-			width: 18rpx;
-			height: 30rpx;
+		text{
+			font-size: 36rpx;
+			display: inline-block;
+			margin-left: -48rpx;
 		}
-		.title{
-			width: 672rpx;
-			font-size: 32rpx;
-			display: flex;
-			justify-content: center;
+		.nullBox{
+			width: 30rpx;
+			height: 100%;
 		}
 	}
 </style>

@@ -2511,7 +2511,335 @@ var index_esm = {
 
 /***/ }),
 
-/***/ 146:
+/***/ 15:
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode, /* vue-cli only */
+  components, // fixed by xxxxxx auto components
+  renderjs // fixed by xxxxxx renderjs
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // fixed by xxxxxx auto components
+  if (components) {
+    if (!options.components) {
+      options.components = {}
+    }
+    var hasOwn = Object.prototype.hasOwnProperty
+    for (var name in components) {
+      if (hasOwn.call(components, name) && !hasOwn.call(options.components, name)) {
+        options.components[name] = components[name]
+      }
+    }
+  }
+  // fixed by xxxxxx renderjs
+  if (renderjs) {
+    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
+      this[renderjs.__module] = this
+    });
+    (options.mixins || (options.mixins = [])).push(renderjs)
+  }
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
+/***/ 16:
+/*!*******************************************!*\
+  !*** E:/信合诚/飞行鸽/feixingge/store/index.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 12));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+_vue.default.use(_vuex.default);
+
+var store = new _vuex.default.Store({
+  state: {
+    userInfo: {
+      token: '123456', // token的值
+      username: '点击登录', // 用户名
+      avatar: '../../static/mine/notPor.png', // 头像
+      score: 0,
+      nickname: '', // 昵称
+      type: '', // 登陆方式 1三方授权  2账号密码/验证码。
+      mobile: '', // 手机号
+      sex: '', //性别
+      isSigin: false,
+      user_id: 30 },
+
+    // 机票搜索数据
+    airTicSeaMes: {
+      startCityInfo: {},
+      endCityInfo: {},
+      IsChild: false,
+      DepartDate: {} },
+
+
+    // 机票选择信息
+    airTicMes: {},
+
+
+    // 机票预定信息
+    airYudMes: {},
+    // 机票出发日期
+
+    // 机票预定类型
+    airFlightType: {
+      type: 0,
+      start_time: '',
+      end_time: '',
+      airDate: {},
+      fcDate: {} // 飞机返程日期
+    }, // 单程 = 0, 往返 = 1, 联程 =2
+
+    // 火车票选择信息
+    gtTicMes: {
+      start_time: '' },
+
+    // 火车票预定信息
+    gtYuMes: {},
+
+    // 酒店预定信息
+    hotelCity: {
+      cityName: '选择城市' },
+
+    hotelTime: {
+      star: {
+        date: '',
+        recent: '',
+        day: '',
+        month: '' },
+
+      end: {
+        date: '',
+        recent: '',
+        day: '',
+        month: '' } },
+
+
+    hotelMes: {},
+
+
+    // 汽车时间信息
+    qicheTiem: '',
+    // 汽车始发城市信息
+    qicheMes: {
+      startCity: '',
+      enCity: '' },
+
+
+
+
+
+    // 门票时间信息
+    ticketDate: {
+      year: '',
+      month: '',
+      day: '',
+      dateStr: '选择日期',
+      date: '',
+      recent: '',
+      week: '' },
+
+
+    // 门票详情日期信息
+    ticketFillDate: {},
+    // 门票地理信息
+    ticketCity: {
+      cityName: '选择城市',
+      cityCode: '' },
+
+
+    // 当前所在城市
+    thisCity: {
+      cityName: '选择城市',
+      cityCode: '' } },
+
+
+
+
+
+
+  mutations: {
+
+    setTicketFillDate: function setTicketFillDate(state, obj) {
+      state.ticketFillDate = obj;
+    },
+    setQicheInfo: function setQicheInfo(state, obj) {
+      state.qicheMes = obj;
+    },
+    setUserSexInfo: function setUserSexInfo(state, obj) {
+      state.userInfo.username = obj.username;
+      state.userInfo.nickname = obj.nickname;
+      state.userInfo.sex = obj.sex;
+    },
+    setHotelthisCity: function setHotelthisCity(state, city) {
+      state.hotelCity.cityName = city;
+    },
+
+    setThisCity: function setThisCity(state, str) {
+      state.thisCity.CityName = str;
+    },
+
+    setUserInfo: function setUserInfo(state, obj) {
+      state.userInfo = obj;
+    },
+    setAvatar: function setAvatar(state, ava) {
+      state.userInfo.avatar = ava;
+    },
+
+    setQicheTime: function setQicheTime(state, date) {
+      state.qicheTiem = date;
+    },
+
+    setGtTic: function setGtTic(state, time) {
+      state.gtTicMes.start_time = time;
+    },
+    setGtYuTic: function setGtYuTic(state, obj) {
+      state.gtYuMes = obj;
+    },
+
+    setFlyTic: function setFlyTic(state, air) {
+      state.airTicMes = air;
+    },
+    setYudTic: function setYudTic(state, air) {
+      state.airYudMes = air;
+    },
+    setFlyType: function setFlyType(state, obj) {
+      state.airFlightType = obj;
+    },
+    setHotelCity: function setHotelCity(state, obj) {
+      state.hotelCity = obj;
+    },
+    setHotelTime: function setHotelTime(state, obj) {
+      state.hotelTime = obj;
+    },
+    setHotelMes: function setHotelMes(state, obj) {
+      state.hotelMes = obj;
+    },
+    setAirDate: function setAirDate(state, obj) {
+      state.airFlightType.airDate = obj;
+    },
+    setFiFcTime: function setFiFcTime(state, obj) {
+      state.airFlightType.fcDate = obj;
+    },
+    setTicketDate: function setTicketDate(state, obj) {
+      state.ticketDate = obj;
+    },
+    setTicketCity: function setTicketCity(state, obj) {
+      state.ticketCity = obj;
+    },
+    setAirTicSeaMes: function setAirTicSeaMes(state, obj) {
+      state.airTicSeaMes = obj;
+    } } });var _default =
+
+
+
+store;exports.default = _default;
+
+/***/ }),
+
+/***/ 162:
 /*!************************************************************!*\
   !*** E:/信合诚/飞行鸽/feixingge/components/city-select/citys.js ***!
   \************************************************************/
@@ -3549,331 +3877,28 @@ citys;exports.default = _default;
 
 /***/ }),
 
-/***/ 15:
-/*!**********************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
-  \**********************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode, /* vue-cli only */
-  components, // fixed by xxxxxx auto components
-  renderjs // fixed by xxxxxx renderjs
-) {
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // fixed by xxxxxx auto components
-  if (components) {
-    if (!options.components) {
-      options.components = {}
-    }
-    var hasOwn = Object.prototype.hasOwnProperty
-    for (var name in components) {
-      if (hasOwn.call(components, name) && !hasOwn.call(options.components, name)) {
-        options.components[name] = components[name]
-      }
-    }
-  }
-  // fixed by xxxxxx renderjs
-  if (renderjs) {
-    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
-      this[renderjs.__module] = this
-    });
-    (options.mixins || (options.mixins = [])).push(renderjs)
-  }
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-
-/***/ 16:
-/*!*******************************************!*\
-  !*** E:/信合诚/飞行鸽/feixingge/store/index.js ***!
-  \*******************************************/
+/***/ 170:
+/*!****************************************************!*\
+  !*** E:/信合诚/飞行鸽/feixingge/components/Timestamp.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 12));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = _default;
+function _default() {
 
-_vue.default.use(_vuex.default);
+  var year = new Date().getFullYear();
+  var month = new Date().getMonth() + 1;
+  var day = new Date().getDate();
+  var housrs = new Date().getHours();
+  var min = new Date().getMinutes();
+  var second = new Date().getSeconds();
 
-var store = new _vuex.default.Store({
-  state: {
-    userInfo: {
-      token: '123456', // token的值
-      username: '点击登录', // 用户名
-      avatar: '../../static/mine/notPor.png', // 头像
-      score: 0,
-      nickname: '', // 昵称
-      type: '', // 登陆方式 1三方授权  2账号密码/验证码。
-      mobile: '', // 手机号
-      sex: '', //性别
-      isSigin: false,
-      user_id: 30 },
+  var Timestamp = year + '/' + month + '/' + day + ' ' + housrs + ':' + min + ':' + second;
 
-    // 机票搜索数据
-    airTicSeaMes: {
-      startCityInfo: {},
-      endCityInfo: {},
-      IsChild: false,
-      DepartDate: {} },
-
-
-    // 机票选择信息
-    airTicMes: {},
-
-
-    // 机票预定信息
-    airYudMes: {},
-    // 机票出发日期
-
-    // 机票预定类型
-    airFlightType: {
-      type: 0,
-      start_time: '',
-      end_time: '',
-      airDate: {},
-      fcDate: {} // 飞机返程日期
-    }, // 单程 = 0, 往返 = 1, 联程 =2
-
-    // 火车票选择信息
-    gtTicMes: {
-      start_time: '' },
-
-    // 火车票预定信息
-    gtYuMes: {},
-
-    // 酒店预定信息
-    hotelCity: {
-      cityName: '选择城市' },
-
-    hotelTime: {
-      star: {
-        date: '',
-        recent: '',
-        day: '',
-        month: '' },
-
-      end: {
-        date: '',
-        recent: '',
-        day: '',
-        month: '' } },
-
-
-    hotelMes: {},
-
-
-    // 汽车时间信息
-    qicheTiem: '',
-    // 汽车始发城市信息
-    qicheMes: {
-      startCity: '',
-      enCity: '' },
-
-
-
-
-
-    // 门票时间信息
-    ticketDate: {
-      year: '',
-      month: '',
-      day: '',
-      dateStr: '选择日期',
-      date: '',
-      recent: '',
-      week: '' },
-
-
-    // 门票详情日期信息
-    ticketFillDate: {},
-    // 门票地理信息
-    ticketCity: {
-      cityName: '选择城市',
-      cityCode: '' },
-
-
-    // 当前所在城市
-    thisCity: {
-      cityName: '选择城市',
-      cityCode: '' } },
-
-
-
-
-
-
-  mutations: {
-
-    setTicketFillDate: function setTicketFillDate(state, obj) {
-      state.ticketFillDate = obj;
-    },
-    setQicheInfo: function setQicheInfo(state, obj) {
-      state.qicheMes = obj;
-    },
-    setUserSexInfo: function setUserSexInfo(state, obj) {
-      state.userInfo.username = obj.username;
-      state.userInfo.nickname = obj.nickname;
-      state.userInfo.sex = obj.sex;
-    },
-    setHotelthisCity: function setHotelthisCity(state, city) {
-      state.hotelCity.cityName = city;
-    },
-
-    setThisCity: function setThisCity(state, str) {
-      state.thisCity.CityName = str;
-    },
-
-    setUserInfo: function setUserInfo(state, obj) {
-      state.userInfo = obj;
-    },
-    setAvatar: function setAvatar(state, ava) {
-      state.userInfo.avatar = ava;
-    },
-
-    setQicheTime: function setQicheTime(state, date) {
-      state.qicheTiem = date;
-    },
-
-    setGtTic: function setGtTic(state, time) {
-      state.gtTicMes.start_time = time;
-    },
-    setGtYuTic: function setGtYuTic(state, obj) {
-      state.gtYuMes = obj;
-    },
-
-    setFlyTic: function setFlyTic(state, air) {
-      state.airTicMes = air;
-    },
-    setYudTic: function setYudTic(state, air) {
-      state.airYudMes = air;
-    },
-    setFlyType: function setFlyType(state, obj) {
-      state.airFlightType = obj;
-    },
-    setHotelCity: function setHotelCity(state, obj) {
-      state.hotelCity = obj;
-    },
-    setHotelTime: function setHotelTime(state, obj) {
-      state.hotelTime = obj;
-    },
-    setHotelMes: function setHotelMes(state, obj) {
-      state.hotelMes = obj;
-    },
-    setAirDate: function setAirDate(state, obj) {
-      state.airFlightType.airDate = obj;
-    },
-    setFiFcTime: function setFiFcTime(state, obj) {
-      state.airFlightType.fcDate = obj;
-    },
-    setTicketDate: function setTicketDate(state, obj) {
-      state.ticketDate = obj;
-    },
-    setTicketCity: function setTicketCity(state, obj) {
-      state.ticketCity = obj;
-    },
-    setAirTicSeaMes: function setAirTicSeaMes(state, obj) {
-      state.airTicSeaMes = obj;
-    } } });var _default =
-
-
-
-store;exports.default = _default;
+  return Timestamp;
+}
 
 /***/ }),
 
@@ -9967,6 +9992,20 @@ function _default(callBack) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
@@ -9980,6 +10019,33 @@ function _default(callBack) {
 /***/ (function(module, exports) {
 
 function AMapWX(a) {this.key = a.key, this.requestConfig = { key: a.key, s: "rsx", platform: "WXJS", appname: a.key, sdkversion: "1.2.0", logversion: "2.0" };}AMapWX.prototype.getWxLocation = function (a, b) {wx.getLocation({ type: "gcj02", success: function success(a) {var c = a.longitude + "," + a.latitude;wx.setStorage({ key: "userLocation", data: c }), b(c);}, fail: function fail(c) {wx.getStorage({ key: "userLocation", success: function success(a) {a.data && b(a.data);} }), a.fail({ errCode: "0", errMsg: c.errMsg || "" });} });}, AMapWX.prototype.getRegeo = function (a) {function c(c) {var d = b.requestConfig;wx.request({ url: "https://restapi.amap.com/v3/geocode/regeo", data: { key: b.key, location: c, extensions: "all", s: d.s, platform: d.platform, appname: b.key, sdkversion: d.sdkversion, logversion: d.logversion }, method: "GET", header: { "content-type": "application/json" }, success: function success(b) {var d, e, f, g, h, i, j, k, l;b.data.status && "1" == b.data.status ? (d = b.data.regeocode, e = d.addressComponent, f = [], g = "", d && d.roads[0] && d.roads[0].name && (g = d.roads[0].name + "附近"), h = c.split(",")[0], i = c.split(",")[1], d.pois && d.pois[0] && (g = d.pois[0].name + "附近", j = d.pois[0].location, j && (h = parseFloat(j.split(",")[0]), i = parseFloat(j.split(",")[1]))), e.provice && f.push(e.provice), e.city && f.push(e.city), e.district && f.push(e.district), e.streetNumber && e.streetNumber.street && e.streetNumber.number ? (f.push(e.streetNumber.street), f.push(e.streetNumber.number)) : (k = "", d && d.roads[0] && d.roads[0].name && (k = d.roads[0].name), f.push(k)), f = f.join(""), l = [{ iconPath: a.iconPath, width: a.iconWidth, height: a.iconHeight, name: f, desc: g, longitude: h, latitude: i, id: 0, regeocodeData: d }], a.success(l)) : a.fail({ errCode: b.data.infocode, errMsg: b.data.info });}, fail: function fail(b) {a.fail({ errCode: "0", errMsg: b.errMsg || "" });} });}var b = this;a.location ? c(a.location) : b.getWxLocation(a, function (a) {c(a);});}, AMapWX.prototype.getWeather = function (a) {function d(d) {var e = "base";a.type && "forecast" == a.type && (e = "all"), wx.request({ url: "https://restapi.amap.com/v3/weather/weatherInfo", data: { key: b.key, city: d, extensions: e, s: c.s, platform: c.platform, appname: b.key, sdkversion: c.sdkversion, logversion: c.logversion }, method: "GET", header: { "content-type": "application/json" }, success: function success(b) {function c(a) {var b = { city: { text: "城市", data: a.city }, weather: { text: "天气", data: a.weather }, temperature: { text: "温度", data: a.temperature }, winddirection: { text: "风向", data: a.winddirection + "风" }, windpower: { text: "风力", data: a.windpower + "级" }, humidity: { text: "湿度", data: a.humidity + "%" } };return b;}var d, e;b.data.status && "1" == b.data.status ? b.data.lives ? (d = b.data.lives, d && d.length > 0 && (d = d[0], e = c(d), e["liveData"] = d, a.success(e))) : b.data.forecasts && b.data.forecasts[0] && a.success({ forecast: b.data.forecasts[0] }) : a.fail({ errCode: b.data.infocode, errMsg: b.data.info });}, fail: function fail(b) {a.fail({ errCode: "0", errMsg: b.errMsg || "" });} });}function e(e) {wx.request({ url: "https://restapi.amap.com/v3/geocode/regeo", data: { key: b.key, location: e, extensions: "all", s: c.s, platform: c.platform, appname: b.key, sdkversion: c.sdkversion, logversion: c.logversion }, method: "GET", header: { "content-type": "application/json" }, success: function success(b) {var c, e;b.data.status && "1" == b.data.status ? (e = b.data.regeocode, e.addressComponent ? c = e.addressComponent.adcode : e.aois && e.aois.length > 0 && (c = e.aois[0].adcode), d(c)) : a.fail({ errCode: b.data.infocode, errMsg: b.data.info });}, fail: function fail(b) {a.fail({ errCode: "0", errMsg: b.errMsg || "" });} });}var b = this,c = b.requestConfig;a.city ? d(a.city) : b.getWxLocation(a, function (a) {e(a);});}, AMapWX.prototype.getPoiAround = function (a) {function d(d) {var e = { key: b.key, location: d, s: c.s, platform: c.platform, appname: b.key, sdkversion: c.sdkversion, logversion: c.logversion };a.querytypes && (e["types"] = a.querytypes), a.querykeywords && (e["keywords"] = a.querykeywords), wx.request({ url: "https://restapi.amap.com/v3/place/around", data: e, method: "GET", header: { "content-type": "application/json" }, success: function success(b) {var c, d, e, f;if (b.data.status && "1" == b.data.status) {if (b = b.data, b && b.pois) {for (c = [], d = 0; d < b.pois.length; d++) {e = 0 == d ? a.iconPathSelected : a.iconPath, c.push({ latitude: parseFloat(b.pois[d].location.split(",")[1]), longitude: parseFloat(b.pois[d].location.split(",")[0]), iconPath: e, width: 22, height: 32, id: d, name: b.pois[d].name, address: b.pois[d].address });}f = { markers: c, poisData: b.pois }, a.success(f);}} else a.fail({ errCode: b.data.infocode, errMsg: b.data.info });}, fail: function fail(b) {a.fail({ errCode: "0", errMsg: b.errMsg || "" });} });}var b = this,c = b.requestConfig;a.location ? d(a.location) : b.getWxLocation(a, function (a) {d(a);});}, AMapWX.prototype.getStaticmap = function (a) {function f(b) {c.push("location=" + b), a.zoom && c.push("zoom=" + a.zoom), a.size && c.push("size=" + a.size), a.scale && c.push("scale=" + a.scale), a.markers && c.push("markers=" + a.markers), a.labels && c.push("labels=" + a.labels), a.paths && c.push("paths=" + a.paths), a.traffic && c.push("traffic=" + a.traffic);var e = d + c.join("&");a.success({ url: e });}var e,b = this,c = [],d = "https://restapi.amap.com/v3/staticmap?";c.push("key=" + b.key), e = b.requestConfig, c.push("s=" + e.s), c.push("platform=" + e.platform), c.push("appname=" + e.appname), c.push("sdkversion=" + e.sdkversion), c.push("logversion=" + e.logversion), a.location ? f(a.location) : b.getWxLocation(a, function (a) {f(a);});}, AMapWX.prototype.getInputtips = function (a) {var b = this,c = b.requestConfig,d = { key: b.key, s: c.s, platform: c.platform, appname: b.key, sdkversion: c.sdkversion, logversion: c.logversion };a.location && (d["location"] = a.location), a.keywords && (d["keywords"] = a.keywords), a.type && (d["type"] = a.type), a.city && (d["city"] = a.city), a.citylimit && (d["citylimit"] = a.citylimit), wx.request({ url: "https://restapi.amap.com/v3/assistant/inputtips", data: d, method: "GET", header: { "content-type": "application/json" }, success: function success(b) {b && b.data && b.data.tips && a.success({ tips: b.data.tips });}, fail: function fail(b) {a.fail({ errCode: "0", errMsg: b.errMsg || "" });} });}, AMapWX.prototype.getDrivingRoute = function (a) {var b = this,c = b.requestConfig,d = { key: b.key, s: c.s, platform: c.platform, appname: b.key, sdkversion: c.sdkversion, logversion: c.logversion };a.origin && (d["origin"] = a.origin), a.destination && (d["destination"] = a.destination), a.strategy && (d["strategy"] = a.strategy), a.waypoints && (d["waypoints"] = a.waypoints), a.avoidpolygons && (d["avoidpolygons"] = a.avoidpolygons), a.avoidroad && (d["avoidroad"] = a.avoidroad), wx.request({ url: "https://restapi.amap.com/v3/direction/driving", data: d, method: "GET", header: { "content-type": "application/json" }, success: function success(b) {b && b.data && b.data.route && a.success({ paths: b.data.route.paths, taxi_cost: b.data.route.taxi_cost || "" });}, fail: function fail(b) {a.fail({ errCode: "0", errMsg: b.errMsg || "" });} });}, AMapWX.prototype.getWalkingRoute = function (a) {var b = this,c = b.requestConfig,d = { key: b.key, s: c.s, platform: c.platform, appname: b.key, sdkversion: c.sdkversion, logversion: c.logversion };a.origin && (d["origin"] = a.origin), a.destination && (d["destination"] = a.destination), wx.request({ url: "https://restapi.amap.com/v3/direction/walking", data: d, method: "GET", header: { "content-type": "application/json" }, success: function success(b) {b && b.data && b.data.route && a.success({ paths: b.data.route.paths });}, fail: function fail(b) {a.fail({ errCode: "0", errMsg: b.errMsg || "" });} });}, AMapWX.prototype.getTransitRoute = function (a) {var b = this,c = b.requestConfig,d = { key: b.key, s: c.s, platform: c.platform, appname: b.key, sdkversion: c.sdkversion, logversion: c.logversion };a.origin && (d["origin"] = a.origin), a.destination && (d["destination"] = a.destination), a.strategy && (d["strategy"] = a.strategy), a.city && (d["city"] = a.city), a.cityd && (d["cityd"] = a.cityd), wx.request({ url: "https://restapi.amap.com/v3/direction/transit/integrated", data: d, method: "GET", header: { "content-type": "application/json" }, success: function success(b) {if (b && b.data && b.data.route) {var c = b.data.route;a.success({ distance: c.distance || "", taxi_cost: c.taxi_cost || "", transits: c.transits });}}, fail: function fail(b) {a.fail({ errCode: "0", errMsg: b.errMsg || "" });} });}, AMapWX.prototype.getRidingRoute = function (a) {var b = this,c = b.requestConfig,d = { key: b.key, s: c.s, platform: c.platform, appname: b.key, sdkversion: c.sdkversion, logversion: c.logversion };a.origin && (d["origin"] = a.origin), a.destination && (d["destination"] = a.destination), wx.request({ url: "https://restapi.amap.com/v4/direction/bicycling", data: d, method: "GET", header: { "content-type": "application/json" }, success: function success(b) {b && b.data && b.data.data && a.success({ paths: b.data.data.paths });}, fail: function fail(b) {a.fail({ errCode: "0", errMsg: b.errMsg || "" });} });}, module.exports.AMapWX = AMapWX;
+
+/***/ }),
+
+/***/ 25:
+/*!*************************************************!*\
+  !*** E:/信合诚/飞行鸽/feixingge/components/ongoto.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = _default;
+// 判断是否登陆
+
+function _default(calback) {
+  uni.getStorage({
+    key: 'srorage_isSigin',
+    success: function success(res) {
+      calback(res.data);
+    },
+    fail: function fail(res) {
+      calback(false);
+    } });
+
+
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -10025,34 +10091,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 41:
-/*!*************************************************!*\
-  !*** E:/信合诚/飞行鸽/feixingge/components/ongoto.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = _default;
-// 判断是否登陆
-
-function _default(calback) {
-  uni.getStorage({
-    key: 'srorage_isSigin',
-    success: function success(res) {
-      calback(res.data);
-    },
-    fail: function fail(res) {
-      calback(false);
-    } });
-
-
-}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 412:
+/***/ 429:
 /*!****************************************************************************!*\
   !*** E:/信合诚/飞行鸽/feixingge/components/simple-address/city-data/province.js ***!
   \****************************************************************************/
@@ -10206,7 +10245,7 @@ provinceData;exports.default = _default;
 
 /***/ }),
 
-/***/ 413:
+/***/ 430:
 /*!************************************************************************!*\
   !*** E:/信合诚/飞行鸽/feixingge/components/simple-address/city-data/city.js ***!
   \************************************************************************/
@@ -11724,7 +11763,7 @@ cityData;exports.default = _default;
 
 /***/ }),
 
-/***/ 414:
+/***/ 431:
 /*!************************************************************************!*\
   !*** E:/信合诚/飞行鸽/feixingge/components/simple-address/city-data/area.js ***!
   \************************************************************************/
@@ -24283,7 +24322,7 @@ areaData;exports.default = _default;
 
 /***/ }),
 
-/***/ 429:
+/***/ 446:
 /*!*****************************************************************!*\
   !*** E:/信合诚/飞行鸽/feixingge/components/city-select/citySelect.js ***!
   \*****************************************************************/
@@ -24330,7 +24369,7 @@ citySelect;exports.default = _default;
 
 /***/ }),
 
-/***/ 458:
+/***/ 475:
 /*!*********************************************************************************************!*\
   !*** E:/信合诚/飞行鸽/feixingge/node_modules/@dcloudio/uni-ui/lib/uni-swipe-action-item/mpwxs.js ***!
   \*********************************************************************************************/
@@ -24435,7 +24474,7 @@ citySelect;exports.default = _default;
 
 /***/ }),
 
-/***/ 473:
+/***/ 490:
 /*!*********************************************************************************!*\
   !*** E:/信合诚/飞行鸽/feixingge/node_modules/@dcloudio/uni-ui/lib/uni-icons/icons.js ***!
   \*********************************************************************************/
@@ -25483,7 +25522,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "飞行鸽" }, "pages/order/order": { "navigationBarTitleText": "订单" }, "pages/mine/mine": { "navigationBarTitleText": "我的" }, "pages/person/person": { "navigationBarTitleText": "个人信息" }, "pages/modifyperson/modifyperson": { "navigationBarTitleText": "修改个人信息" }, "pages/modify/modify": { "navigationBarTitleText": "修改密码" }, "pages/chosevister/chosevister": { "navigationBarTitleText": "选择常用旅客" }, "pages/addvister/addvister": { "navigationBarTitleText": "新增常用旅客" }, "pages/myaddress/myaddress": { "navigationBarTitleText": "我的地址" }, "pages/addressadd/addressadd": { "navigationBarTitleText": "添加地址" }, "pages/mine/bindphone": { "navigationBarTitleText": "换绑手机号" }, "pages/mine/feedback": { "navigationBarTitleText": "反馈意见" }, "pages/register/register": { "navigationBarTitleText": "用户注册" }, "pages/signin/signin": { "navigationBarTitleText": "用户登录" }, "pages/chosedate/chosedate": { "navigationBarTitleText": "选择日期" }, "pages/choseCity/choseCity": { "navigationBarTitleText": "选择城市" }, "pages/keysearch/keysearch": { "navigationBarTitleText": "关键字搜索" }, "pages/pointsmall/pointsmall": { "navigationBarTitleText": "积分商城" }, "pages/pointsrecord/pointsrecord": { "navigationBarTitleText": "积分记录" }, "fly/feijisearch/feijisearch": { "navigationBarTitleText": "飞机票搜索" }, "fly/hangbanlist/flyList": { "navigationBarTitleText": "航班列表" }, "fly/hangbanxuanze/hangbanxuanze": { "navigationBarTitleText": "航班选择" }, "fly/jipiaoyuding/jipiaoyuding": { "navigationBarTitleText": "机票预定" }, "fly/addback/addback": { "navigationBarTitleText": "添加返程" }, "hotel/hotelsearch/hotelsearch": { "navigationBarTitleText": "酒店搜索" }, "hotel/hotellist/hotellist": { "navigationBarTitleText": "酒店列表", "onReachBottomDistance": 0 }, "hotel/hoteldetail/hoteldetail": { "navigationBarTitleText": "酒店详情" }, "hotel/hoteldetail/hotelpay": { "navigationBarTitleText": "订单填写" }, "gaotie/gaotiesearch/gaotiesearch": { "navigationBarTitleText": "火车票搜索" }, "gaotie/gaotielist/gaotielist": { "navigationBarTitleText": "火车票列表" }, "gaotie/bancixuanze/bancixuanze": { "navigationBarTitleText": "班次选择" }, "gaotie/gtorderconfirm/gtorderconfirm": { "navigationBarTitleText": "确认订单" }, "bus/qichesearch/qichesearch": { "navigationBarTitleText": "汽车票搜索" }, "bus/hangbanlist/qichelist": { "navigationBarTitleText": "班次列表" }, "bus/getcartic/getcartic": { "navigationBarTitleText": "汽车票选择" }, "bus/qicheorderconfirm/qicheorderconfirm": { "navigationBarTitleText": "汽车票订单" }, "bus/qicheorderperchanse/qicheorderperchanse": { "navigationBarTitleText": "汽车票订单支付" }, "ticket/ticketselect/ticketselect": { "navigationBarTitleText": "门票选择" }, "ticket/viewpointlist/viewpointlist": { "navigationBarTitleText": "景区列表" }, "ticket/attrdetails/attrdetails": { "navigationBarTitleText": "景点详情" }, "ticket/toPaid/toPaid": { "navigationBarTitleText": "待支付" }, "ticket/ticketorder/ticketorder": { "navigationBarTitleText": "门票" }, "ticket/orderfill/orderfill": { "navigationBarTitleText": "填写订单" } }, "globalStyle": { "navigationStyle": "custom", "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "飞行鸽" }, "pages/order/order": { "navigationBarTitleText": "订单" }, "pages/mine/mine": { "navigationBarTitleText": "我的" }, "pages/loding": { "navigationBarTitleText": "加载" }, "pages/person/person": { "navigationBarTitleText": "个人信息" }, "pages/modifyperson/modifyperson": { "navigationBarTitleText": "修改个人信息" }, "pages/modify/modify": { "navigationBarTitleText": "修改密码" }, "pages/chosevister/chosevister": { "navigationBarTitleText": "选择常用旅客" }, "pages/addvister/addvister": { "navigationBarTitleText": "新增常用旅客" }, "pages/myaddress/myaddress": { "navigationBarTitleText": "我的地址" }, "pages/addressadd/addressadd": { "navigationBarTitleText": "添加地址" }, "pages/addressadd/editaddress": { "navigationBarTitleText": "编辑地址" }, "pages/mine/bindphone": { "navigationBarTitleText": "换绑手机号" }, "pages/mine/feedback": { "navigationBarTitleText": "反馈意见" }, "pages/register/register": { "navigationBarTitleText": "用户注册" }, "pages/signin/signin": { "navigationBarTitleText": "用户登录" }, "pages/chosedate/chosedate": { "navigationBarTitleText": "选择日期" }, "pages/choseCity/choseCity": { "navigationBarTitleText": "选择城市" }, "pages/keysearch/keysearch": { "navigationBarTitleText": "关键字搜索" }, "pages/pointsmall/pointsmall": { "navigationBarTitleText": "积分商城" }, "pages/pointsrecord/pointsrecord": { "navigationBarTitleText": "积分记录" }, "fly/feijisearch/feijisearch": { "navigationBarTitleText": "飞机票搜索" }, "fly/hangbanlist/flyList": { "navigationBarTitleText": "航班列表" }, "fly/hangbanxuanze/hangbanxuanze": { "navigationBarTitleText": "航班选择" }, "fly/jipiaoyuding/jipiaoyuding": { "navigationBarTitleText": "机票预定" }, "fly/addback/addback": { "navigationBarTitleText": "添加返程" }, "hotel/hotelsearch/hotelsearch": { "navigationBarTitleText": "酒店搜索" }, "hotel/hotellist/hotellist": { "navigationBarTitleText": "酒店列表", "onReachBottomDistance": 0 }, "hotel/hoteldetail/hoteldetail": { "navigationBarTitleText": "酒店详情" }, "hotel/hoteldetail/hotelpay": { "navigationBarTitleText": "订单填写" }, "gaotie/gaotiesearch/gaotiesearch": { "navigationBarTitleText": "火车票搜索" }, "gaotie/gaotielist/gaotielist": { "navigationBarTitleText": "火车票列表" }, "gaotie/bancixuanze/bancixuanze": { "navigationBarTitleText": "班次选择" }, "gaotie/gtorderconfirm/gtorderconfirm": { "navigationBarTitleText": "确认订单" }, "bus/qichesearch/qichesearch": { "navigationBarTitleText": "汽车票搜索" }, "bus/hangbanlist/qichelist": { "navigationBarTitleText": "班次列表" }, "bus/getcartic/getcartic": { "navigationBarTitleText": "汽车票选择" }, "bus/qicheorderconfirm/qicheorderconfirm": { "navigationBarTitleText": "汽车票订单" }, "bus/qicheorderperchanse/qicheorderperchanse": { "navigationBarTitleText": "汽车票订单支付" }, "ticket/ticketselect/ticketselect": { "navigationBarTitleText": "门票选择" }, "ticket/viewpointlist/viewpointlist": { "navigationBarTitleText": "景区列表" }, "ticket/attrdetails/attrdetails": { "navigationBarTitleText": "景点详情" }, "ticket/toPaid/toPaid": { "navigationBarTitleText": "待支付" }, "ticket/ticketorder/ticketorder": { "navigationBarTitleText": "门票" }, "ticket/orderfill/orderfill": { "navigationBarTitleText": "填写订单" } }, "globalStyle": { "navigationStyle": "custom", "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 

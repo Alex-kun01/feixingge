@@ -26,7 +26,7 @@
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
           justify-content: space-between;
-  padding: 2vw 4vw;
+  padding: 15rpx 30rpx;
 }
 .item_wrap .ipt_wrap {
   position: relative;
@@ -43,8 +43,8 @@
   color: #999999;
 }
 .item_wrap .rt_img {
-  width: 10vw;
-  height: 10vw;
+  width: 57rpx;
+  height: 57rpx;
   border-radius: 50%;
   position: absolute;
   top: 50%;
@@ -57,7 +57,7 @@
   font-weight: 200;
 }
 .item_wrap .name {
-  line-height: 10vw;
+  line-height: 75rpx;
   width: auto;
   text-align: center;
   font-size: 30rpx;
@@ -68,7 +68,7 @@
   color: #222222;
 }
 .item_wrap .time_show {
-  line-height: 18vw;
+  line-height: 135rpx;
   width: auto;
   text-align: center;
 }
@@ -76,7 +76,7 @@
   width: 100%;
   margin: 0 auto;
   background: #FFFFFF;
-  border-radius: 5px;
+  border-radius: 10rpx;
   position: relative;
   padding: 3vw 0;
 }
@@ -92,7 +92,7 @@
 }
 .btn_wrap {
   height: 18vw;
-  margin-bottom: 6vw;
+  margin-bottom: 45rpx;
   margin-top: 80rpx;
 }
 .btn_wrap .search_btn {
@@ -102,10 +102,10 @@
   background-color: #FF9805;
   color: #FFFFFF;
   opacity: 0.5;
-  border-radius: 40px;
+  border-radius: 40rpx;
 }
 .icon_wrap {
-  width: 10vw;
+  width: 75rpx;
 }
 .icon_wrap image {
   width: 8vw !important;

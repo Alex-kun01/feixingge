@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/order/order",
     "pages/mine/mine",
+    "pages/loding",
     "pages/person/person",
     "pages/modifyperson/modifyperson",
     "pages/modify/modify",
@@ -10,6 +11,7 @@
     "pages/addvister/addvister",
     "pages/myaddress/myaddress",
     "pages/addressadd/addressadd",
+    "pages/addressadd/editaddress",
     "pages/mine/bindphone",
     "pages/mine/feedback",
     "pages/register/register",
@@ -147,6 +149,5 @@
       "desc": "页面效果展示"
     }
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap15.json"
+  "usingComponents": {}
 }

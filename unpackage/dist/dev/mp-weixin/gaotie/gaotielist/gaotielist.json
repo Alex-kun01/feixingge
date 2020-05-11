@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "火车票列表",
-  "usingComponents": {}
+  "usingComponents": {
+    "loding-page": "/pages/loding"
+  }
 }

@@ -265,6 +265,7 @@
 
 <script>
 	import Topbar from '../../components/topBar/topbarx.vue'
+	import Timestamp from '../../components/Timestamp.js'
 	export default {
 		data() {
 			return {
@@ -729,7 +730,7 @@
 				uni.showLoading({
 					title: '加载中'
 				})
-				var Timestamp = new Date().toLocaleString()
+				// var Timestamp = new Date().toLocaleString()
 				//http://apitest.99263.com 测试接口
 				uni.request({
 					url: this.$slurl + "/Train/GetTrainBookPara",
@@ -737,7 +738,7 @@
 					data: {
 						"ApiKey": this.$ApiKey,
 						"Sign": "",
-						"Timestamp": Timestamp,
+						"Timestamp": Timestamp(),
 						"Data": {
 							// "StartDate": StartTime // 起飞具体时间
 						}
@@ -825,7 +826,7 @@
 					    delete item.CardTypeStr
 						delete item.TicketTypeStr
 					})
-					var Timestamp = new Date().toLocaleString()
+					// var Timestamp = new Date().toLocaleString()
 					// 请求
 					uni.request({
 						url: this.$slurl + '/Train/CreateOrder',
@@ -833,7 +834,7 @@
 						data:{
 							"ApiKey": this.$ApiKey,
 							    "Sign": "",
-							    "Timestamp": Timestamp,
+							    "Timestamp": Timestamp(),
 							    "Data": {
 							        "OrderInfo":OrderInfo,
 							        "OrderPsgList": OrderPsgList
@@ -919,8 +920,13 @@
 		border-radius: 1vw;
 		line-height: 1;
 	}
+	page{
+		width: 100%;
+	}
 	.content {
+		width: 100%;
 		padding-bottom: 20vw;
+		box-sizing: border-box;
 	}
 	// 保险弹窗展示
 	.bx_des_wrap {
@@ -1293,10 +1299,10 @@
 		position: fixed;
 		bottom: 0;
 		width: 100%;
-		height: 16vw;
+		height: 120rpx;
 		background: #fff;
 		display: flex;
-		line-height: 16vw;
+		line-height: 120rpx;
 
 		.all_price {
 			position: relative;

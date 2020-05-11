@@ -39,6 +39,7 @@
 	import uniPopup from "@/components/uni-popup/uni-popup.vue"
 	import citySelect from '@/components/city-select/city-select.vue'
 	import Topbar from '../../components/topBar/topbarx.vue'
+	import Timestamp from '../../components/Timestamp.js'
 	export default {
 		data() {
 			return {
@@ -185,8 +186,8 @@
 				var _this = this
 				item.cityName = item.cityName.replace(/市/g,'')
 				console.log(item.cityName)
-				var Timestamp = new Date().toLocaleString()
-				console.log(Timestamp)
+				// // var Timestamp = new Date().toLocaleString()
+				// console.log(Timestamp)
 				//http://apitest.99263.com 测试接口
 				let url = 'http://apitest.99263.com'
 				// let url= '/api'
@@ -196,7 +197,7 @@
 					data:{
 						  "ApiKey": this.$ApiKey,
 						  "Sign": "",
-						  "Timestamp": Timestamp,
+						  "Timestamp": Timestamp(),
 						  "Data":{},
 						},
 					success:function(res){

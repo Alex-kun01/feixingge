@@ -214,6 +214,9 @@
 							uni.removeStorage({
 								key: 'srorage_isSigin'
 							})
+							uni.removeStorage({
+								key: 'srorage_thisCityName'
+							})
 							// uni.removeStorage({
 							// 	key: 'srorage_token'
 							// })

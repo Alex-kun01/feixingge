@@ -15,6 +15,7 @@
 			
 		</view>
 		
+		
 		<view class="one">
 			<view class="name-score">
 				<text>{{HotelName}}</text>
@@ -156,7 +157,7 @@
 			
 			
 		</view>
-		
+		<LodingPage :lodingShow="lodingShow"></LodingPage>
 	</view>
 </template>
 
@@ -166,10 +167,13 @@
 		uniCollapseItem,
 		uniRate
 	} from '@dcloudio/uni-ui'
+	import Timestamp from '../../components/Timestamp.js'
+	import LodingPage from '../../pages/loding.vue'
 	
 	export default {
 		data() {
 			return {
+				lodingShow: false,
 				HId: '', // 酒店id
 				DefaultPicture: '../../static/hoteldatail/pic.png', // 酒店图片
 				Address: '', // 酒店地址
@@ -198,6 +202,7 @@
 		},
 		onShow() {
 			this.isReading = true
+			this.lodingShow = true
 		},
 		onUnload(){
 			uni.hideLoading()
@@ -273,17 +278,18 @@
 			// 获取数据
 			getData(){
 				let _this = this
-				var Timestamp = new Date().toLocaleString()
-				uni.showLoading({
-					title: '加载中'
-				})
+				// var Timestamp = new Date().toLocaleString()
+				// uni.showLoading({
+				// 	title: '加载中'
+				// })
+				this.lodingShow = true
 				uni.request({
 					url: this.$slurl + '/Hotel/HotelDetail',
 					method: 'POST',
 					data: {
-					  "ApiKey": "b421b9a21075a359c09a36db79325d5b",
+					  "ApiKey": this.$ApiKey,
 					  "Sign": "",
-					  "Timestamp": Timestamp,
+					  "Timestamp": Timestamp(),
 					  "Data":{
 						   "HId": +_this.HId   ,//"62428"
 						   // "HId": 62428
@@ -291,6 +297,7 @@
 					},
 					success(res) {
 						console.log('酒店详情请求数据',res)
+						_this.lodingShow = false
 						if(res.data.IsSuccess){
 							_this.DefaultPicture = res.data.Data.HotelDetails.DefaultPicture
 							_this.HotelName = res.data.Data.HotelDetails.HotelName // Star
@@ -299,6 +306,11 @@
 							_this.getRoomData()
 							
 							return
+						}else{
+							uni.showModal({
+								title: '提示',
+								content:'错误,错误信息：' +  res.data.Message
+							})
 						}
 						
 					}
@@ -310,7 +322,7 @@
 				let hidArr = []
 				hidArr.push(this.HId)
 				let _this = this
-				var Timestamp = new Date().toLocaleString()
+				// var Timestamp = new Date().toLocaleString()
 				console.log('房间详情执行了',_this.targetData.sdate, _this.targetData.edate)
 				
 				uni.request({
@@ -319,7 +331,7 @@
 					data:{
 						"ApiKey": "b421b9a21075a359c09a36db79325d5b",
 						  "Sign": "",
-						  "Timestamp": Timestamp,
+						  "Timestamp": Timestamp(),
 						  "Data": {
 							 "Hid": hidArr,
 							 "InDate": _this.targetData.sdate,// 入住日期
@@ -353,7 +365,8 @@
 		components: {
 			uniRate,
 			uniCollapse,
-			uniCollapseItem
+			uniCollapseItem,
+			LodingPage
 		}
 	}
 </script>
@@ -483,6 +496,7 @@
 	}
 .hoteldetail-container {
 	width: 100%;
+	height: 100%;
 	background-color: #eee;
 	.center {
 		width: 100%;

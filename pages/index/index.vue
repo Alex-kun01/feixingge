@@ -25,7 +25,7 @@
 			</swiper>
 			<view class="search">
 				<view class="left" @click="goChoseCity"> 
-					<text >{{thisCity.cityName}}成都成都成都</text>
+					<text >{{thisCity.cityName}}</text>
 					<image style="width: 22rpx;height: 11rpx;margin-left: 5rpx;" src="../../static/index/jiantou@3x.png" mode=""></image>
 				</view>
 				<view class="mid">

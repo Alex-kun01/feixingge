@@ -116,14 +116,18 @@
 				}
 			})
 			if (this.$store.state.gtTicMes.start_time) {
+				console.log('有数据', this.$store.state.gtTicMes.start_time)
 				this.search_time = this.setTimeMonth(this.$store.state.gtTicMes.start_time)
 			} else {
-				this.search_time = ((new Date()).toLocaleDateString()).replace(/\-/g,'/')
+				// this.search_time = ( (new Date()).toLocaleDateString() ).replace(/\-/g,'/')
+				this.search_time = ( (new Date()))
+				console.log('search', this.search_time)
 				this.search_time = this.setTimeMonth(this.search_time)
 			}	
 			},
 			// 设置时间格式(月份个位数带0)
 			setTimeMonth(Time){
+				console.log('teim', Time)
 				let year = new Date(Time).getFullYear() // 获取到年
 				let month = new Date(Time).getMonth() + 1 // 获取到月
 				let day = new Date(Time).getDate() // 获取到日期
@@ -132,6 +136,8 @@
 					month = '0'+month
 				}
 				str = year + '/' + month + '/' + day
+				console.log('newDate',  new Date(Time))
+				console.log('year', year)
 				console.log(str)
 				return str
 			},

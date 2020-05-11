@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "酒店列表",
   "onReachBottomDistance": 0,
-  "usingComponents": {}
+  "usingComponents": {
+    "loding-page": "/pages/loding"
+  }
 }

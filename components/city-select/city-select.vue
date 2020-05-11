@@ -237,6 +237,7 @@ export default {
 </script>
 
 <style lang="scss">
+	
 //宽度转换vw
 @function vww($number) {
 	@return ($number / 375) * 750 + rpx;

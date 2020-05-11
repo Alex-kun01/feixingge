@@ -36,17 +36,31 @@ export default function(callBack){
 	// #ifdef APP-PLUS
 	//#ifndefMP-WEIXIN
 	
-	 plus.geolocation.getCurrentPosition(function(position){
-		targetData = position.address
-		targetData.city = targetData.city.replace('市', '')
-		console.log('get', targetData)
-		type = 1
-		console.log('当前地理信息', {targetData, type})
-		uni.hideLoading()
-		callBack({targetData, type})
+	uni.getLocation({
+		geocode: true,
+		success(res) {
+			console.log('app端res', res)
+			targetData = res.address
+			targetData.city = targetData.city.replace('市', '')
+			type = 1
+			uni.hideLoading()
+			callBack({targetData, type})
+		} 
+	})
+	
+	
+	
+	//  plus.geolocation.getCurrentPosition(function(position){
+	// 	targetData = position.address
+	// 	targetData.city = targetData.city.replace('市', '')
+	// 	console.log('get', targetData)
+	// 	type = 1
+	// 	console.log('当前地理信息', {targetData, type})
+	// 	uni.hideLoading()
+	// 	callBack({targetData, type})
 		
-	},function(e){
-	},{geocode:true})
+	// },function(e){
+	// },{geocode:true})
 	
 	// #endif
 	

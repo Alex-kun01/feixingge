@@ -112,6 +112,7 @@
 
 <script>
 	import LodingPage from '../../pages/loding.vue'
+	import Timestamp from '../../components/Timestamp.js'
 	export default { 
 		components:{
 			LodingPage
@@ -125,7 +126,6 @@
 					from: '北京',
 					to: '成都'
 				},
-
 				banchelist: [
 				],
 				// 高铁列表数组
@@ -251,13 +251,22 @@
 			
 			// 获取高铁列表
 			getGaoTieList(opt){
+				console.log('FromStation',opt.FromStation)
+				console.log('ToStation', opt.ToStation)
+				console.log('FromDate',  opt.FromDate)
 				// return
 				var _this = this
 				this.gaotieList = []
-				var Timestamp = new Date().toLocaleString()
-				// uni.showLoading({
-				// 	title:'加载中'
-				// })
+				// var Timestamp = new Date().toLocaleString()
+				
+				// let year = new Date().getFullYear()
+				// let month = new Date().getMonth() + 1
+				// let day = new Date().getDate()
+				// let housrs = new Date().getHours()
+				// let min = new Date().getMinutes()
+				// let second = new Date().getSeconds()
+				// let Timestamp = year + '/' + month + '/' + day + ' ' + housrs + ':' + min + ':' + second
+				
 				_this.lodingShow = true
 				let url = 'http://apitest.99263.com'
 				uni.request({
@@ -266,7 +275,7 @@
 					data:{
 						  "ApiKey": this.$ApiKey,
 						  "Sign": "",
-						  "Timestamp": Timestamp,
+						  "Timestamp": Timestamp(),
 						  "Data": {
 							"FromStation": opt.FromStation,
 							"ToStation": opt.ToStation,

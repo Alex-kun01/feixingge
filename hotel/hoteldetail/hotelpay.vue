@@ -87,6 +87,7 @@
 </template>
 
 <script>
+	import Timestamp from '../../components/Timestamp.js'
 	export default{
 		data(){
 			return{
@@ -177,7 +178,7 @@
 			subClick(){
 				let _this = this
 				console.log(this.inputForm)
-				var Timestamp = new Date().toLocaleString()
+				// var Timestamp = new Date().toLocaleString()
 				// 防抖
 				if(this.isReading){
 					this.isReading = false
@@ -187,7 +188,7 @@
 						data:{
 							"ApiKey": _this.$ApiKey,
 							"Sign": "",
-							"Timestamp": Timestamp,
+							"Timestamp": Timestamp(),
 							"Data": {
 								  "HId": _this.targetDatas.HId,
 								  "RoomId": _this.targetDatas.RoomId, // 房间id

@@ -1,0 +1,1 @@
+<block wx:if="{{lodingShow}}"><view data-event-opts="{{[['touchmove',[['moveHandle',['$event']]]]]}}" class="loding data-v-62f1d3c1" catchtouchmove="__e"><view class="box data-v-62f1d3c1"><view class="item box1 data-v-62f1d3c1"></view><view class="item box2 data-v-62f1d3c1"></view><view class="item box3 data-v-62f1d3c1"></view></view></view></block>

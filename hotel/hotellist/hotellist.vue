@@ -81,6 +81,7 @@
 <script>
 	import getLoaction from '../../components/getLoaction.js'
 	import LodingPage from '../../pages/loding.vue'
+	import Timestamp from '../../components/Timestamp.js'
 	export default {
 		components:{
 			LodingPage
@@ -162,7 +163,15 @@
 			// 获取列表数据 num == 1 数据列表拼接
 			getData(num){
 				let _this = this
-				var Timestamp = new Date().toLocaleString()
+				// var Timestamp = new Date().toLocaleString()
+				// let year = new Date().getFullYear()
+				// let month = new Date().getMonth() + 1
+				// let day = new Date().getDate()
+				// let housrs = new Date().getHours()
+				// let min = new Date().getMinutes()
+				// let second = new Date().getSeconds()
+				// let Timestamp = year + '/' + month + '/' + day + ' ' + housrs + ':' + min + ':' + second
+				
 				this.lodingShow = true
 				uni.request({
 					url: this.$slurl + '/Hotel/SearchHotelList',
@@ -170,7 +179,7 @@
 					data: {
 						"ApiKey": "b421b9a21075a359c09a36db79325d5b",
 						  "Sign": "",
-						  "Timestamp": Timestamp,
+						  "Timestamp": Timestamp(),
 						  "Data": {
 						          "PageSize": 10,
 						          "PageIndex": _this.pageCurrent,

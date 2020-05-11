@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "我的地址",
   "usingComponents": {
-    "topbar": "/components/topBar/topbarx"
+    "topbar": "/components/topBar/topbarx",
+    "loding-page": "/pages/loding"
   }
 }

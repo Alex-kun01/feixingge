@@ -3,6 +3,7 @@
   "usingComponents": {
     "uni-rate": "/node-modules/@dcloudio/uni-ui/lib/uni-rate/uni-rate",
     "uni-collapse": "/node-modules/@dcloudio/uni-ui/lib/uni-collapse/uni-collapse",
-    "uni-collapse-item": "/node-modules/@dcloudio/uni-ui/lib/uni-collapse-item/uni-collapse-item"
+    "uni-collapse-item": "/node-modules/@dcloudio/uni-ui/lib/uni-collapse-item/uni-collapse-item",
+    "loding-page": "/pages/loding"
   }
 }

@@ -284,6 +284,7 @@
 
 <script>
 	import Topbar from '../../components/topBar/topbarx.vue'
+	import Timestamp from '../../components/Timestamp.js'
 	export default {
 		data() {
 			return {
@@ -470,14 +471,14 @@
 			// 实时票价校验
 			verifyCabin(){
 				let _this = this
-				let Timestamp = new Date().toLocaleString()
+				// let Timestamp = new Date().toLocaleString()
 				let airTicSeaMes = this.$store.state.airTicSeaMes
 				uni.request({
 					url: this.$slurl + '/Flight/VerifyCabin',
 					method: 'POST',
 					data: {
 						"ApiKey": this.$ApiKey,
-						    "Timestamp": Timestamp,
+						    "Timestamp": Timestamp(),
 						    "Sign": "",
 						    "Data": {
 						        "FlightNo": this.airTicMes.FlightNo,
@@ -639,14 +640,14 @@
 			},
 			// 获取实时政策
 			getFlightPolicy(){
-				let Timestamp = new Date().toLocaleString()
+				// let Timestamp = new Date().toLocaleString()
 				let _this = this
 				uni.request({
 					url: this.$slurl + '/Flight/GetFlightPolicy',
 					method: 'POST',
 					data: {
 						"ApiKey": this.$ApiKey,
-						    "Timestamp": Timestamp,
+						    "Timestamp": Timestamp(),
 						    "Sign": "",
 						    "Data": {
 						        "FlightType": 0 ,
@@ -793,14 +794,14 @@
 				let StartTime = this.airTicMes.DepartDate + '\xa0' + this.airTicMes.DepartTime
 				
 				
-				var Timestamp = new Date().toLocaleString()
+				// var Timestamp = new Date().toLocaleString()
 				uni.request({
 					url: this.$slurl +"/Flight/GetFlightBookPara",
 					method: "POST",
 					data: {
 						"ApiKey": this.$ApiKey,
 						"Sign": "",
-						"Timestamp": Timestamp,
+						"Timestamp": Timestamp(),
 						"Data": {
 							"StartDate": StartTime // 起飞具体时间
 						}
@@ -827,7 +828,7 @@
 			// 获取航班经停信息
 			getHangbanjingting(){
 				let _this = this
-				let Timestamp = new Date().toLocaleString()
+				// let Timestamp = new Date().toLocaleString()
 				uni.showLoading({
 					title: '正在获取经停信息...'
 				})
@@ -836,7 +837,7 @@
 					method: 'POST',
 					data: {
 						"ApiKey": this.$ApiKey,
-						    "Timestamp": Timestamp,
+						    "Timestamp": Timestamp(),
 						    "Sign": "",
 						    "Data": {
 						        "FlightNo": this.airTicMes.FlightNo,
@@ -863,7 +864,7 @@
 			subOrderALl(){
 				let _this = this
 				let userinfo = this.$store.state.userInfo
-				let Timestamp = new Date().toLocaleString()
+				// let Timestamp = new Date().toLocaleString()
 				let ReqCreateOrderInfo = this.ReqCreateOrderInfo
 				let airTicMes = this.airTicMes
 				let airPriceMes = this.airPriceMes
@@ -910,7 +911,7 @@
 					method: 'POST',
 					data: {
 						"ApiKey": this.$ApiKey,
-						    "Timestamp": Timestamp,
+						    "Timestamp": Timestamp(),
 						    "Sign": "",
 						    "Data": {
 						        "OrderBase": orderBase,
