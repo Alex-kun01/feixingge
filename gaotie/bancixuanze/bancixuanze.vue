@@ -109,10 +109,10 @@
 <style lang="less" scoped>
 	// 适配异形屏幕
 	.titleNview-placing {
-	        height: var(--status-bar-height);
-			background: #FFFFFF;
-	        padding-top: 0;
-	        box-sizing: content-box;
+		height: var(--status-bar-height);
+		background: #FFFFFF;
+		padding-top: 0;
+		box-sizing: content-box;
 	 }
 	.city_info{
 		width: 100%;
